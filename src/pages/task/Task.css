@@ -6,16 +6,31 @@
   margin: 15px 7px;
   transition: background-color 0.3s;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .task-cell:hover {
   background-color: #8ed1f0;
 }
 
+.task-cell-left {
+}
+
+.task-cell-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.task-checkbox {
+  display: flex;
+  justify-content: center;
+}
+
 .add-task-button {
   background-color: #2d91ee;
   color: #fff;
-  justify-content: center;
 }
 
 .add-task-button:hover {
@@ -23,9 +38,6 @@
 }
 
 .task-close-button {
-  position: relative;
-  top: -50px;
-  right: -220px;
 }
 
 /* CSS cho các thành phần trong ô task*/

@@ -8,11 +8,16 @@ import {
   Input,
   Select,
   DatePicker,
+  Checkbox,
 } from "antd";
+
 import { useState } from "react";
 import { CloseOutlined } from "@ant-design/icons";
 import "./Task.css"; // Import CSS file
-// import "./Checkbox.css";
+
+const onChange = (e) => {
+  console.log(`checked = ${e.target.checked}`);
+};
 
 const { Option } = Select;
 
@@ -176,39 +181,42 @@ const Task = () => {
                 className="task-cell"
                 onClick={() => handleCellClick(task)}
               >
-                <div className="task-label">{task.name}</div>
-                <div className="task-project">{task.project}</div>
-                <Tag
-                  className="task-priority"
-                  color={
-                    task.priority === "High"
-                      ? "red"
-                      : task.priority === "Medium"
-                      ? "orange"
-                      : "green"
-                  }
-                >
-                  {task.priority}
-                </Tag>
-                {task.dueDate && (
-                  <div className="task-due-date">
-                    Due Date: {task.dueDate.format("YYYY-MM-DD")}
-                  </div>
-                )}
-                <Button
-                  type="text"
-                  className="task-close-button"
-                  icon={<CloseOutlined />}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleTaskClose(task, reviewTasks);
-                  }}
-                />
-                <div class="checkbox-animate">
-                  <label>
-                    <input type="checkbox" name="check" />
-                    <span class="input-check"></span>
-                  </label>
+                <div className="task-cell-left">
+                  <div className="task-label">{task.name}</div>
+                  <div className="task-project">{task.project}</div>
+                  <Tag
+                    className="task-priority"
+                    color={
+                      task.priority === "High"
+                        ? "red"
+                        : task.priority === "Medium"
+                        ? "orange"
+                        : "green"
+                    }
+                  >
+                    {task.priority}
+                  </Tag>
+                  {task.dueDate && (
+                    <div className="task-due-date">
+                      Due Date: {task.dueDate.format("YYYY-MM-DD")}
+                    </div>
+                  )}
+                </div>
+                <div className="task-cell-right">
+                  <Checkbox
+                    className="task-checkbox"
+                    onChange={onChange}
+                    onClick={(e) => e.stopPropagation()}
+                  ></Checkbox>
+                  <Button
+                    type="text"
+                    className="task-close-button"
+                    icon={<CloseOutlined />}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleTaskClose(task, reviewTasks);
+                    }}
+                  />
                 </div>
               </div>
             ))}
@@ -247,6 +255,7 @@ const Task = () => {
                     Due Date: {task.dueDate.format("YYYY-MM-DD")}
                   </div>
                 )}
+                <Checkbox onChange={onChange}></Checkbox>
                 <Button
                   type="text"
                   className="task-close-button"
@@ -293,6 +302,7 @@ const Task = () => {
                     Due Date: {task.dueDate.format("YYYY-MM-DD")}
                   </div>
                 )}
+                <Checkbox onChange={onChange}></Checkbox>
                 <Button
                   type="text"
                   className="task-close-button"
@@ -339,6 +349,7 @@ const Task = () => {
                     Due Date: {task.dueDate.format("YYYY-MM-DD")}
                   </div>
                 )}
+                <Checkbox onChange={onChange}></Checkbox>
                 <Button
                   type="text"
                   className="task-close-button"
@@ -385,6 +396,7 @@ const Task = () => {
                     Due Date: {task.dueDate.format("YYYY-MM-DD")}
                   </div>
                 )}
+                <Checkbox onChange={onChange}></Checkbox>
                 <Button
                   type="text"
                   className="task-close-button"
@@ -431,6 +443,7 @@ const Task = () => {
                     Due Date: {task.dueDate.format("YYYY-MM-DD")}
                   </div>
                 )}
+                <Checkbox onChange={onChange}></Checkbox>
                 <Button
                   type="text"
                   className="task-close-button"
