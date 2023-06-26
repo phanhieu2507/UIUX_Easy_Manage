@@ -4,18 +4,28 @@ import {
   CheckCircleOutlined,
   AppstoreOutlined,
 } from '@ant-design/icons';
-
+import { useNavigate } from 'react-router-dom';
 const { Sider } = Layout;
 
+
 const Sidebar = () => {
+    const navigate = useNavigate();
+    const handleHomeClick = () => {
+   
+        navigate('/home')
+    }
+    const handleTaskClick = () => {
+   
+        navigate('/tasks')
+    }
   return (
     <Sider width={200} theme="light" style={{ height: '100vh' }} className='bg-blue-400'>
       <div className="logo" />
       <Menu mode="inline" defaultSelectedKeys={['1']} style={{ height: '100%' }} className='bg-blue-400'>
-        <Menu.Item key="1" icon={<HomeOutlined />}>
+        <Menu.Item key="1" icon={<HomeOutlined /> } onClick={handleHomeClick}>
           Home
         </Menu.Item>
-        <Menu.Item key="2" icon={<CheckCircleOutlined />}>
+        <Menu.Item key="2" icon={<CheckCircleOutlined /> } onClick={handleTaskClick}>
           Tasks
         </Menu.Item>
         <Menu.SubMenu key="3" icon={<AppstoreOutlined />} title="Projects">
