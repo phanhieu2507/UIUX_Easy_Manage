@@ -1,0 +1,74 @@
+.task-cell {
+  background: #fff;
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin: 15px 7px;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.task-cell:hover {
+  background-color: #f5eded;
+}
+
+.add-task-button {
+  background-color: #63b0f8;
+  color: #fff;
+}
+
+.add-task-button:hover {
+  background-color: #40a9ff;
+}
+
+/* Task.css */
+
+.submit-button {
+  background-color: #1890ff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #40a9ff;
+}
+
+/* CSS cho button Update */
+.update-button {
+  background-color: #1890ff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.update-button:hover {
+  background-color: #40a9ff;
+}
+/* CSS cho cột */
+.task-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+/* CSS cho container của các cột */
+.task-columns-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-1 {
+  margin: 10px 2px;
+}
+
+.info-2 {
+  margin: 0px 5px;
+}
