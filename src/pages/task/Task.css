@@ -9,16 +9,31 @@
 }
 
 .task-cell:hover {
-  background-color: #f5eded;
+  background-color: #8ed1f0;
 }
 
 .add-task-button {
-  background-color: #63b0f8;
+  background-color: #2d91ee;
   color: #fff;
+  justify-content: center;
 }
 
 .add-task-button:hover {
-  background-color: #40a9ff;
+  background-color: #5ab0f7;
+}
+
+.task-close-button {
+  position: relative;
+  top: -50px;
+  right: -220px;
+}
+
+/* CSS cho các thành phần trong ô task*/
+.task-label,
+.task-project,
+.task-priority,
+.task-due-date {
+  margin: 2px;
 }
 
 /* Task.css */
@@ -38,7 +53,7 @@
 }
 
 /* CSS cho button Update */
-.update-button {
+.btn-update {
   background-color: #1890ff;
   color: #fff;
   border: none;
@@ -46,17 +61,25 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  position: relative;
+  top: 3px;
 }
 
-.update-button:hover {
-  background-color: #40a9ff;
+.btn-update:hover {
+  background-color: #57b2fc;
 }
+
+.btn-update span {
+  position: relative;
+  top: -3px;
+}
+
 /* CSS cho cột */
 .task-column {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 16px;
+  margin: 10px 20px;
 }
 
 /* CSS cho container của các cột */
