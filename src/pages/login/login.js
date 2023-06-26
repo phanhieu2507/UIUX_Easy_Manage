@@ -7,12 +7,15 @@ import {
   FacebookOutlined,
   TwitterOutlined,
 } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 const { Content } = Layout;
 const { Title, Text } = Typography;
 
 const Login = () => {
+  const navigate = useNavigate();
   const onFinish = (values) => {
     console.log("Received values:", values);
+    navigate('/home')
   };
 
   return (
@@ -51,6 +54,7 @@ const Login = () => {
                 type="primary"
                 htmlType="submit"
                 className="w-full bg-blue-500"
+                onClick={onFinish}
               >
                 Log In
               </Button>
