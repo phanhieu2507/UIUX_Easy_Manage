@@ -558,48 +558,45 @@ const Task = () => {
       >
         {selectedCell && (
           <>
-            <Row
-              gutter={[16, 16]}
-              style={{ flexDirection: "column", alignItems: "center" }}
-            >
+            <Row gutter={[16, 16]} style={{ flexDirection: "column" }}>
               <Col span={12}>
                 <label>User Name:</label>
                 <Input
-                  value={selectedCell.user}
+                  placeholder={selectedCell.user}
                   onChange={handleTaskUserChange}
-                  style={{ marginBottom: "10px" }}
+                  style={{ marginBottom: "10px", width: "470px" }}
                 />
               </Col>
               <Col span={12}>
                 <label>Task Name:</label>
                 <Input
-                  value={selectedCell.name}
+                  placeholder={selectedCell.name}
                   onChange={handleTaskNameChange}
-                  style={{ marginBottom: "10px" }}
+                  style={{ marginBottom: "10px", width: "470px" }}
                 />
               </Col>
               <Col span={12}>
                 <label>Project:</label>
                 <Input
-                  value={selectedCell.project}
+                  placeholder={selectedCell.project}
                   onChange={handleProjectChange}
-                  style={{ marginBottom: "10px" }}
+                  style={{ marginBottom: "10px", width: "470px" }}
                 />
               </Col>
               <Col span={12}>
                 <label>Reviewer:</label>
                 <Input
-                  value={selectedCell.reviewer}
+                  placeholder={selectedCell.reviewer}
                   onChange={handleTaskReviewChange}
-                  style={{ marginBottom: "10px" }}
+                  style={{ marginBottom: "10px", width: "470px" }}
                 />
               </Col>
               <Col span={12}>
                 <label>Support:</label>
                 <Input
-                  value={selectedCell.support}
+                  placeholder={selectedCell.support}
                   onChange={handleTaskSupportChange}
-                  style={{ marginBottom: "10px" }}
+                  style={{ marginBottom: "10px", width: "470px" }}
                 />
               </Col>
 
