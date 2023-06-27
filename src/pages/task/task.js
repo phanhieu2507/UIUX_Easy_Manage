@@ -68,6 +68,10 @@ const Task = () => {
     setModalVisible(false);
   };
 
+  const handleTaskUserChange = (e) => {
+    setSelectedCell({ ...selectedCell, user: e.target.value });
+  };
+
   const handleTaskNameChange = (e) => {
     setSelectedCell({ ...selectedCell, name: e.target.value });
   };
@@ -138,6 +142,7 @@ const Task = () => {
   const handleAddTask = (column) => {
     const newTask = {
       id: Math.random(),
+      user: "User",
       name: "New Task",
       project: "New Project",
       priority: "Low",
@@ -182,6 +187,7 @@ const Task = () => {
                 onClick={() => handleCellClick(task)}
               >
                 <div className="task-cell-left">
+                  <div className="task-user">{task.user}</div>
                   <div className="task-label">{task.name}</div>
                   <div className="task-project">{task.project}</div>
                   <Tag
@@ -236,35 +242,44 @@ const Task = () => {
                 className="task-cell"
                 onClick={() => handleCellClick(task)}
               >
-                <div className="task-label">{task.name}</div>
-                <div className="task-project">{task.project}</div>
-                <Tag
-                  className="task-priority"
-                  color={
-                    task.priority === "High"
-                      ? "red"
-                      : task.priority === "Medium"
-                      ? "orange"
-                      : "green"
-                  }
-                >
-                  {task.priority}
-                </Tag>
-                {task.dueDate && (
-                  <div className="task-due-date">
-                    Due Date: {task.dueDate.format("YYYY-MM-DD")}
-                  </div>
-                )}
-                <Checkbox onChange={onChange}></Checkbox>
-                <Button
-                  type="text"
-                  className="task-close-button"
-                  icon={<CloseOutlined />}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleTaskClose(task, reviewTasks);
-                  }}
-                />
+                <div className="task-cell-left">
+                  <div className="task-user">{task.user}</div>
+                  <div className="task-label">{task.name}</div>
+                  <div className="task-project">{task.project}</div>
+                  <Tag
+                    className="task-priority"
+                    color={
+                      task.priority === "High"
+                        ? "red"
+                        : task.priority === "Medium"
+                        ? "orange"
+                        : "green"
+                    }
+                  >
+                    {task.priority}
+                  </Tag>
+                  {task.dueDate && (
+                    <div className="task-due-date">
+                      Due Date: {task.dueDate.format("YYYY-MM-DD")}
+                    </div>
+                  )}
+                </div>
+                <div className="task-cell-right">
+                  <Checkbox
+                    className="task-checkbox"
+                    onChange={onChange}
+                    onClick={(e) => e.stopPropagation()}
+                  ></Checkbox>
+                  <Button
+                    type="text"
+                    className="task-close-button"
+                    icon={<CloseOutlined />}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleTaskClose(task, reviewTasks);
+                    }}
+                  />
+                </div>
               </div>
             ))}
             <Button
@@ -283,35 +298,44 @@ const Task = () => {
                 className="task-cell"
                 onClick={() => handleCellClick(task)}
               >
-                <div className="task-label">{task.name}</div>
-                <div className="task-project">{task.project}</div>
-                <Tag
-                  className="task-priority"
-                  color={
-                    task.priority === "High"
-                      ? "red"
-                      : task.priority === "Medium"
-                      ? "orange"
-                      : "green"
-                  }
-                >
-                  {task.priority}
-                </Tag>
-                {task.dueDate && (
-                  <div className="task-due-date">
-                    Due Date: {task.dueDate.format("YYYY-MM-DD")}
-                  </div>
-                )}
-                <Checkbox onChange={onChange}></Checkbox>
-                <Button
-                  type="text"
-                  className="task-close-button"
-                  icon={<CloseOutlined />}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleTaskClose(task, reviewTasks);
-                  }}
-                />
+                <div className="task-cell-left">
+                  <div className="task-user">{task.user}</div>
+                  <div className="task-label">{task.name}</div>
+                  <div className="task-project">{task.project}</div>
+                  <Tag
+                    className="task-priority"
+                    color={
+                      task.priority === "High"
+                        ? "red"
+                        : task.priority === "Medium"
+                        ? "orange"
+                        : "green"
+                    }
+                  >
+                    {task.priority}
+                  </Tag>
+                  {task.dueDate && (
+                    <div className="task-due-date">
+                      Due Date: {task.dueDate.format("YYYY-MM-DD")}
+                    </div>
+                  )}
+                </div>
+                <div className="task-cell-right">
+                  <Checkbox
+                    className="task-checkbox"
+                    onChange={onChange}
+                    onClick={(e) => e.stopPropagation()}
+                  ></Checkbox>
+                  <Button
+                    type="text"
+                    className="task-close-button"
+                    icon={<CloseOutlined />}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleTaskClose(task, reviewTasks);
+                    }}
+                  />
+                </div>
               </div>
             ))}
             <Button
@@ -330,35 +354,44 @@ const Task = () => {
                 className="task-cell"
                 onClick={() => handleCellClick(task)}
               >
-                <div className="task-label">{task.name}</div>
-                <div className="task-project">{task.project}</div>
-                <Tag
-                  className="task-priority"
-                  color={
-                    task.priority === "High"
-                      ? "red"
-                      : task.priority === "Medium"
-                      ? "orange"
-                      : "green"
-                  }
-                >
-                  {task.priority}
-                </Tag>
-                {task.dueDate && (
-                  <div className="task-due-date">
-                    Due Date: {task.dueDate.format("YYYY-MM-DD")}
-                  </div>
-                )}
-                <Checkbox onChange={onChange}></Checkbox>
-                <Button
-                  type="text"
-                  className="task-close-button"
-                  icon={<CloseOutlined />}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleTaskClose(task, reviewTasks);
-                  }}
-                />
+                <div className="task-cell-left">
+                  <div className="task-user">{task.user}</div>
+                  <div className="task-label">{task.name}</div>
+                  <div className="task-project">{task.project}</div>
+                  <Tag
+                    className="task-priority"
+                    color={
+                      task.priority === "High"
+                        ? "red"
+                        : task.priority === "Medium"
+                        ? "orange"
+                        : "green"
+                    }
+                  >
+                    {task.priority}
+                  </Tag>
+                  {task.dueDate && (
+                    <div className="task-due-date">
+                      Due Date: {task.dueDate.format("YYYY-MM-DD")}
+                    </div>
+                  )}
+                </div>
+                <div className="task-cell-right">
+                  <Checkbox
+                    className="task-checkbox"
+                    onChange={onChange}
+                    onClick={(e) => e.stopPropagation()}
+                  ></Checkbox>
+                  <Button
+                    type="text"
+                    className="task-close-button"
+                    icon={<CloseOutlined />}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleTaskClose(task, reviewTasks);
+                    }}
+                  />
+                </div>
               </div>
             ))}
             <Button
@@ -377,82 +410,44 @@ const Task = () => {
                 className="task-cell"
                 onClick={() => handleCellClick(task)}
               >
-                <div className="task-label">{task.name}</div>
-                <div className="task-project">{task.project}</div>
-                <Tag
-                  className="task-priority"
-                  color={
-                    task.priority === "High"
-                      ? "red"
-                      : task.priority === "Medium"
-                      ? "orange"
-                      : "green"
-                  }
-                >
-                  {task.priority}
-                </Tag>
-                {task.dueDate && (
-                  <div className="task-due-date">
-                    Due Date: {task.dueDate.format("YYYY-MM-DD")}
-                  </div>
-                )}
-                <Checkbox onChange={onChange}></Checkbox>
-                <Button
-                  type="text"
-                  className="task-close-button"
-                  icon={<CloseOutlined />}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleTaskClose(task, reviewTasks);
-                  }}
-                />
-              </div>
-            ))}
-            <Button
-              className="add-task-button"
-              type="primary"
-              onClick={() => handleAddTask("Do This Month")}
-            >
-              Add Task
-            </Button>
-          </Col>
-          <Col span={8} className="task-column">
-            <Divider orientation="left">Completed</Divider>
-            {completedTasks.map((task) => (
-              <div
-                key={task.id}
-                className="task-cell"
-                onClick={() => handleCellClick(task)}
-              >
-                <div className="task-label">{task.name}</div>
-                <div className="task-project">{task.project}</div>
-                <Tag
-                  className="task-priority"
-                  color={
-                    task.priority === "High"
-                      ? "red"
-                      : task.priority === "Medium"
-                      ? "orange"
-                      : "green"
-                  }
-                >
-                  {task.priority}
-                </Tag>
-                {task.dueDate && (
-                  <div className="task-due-date">
-                    Due Date: {task.dueDate.format("YYYY-MM-DD")}
-                  </div>
-                )}
-                <Checkbox onChange={onChange}></Checkbox>
-                <Button
-                  type="text"
-                  className="task-close-button"
-                  icon={<CloseOutlined />}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleTaskClose(task, reviewTasks);
-                  }}
-                />
+                <div className="task-cell-left">
+                  <div className="task-user">{task.user}</div>
+                  <div className="task-label">{task.name}</div>
+                  <div className="task-project">{task.project}</div>
+                  <Tag
+                    className="task-priority"
+                    color={
+                      task.priority === "High"
+                        ? "red"
+                        : task.priority === "Medium"
+                        ? "orange"
+                        : "green"
+                    }
+                  >
+                    {task.priority}
+                  </Tag>
+                  {task.dueDate && (
+                    <div className="task-due-date">
+                      Due Date: {task.dueDate.format("YYYY-MM-DD")}
+                    </div>
+                  )}
+                </div>
+                <div className="task-cell-right">
+                  <Checkbox
+                    className="task-checkbox"
+                    onChange={onChange}
+                    onClick={(e) => e.stopPropagation()}
+                  ></Checkbox>
+                  <Button
+                    type="text"
+                    className="task-close-button"
+                    icon={<CloseOutlined />}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleTaskClose(task, reviewTasks);
+                    }}
+                  />
+                </div>
               </div>
             ))}
             <Button
@@ -486,7 +481,18 @@ const Task = () => {
       >
         {selectedCell && (
           <>
-            <Row gutter={[16, 16]}>
+            <Row
+              gutter={[16, 16]}
+              style={{ flexDirection: "column", alignItems: "center" }}
+            >
+              <Col span={12}>
+                <label>User Name:</label>
+                <Input
+                  value={selectedCell.user}
+                  onChange={handleTaskUserChange}
+                  style={{ marginBottom: "10px" }}
+                />
+              </Col>
               <Col span={12}>
                 <label>Task Name:</label>
                 <Input
@@ -503,8 +509,7 @@ const Task = () => {
                   style={{ marginBottom: "10px" }}
                 />
               </Col>
-            </Row>
-            <Row gutter={[16, 16]}>
+
               <Col span={12}>
                 <label style={{ marginRight: "5px" }}>Priority:</label>
                 <Select
