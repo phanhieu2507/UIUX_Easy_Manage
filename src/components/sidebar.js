@@ -19,9 +19,9 @@ const Sidebar = () => {
         navigate('/tasks')
     }
   return (
-    <Sider width={200} theme="light" style={{ height: '100vh' }} className='bg-blue-400'>
+    <Sider width={200} theme="light" style={{ height: '100vh' }} className='bg-blue-400 '>
       <div className="logo" />
-      <Menu mode="inline" defaultSelectedKeys={['1']} style={{ height: '100%' }} className='bg-blue-400'>
+      <Menu mode="inline" defaultSelectedKeys={['1']} style={{ height: '100%' }} className='bg-blue-400 fixed top-16 left-0 w-60'>
         <Menu.Item key="1" icon={<HomeOutlined /> } onClick={handleHomeClick}>
           Home
         </Menu.Item>

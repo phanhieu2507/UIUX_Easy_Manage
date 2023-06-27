@@ -206,7 +206,10 @@ const Task = () => {
                 />
                 <div class="checkbox-animate">
                   <label>
-                    <input type="checkbox" name="check" />
+                    <input type="checkbox" name="check" onClick={(e) => {
+                    e.stopPropagation();
+                    
+                  }} />
                     <span class="input-check"></span>
                   </label>
                 </div>
