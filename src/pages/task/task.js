@@ -64,6 +64,7 @@ const data = [
 
 const onChange = (e) => {
   console.log(`checked = ${e.target.checked}`);
+  return !e.target.checked;
 };
 
 const { Option } = Select;
@@ -282,9 +283,13 @@ const Task = () => {
                     <Checkbox
                       className="task-checkbox-in"
                       onChange={onChange}
-                      onClick={() =>
+                      onClick={(e) =>
                         // e.stopPropagation() &&
-                        openNotificationWithIcon("success")
+                        {
+                          if (e.target.checked) {
+                            openNotificationWithIcon("success");
+                          }
+                        }
                       }
                     ></Checkbox>
                   </Space>
@@ -349,7 +354,11 @@ const Task = () => {
                       onChange={onChange}
                       onClick={(e) =>
                         // e.stopPropagation() &&
-                        openNotificationWithIcon("success")
+                        {
+                          if (e.target.checked) {
+                            openNotificationWithIcon("success");
+                          }
+                        }
                       }
                     ></Checkbox>
                   </Space>
@@ -359,7 +368,7 @@ const Task = () => {
                     icon={<CloseOutlined />}
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleTaskClose(task, reviewTasks);
+                      handleTaskClose(task, supportTasks);
                     }}
                   />
                 </div>
@@ -414,7 +423,11 @@ const Task = () => {
                       onChange={onChange}
                       onClick={(e) =>
                         // e.stopPropagation() &&
-                        openNotificationWithIcon("success")
+                        {
+                          if (e.target.checked) {
+                            openNotificationWithIcon("success");
+                          }
+                        }
                       }
                     ></Checkbox>
                   </Space>
@@ -424,7 +437,7 @@ const Task = () => {
                     icon={<CloseOutlined />}
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleTaskClose(task, reviewTasks);
+                      handleTaskClose(task, doTodayTasks);
                     }}
                   />
                 </div>
@@ -450,8 +463,6 @@ const Task = () => {
                   <div className="task-user">{task.user}</div>
                   <div className="task-label">{task.name}</div>
                   <div className="task-project">{task.project}</div>
-                  <div className="task-review">{task.reviewer}</div>
-                  <div className="task-support">{task.support}</div>
                   <Tag
                     className="task-priority"
                     color={
@@ -481,7 +492,11 @@ const Task = () => {
                       onChange={onChange}
                       onClick={(e) =>
                         // e.stopPropagation() &&
-                        openNotificationWithIcon("success")
+                        {
+                          if (e.target.checked) {
+                            openNotificationWithIcon("success");
+                          }
+                        }
                       }
                     ></Checkbox>
                   </Space>
@@ -491,7 +506,7 @@ const Task = () => {
                     icon={<CloseOutlined />}
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleTaskClose(task, reviewTasks);
+                      handleTaskClose(task, doThisWeekTasks);
                     }}
                   />
                 </div>
@@ -546,7 +561,11 @@ const Task = () => {
                       onChange={onChange}
                       onClick={(e) =>
                         // e.stopPropagation() &&
-                        openNotificationWithIcon("success")
+                        {
+                          if (e.target.checked) {
+                            openNotificationWithIcon("success");
+                          }
+                        }
                       }
                     ></Checkbox>
                   </Space>
@@ -556,7 +575,7 @@ const Task = () => {
                     icon={<CloseOutlined />}
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleTaskClose(task, reviewTasks);
+                      handleTaskClose(task, doThisMonthTasks);
                     }}
                   />
                 </div>
