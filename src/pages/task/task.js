@@ -282,7 +282,7 @@ const Task = () => {
                     <Checkbox
                       className="task-checkbox-in"
                       onChange={onChange}
-                      onClick={(e) =>
+                      onClick={() =>
                         // e.stopPropagation() &&
                         openNotificationWithIcon("success")
                       }
