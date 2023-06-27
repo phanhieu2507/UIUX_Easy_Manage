@@ -9,11 +9,58 @@ import {
   Select,
   DatePicker,
   Checkbox,
+  notification,
+  Space,
 } from "antd";
 
 import { useState } from "react";
 import { CloseOutlined } from "@ant-design/icons";
 import "./Task.css"; // Import CSS file
+
+const data = [
+  {
+    asignee: "Phan Công Hiếu",
+    task: "Figma",
+    project: "UI/UX",
+    dueDate: "2023-05-30",
+    priority: "Low",
+  },
+  {
+    asignee: "Hoàng Việt Đức",
+    task: "Figma",
+    project: "UI/UX",
+    dueDate: "2023-05-30",
+    priority: "Low",
+  },
+  {
+    asignee: "Phạm Vân Anh",
+    task: "Figma",
+    project: "UI/UX",
+    dueDate: "2023-05-30",
+    priority: "Low",
+  },
+  {
+    asignee: "Vũ Đình Hoài",
+    task: "Figma",
+    project: "UI/UX",
+    dueDate: "2023-05-30",
+    priority: "Low",
+  },
+  {
+    asignee: "Lê Đình Hải Sơn",
+    task: "Figma",
+    project: "UI/UX",
+    dueDate: "2023-05-30",
+    priority: "Low",
+  },
+  {
+    asignee: "Văn Đăng Huy",
+    task: "Figma",
+    project: "UI/UX",
+    dueDate: "2023-05-30",
+    priority: "Low",
+  },
+];
 
 const onChange = (e) => {
   console.log(`checked = ${e.target.checked}`);
@@ -22,6 +69,15 @@ const onChange = (e) => {
 const { Option } = Select;
 
 const Task = () => {
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type) => {
+    api[type]({
+      message: "Notification Title",
+      description:
+        "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
+    });
+  };
+
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedCell, setSelectedCell] = useState(null);
   const [recentlyAssignedTasks, setRecentlyAssignedTasks] = useState([]);
@@ -74,6 +130,14 @@ const Task = () => {
 
   const handleTaskNameChange = (e) => {
     setSelectedCell({ ...selectedCell, name: e.target.value });
+  };
+
+  const handleTaskReviewChange = (e) => {
+    setSelectedCell({ ...selectedCell, user: e.target.value });
+  };
+
+  const handleTaskSupportChange = (e) => {
+    setSelectedCell({ ...selectedCell, user: e.target.value });
   };
 
   const handleProjectChange = (e) => {
@@ -142,10 +206,12 @@ const Task = () => {
   const handleAddTask = (column) => {
     const newTask = {
       id: Math.random(),
-      user: "User",
+      user: "Assignee",
       name: "New Task",
       project: "New Project",
       priority: "Low",
+      reviewer: "Reviewer",
+      support: "Support",
       column: column,
     };
 
@@ -209,11 +275,20 @@ const Task = () => {
                   )}
                 </div>
                 <div className="task-cell-right">
-                  <Checkbox
+                  {contextHolder}
+                  <Space
                     className="task-checkbox"
-                    onChange={onChange}
-                    onClick={(e) => e.stopPropagation()}
-                  ></Checkbox>
+                    onClick={(e) => e.stopPropagation(modalVisible === false)}
+                  >
+                    <Checkbox
+                      className="task-checkbox-in"
+                      onChange={onChange}
+                      onClick={(e) =>
+                        // e.stopPropagation() &&
+                        openNotificationWithIcon("success")
+                      }
+                    ></Checkbox>
+                  </Space>
                   <Button
                     type="text"
                     className="task-close-button"
@@ -358,6 +433,8 @@ const Task = () => {
                   <div className="task-user">{task.user}</div>
                   <div className="task-label">{task.name}</div>
                   <div className="task-project">{task.project}</div>
+                  <div className="task-review">{task.reviewer}</div>
+                  <div className="task-support">{task.support}</div>
                   <Tag
                     className="task-priority"
                     color={
@@ -509,13 +586,31 @@ const Task = () => {
                   style={{ marginBottom: "10px" }}
                 />
               </Col>
+              <Col span={12}>
+                <label>Reviewer:</label>
+                <Input
+                  value={selectedCell.reviewer}
+                  onChange={handleTaskReviewChange}
+                  style={{ marginBottom: "10px" }}
+                />
+              </Col>
+              <Col span={12}>
+                <label>Support:</label>
+                <Input
+                  value={selectedCell.support}
+                  onChange={handleTaskSupportChange}
+                  style={{ marginBottom: "10px" }}
+                />
+              </Col>
 
               <Col span={12}>
                 <label style={{ marginRight: "5px" }}>Priority:</label>
                 <Select
                   value={selectedCell.priority}
                   onChange={handlePriorityChange}
-                  style={{ marginBottom: "10px" }}
+                  style={{
+                    marginBottom: "10px",
+                  }}
                 >
                   <Option value="Low">Low</Option>
                   <Option value="Medium">Medium</Option>
