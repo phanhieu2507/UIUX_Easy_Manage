@@ -38,6 +38,7 @@
 }
 
 .task-close-button {
+  top: -8px;
 }
 
 /* CSS cho các thành phần trong ô task*/
@@ -46,6 +47,11 @@
 .task-priority,
 .task-due-date {
   margin: 2px;
+}
+
+.task-due-date {
+  color: red;
+  font-weight: 650;
 }
 
 /* Task.css */

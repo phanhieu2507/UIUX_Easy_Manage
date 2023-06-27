@@ -72,9 +72,8 @@ const Task = () => {
   const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = (type) => {
     api[type]({
-      message: "Notification Title",
-      description:
-        "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
+      message: "Notification",
+      description: "Bạn đã hoàn thành công việc!",
     });
   };
 
@@ -340,11 +339,20 @@ const Task = () => {
                   )}
                 </div>
                 <div className="task-cell-right">
-                  <Checkbox
+                  {contextHolder}
+                  <Space
                     className="task-checkbox"
-                    onChange={onChange}
-                    onClick={(e) => e.stopPropagation()}
-                  ></Checkbox>
+                    onClick={(e) => e.stopPropagation(modalVisible === false)}
+                  >
+                    <Checkbox
+                      className="task-checkbox-in"
+                      onChange={onChange}
+                      onClick={(e) =>
+                        // e.stopPropagation() &&
+                        openNotificationWithIcon("success")
+                      }
+                    ></Checkbox>
+                  </Space>
                   <Button
                     type="text"
                     className="task-close-button"
@@ -396,11 +404,20 @@ const Task = () => {
                   )}
                 </div>
                 <div className="task-cell-right">
-                  <Checkbox
+                  {contextHolder}
+                  <Space
                     className="task-checkbox"
-                    onChange={onChange}
-                    onClick={(e) => e.stopPropagation()}
-                  ></Checkbox>
+                    onClick={(e) => e.stopPropagation(modalVisible === false)}
+                  >
+                    <Checkbox
+                      className="task-checkbox-in"
+                      onChange={onChange}
+                      onClick={(e) =>
+                        // e.stopPropagation() &&
+                        openNotificationWithIcon("success")
+                      }
+                    ></Checkbox>
+                  </Space>
                   <Button
                     type="text"
                     className="task-close-button"
@@ -454,11 +471,20 @@ const Task = () => {
                   )}
                 </div>
                 <div className="task-cell-right">
-                  <Checkbox
+                  {contextHolder}
+                  <Space
                     className="task-checkbox"
-                    onChange={onChange}
-                    onClick={(e) => e.stopPropagation()}
-                  ></Checkbox>
+                    onClick={(e) => e.stopPropagation(modalVisible === false)}
+                  >
+                    <Checkbox
+                      className="task-checkbox-in"
+                      onChange={onChange}
+                      onClick={(e) =>
+                        // e.stopPropagation() &&
+                        openNotificationWithIcon("success")
+                      }
+                    ></Checkbox>
+                  </Space>
                   <Button
                     type="text"
                     className="task-close-button"
@@ -510,11 +536,20 @@ const Task = () => {
                   )}
                 </div>
                 <div className="task-cell-right">
-                  <Checkbox
+                  {contextHolder}
+                  <Space
                     className="task-checkbox"
-                    onChange={onChange}
-                    onClick={(e) => e.stopPropagation()}
-                  ></Checkbox>
+                    onClick={(e) => e.stopPropagation(modalVisible === false)}
+                  >
+                    <Checkbox
+                      className="task-checkbox-in"
+                      onChange={onChange}
+                      onClick={(e) =>
+                        // e.stopPropagation() &&
+                        openNotificationWithIcon("success")
+                      }
+                    ></Checkbox>
+                  </Space>
                   <Button
                     type="text"
                     className="task-close-button"
@@ -530,7 +565,7 @@ const Task = () => {
             <Button
               className="add-task-button"
               type="primary"
-              onClick={() => handleAddTask("Completed")}
+              onClick={() => handleAddTask("Do This Month")}
             >
               Add Task
             </Button>
