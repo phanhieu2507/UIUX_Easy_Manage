@@ -155,14 +155,6 @@ const Task = () => {
     handleCellClick(newTask.Support);
   };
 
-  const getTasksForReviewColumn = (columnName) => {
-    return dataReview.filter((task) => task.Project === columnName);
-  };
-
-  const getTasksForSupportColumn = (columnName) => {
-    return dataSupport.filter((task) => task.Project === columnName);
-  };
-
   return (
     <>
       <Layout>
