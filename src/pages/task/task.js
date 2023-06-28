@@ -16,6 +16,8 @@ import {
 
 import { useState } from "react";
 import { CloseOutlined } from "@ant-design/icons";
+import moment from "moment";
+import "moment/locale/vi"; // Import Vietnamese locale for moment (or any other locale you prefer)
 import "./Task.css"; // Import CSS file
 
 import Navbar from "../../components/navbar";
@@ -48,30 +50,6 @@ var dataReview = [
     Project: "Project 3",
     Priority: "Low",
     dueDate: "2023-08-10",
-  },
-  {
-    Review: "Review 4",
-    Assignee: "Assignee 4",
-    User: "User 4",
-    Project: "Project 4",
-    Priority: "Low",
-    dueDate: "2023-08-11",
-  },
-  {
-    Review: "Review 5",
-    Assignee: "Assignee 5",
-    User: "User 5",
-    Project: "Project",
-    Priority: "High",
-    dueDate: "2023-07-20",
-  },
-  {
-    Review: "Review 6",
-    Assignee: "Assignee 6",
-    User: "User 6",
-    Project: "Support",
-    Priority: "Medium",
-    dueDate: "2023-07-25",
   },
 ];
 
@@ -108,22 +86,6 @@ var dataSupport = [
     Priority: "Low",
     dueDate: "2023-08-11",
   },
-  {
-    Support: "Support 5",
-    Assignee: "Assignee 5",
-    User: "User 5",
-    Project: "Support",
-    Priority: "High",
-    dueDate: "2023-07-20",
-  },
-  {
-    Support: "Support 6",
-    Assignee: "Assignee 6",
-    User: "User 6",
-    Project: "Support",
-    Priority: "Medium",
-    dueDate: "2023-07-25",
-  },
 ];
 
 const Task = () => {
@@ -140,9 +102,27 @@ const Task = () => {
     Priority: "",
     dueDate: "",
   });
+  const [selectedReviewTask, setSelectedReviewTask] = useState(null);
 
   const handleReviewCellClick = (cell) => {
     setSelectedReviewCell(cell);
+
+    // Tìm task tương ứng dựa trên giá trị cell
+    const task = dataReview.find((task) => task.Review === cell);
+
+    // Lưu trữ task được chọn
+    setSelectedReviewTask(task);
+
+    // Khởi tạo thông tin trong reviewInfo từ task được chọn
+    setReviewInfo({
+      Review: task.Review,
+      Assignee: task.Assignee,
+      User: task.User,
+      Project: task.Project,
+      Priority: task.Priority,
+      dueDate: task.dueDate,
+    });
+
     setReviewModalVisible(true);
   };
 
@@ -164,10 +144,10 @@ const Task = () => {
   const handleAddTask = (column) => {
     setTaskCounter(taskCounter + 1);
     const newTask = {
-      [column]: `New ${column}`,
-      Assignee: "",
-      User: "",
-      Project: column,
+      Review: `Reviewer`,
+      Assignee: "Assignee",
+      User: "User",
+      Project: "Project Name",
       Priority: "",
       dueDate: "",
     };
@@ -182,13 +162,36 @@ const Task = () => {
 
   // Function to handle input changes in the Review Modal
   const handleReviewInputChange = (field, value) => {
+    if (field === "dueDate") {
+      value = value ? value.format("YYYY-MM-DD") : ""; // Format the date value
+    }
+
     setReviewInfo({ ...reviewInfo, [field]: value });
   };
 
   // Function to handle the Update button click in the Review Modal
   const handleReviewUpdate = () => {
-    // Perform the update logic here
-    console.log("Review Information Updated", reviewInfo);
+    // Kiểm tra xem task đã được chọn chưa
+    if (!selectedReviewTask) {
+      return;
+    }
+
+    // Tìm index của task trong mảng dataReview
+    const taskIndex = dataReview.findIndex(
+      (task) => task.Review === selectedReviewCell
+    );
+
+    // Kiểm tra xem task có tồn tại trong mảng không
+    if (taskIndex !== -1) {
+      // Cập nhật thông tin trong task
+      dataReview[taskIndex] = {
+        ...dataReview[taskIndex],
+        ...reviewInfo,
+      };
+
+      // Đóng Modal
+      handleReviewModalClose();
+    }
   };
 
   return (
@@ -318,8 +321,13 @@ const Task = () => {
               <div>
                 <label>Due Date: </label>
                 <DatePicker
-                  value={reviewInfo.dueDate}
+                  value={
+                    reviewInfo.dueDate
+                      ? moment(reviewInfo.dueDate, "YYYY-MM-DD")
+                      : null
+                  }
                   onChange={(date) => handleReviewInputChange("dueDate", date)}
+                  format="YYYY-MM-DD"
                 />
               </div>
             </Modal>
