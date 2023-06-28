@@ -12,7 +12,6 @@ import {
   notification,
   Space,
   Layout,
-  Rate,
 } from "antd";
 
 import { useState } from "react";
@@ -35,7 +34,6 @@ var dataReview = [
     Project: "Project 1",
     Priority: "High",
     dueDate: "2023-07-15",
-    Rating: "",
   },
   {
     Review: "Review 2",
@@ -44,7 +42,6 @@ var dataReview = [
     Project: "Project 2",
     Priority: "Medium",
     dueDate: "2023-07-30",
-    Rating: "",
   },
   {
     Review: "Review 3",
@@ -53,7 +50,6 @@ var dataReview = [
     Project: "Project 3",
     Priority: "Low",
     dueDate: "2023-08-10",
-    Rating: "",
   },
 ];
 
@@ -92,14 +88,65 @@ var dataSupport = [
   },
 ];
 
+var dataDoToday = [
+  {
+    Assignee: "Assignee 1",
+    User: "User 1",
+    Project: "Project 1",
+    Priority: "High",
+    dueDate: "2023-07-15",
+  },
+  {
+    Assignee: "Assignee 2",
+    User: "User 2",
+    Project: "Project 2",
+    Priority: "Medium",
+    dueDate: "2023-07-30",
+  },
+  {
+    Assignee: "Assignee 3",
+    User: "User 3",
+    Project: "Project 3",
+    Priority: "Low",
+    dueDate: "2023-08-10",
+  },
+];
+var dataDoThisWeek = [
+  {
+    Assignee: "Assignee 1",
+    User: "User 1",
+    Project: "Project 1",
+    Priority: "High",
+    dueDate: "2023-07-15",
+  },
+  {
+    Assignee: "Assignee 2",
+    User: "User 2",
+    Project: "Project 2",
+    Priority: "Medium",
+    dueDate: "2023-07-30",
+  },
+  {
+    Assignee: "Assignee 3",
+    User: "User 3",
+    Project: "Project 3",
+    Priority: "Low",
+    dueDate: "2023-08-10",
+  },
+];
+
 const Task = () => {
   const [reviewModalVisible, setReviewModalVisible] = useState(false);
   const [selectedReviewCell, setSelectedReviewCell] = useState(null);
   const [selectedReviewTask, setSelectedReviewTask] = useState(null);
   const [supportModalVisible, setSupportModalVisible] = useState(false);
   const [selectedSupportCell, setSelectedSupportCell] = useState(null);
+  const [doTodayModalVisible, setDoTodayModalVisible] = useState(false);
   const [selectedSupportTask, setSelectedSupportTask] = useState(null);
+  const [selectedDoTodayCell, setSelectedDoTodayCell] = useState(null);
   const [taskCounter, setTaskCounter] = useState(16);
+  const [doTodayCounter, setDoTodayCounter] = useState(0);
+  const [selectedDoTodayTask, setSelectedDoTodayTask] = useState(null);
   const [reviewInfo, setReviewInfo] = useState({
     Review: "",
     Assignee: "",
@@ -107,10 +154,17 @@ const Task = () => {
     Project: "",
     Priority: "",
     dueDate: "",
-    Rating: null, // Thêm trường Rating vào cấu trúc dữ liệu
   });
   const [supportInfo, setSupportInfo] = useState({
     Support: "",
+    Assignee: "",
+    User: "",
+    Project: "",
+    Priority: "",
+    dueDate: "",
+  });
+  const [doTodayInfo, setDoTodayInfo] = useState({
+    Task: "",
     Assignee: "",
     User: "",
     Project: "",
@@ -162,6 +216,28 @@ const Task = () => {
     setSupportModalVisible(true);
   };
 
+  const handleDoTodayCellClick = (cell) => {
+    setSelectedDoTodayCell(cell);
+
+    // Tìm task tương ứng dựa trên giá trị cell
+    const task = dataDoToday.find((task) => task.Task === cell);
+
+    // Lưu trữ task được chọn
+    setSelectedDoTodayTask(task);
+
+    // Khởi tạo thông tin trong doTodayInfo từ task được chọn
+    setDoTodayInfo({
+      Task: task.Task,
+      Assignee: task.Assignee,
+      User: task.User,
+      Project: task.Project,
+      Priority: task.Priority,
+      dueDate: task.dueDate,
+    });
+
+    setDoTodayModalVisible(true);
+  };
+
   const handleReviewModalClose = () => {
     setSelectedReviewCell(null); // Reset selected cell when closing modal
     setReviewModalVisible(false);
@@ -170,6 +246,11 @@ const Task = () => {
   const handleSupportModalClose = () => {
     setSelectedSupportCell(null); // Reset selected cell when closing modal
     setSupportModalVisible(false);
+  };
+
+  const handleDoTodayModalClose = () => {
+    setSelectedDoTodayCell(null); // Reset selected cell when closing modal
+    setDoTodayModalVisible(false);
   };
 
   const handleAddTask = (column) => {
@@ -191,10 +272,24 @@ const Task = () => {
     }
   };
 
+  const handleAddDoTodayTask = () => {
+    setDoTodayCounter(doTodayCounter + 1);
+    const newTask = {
+      Task: `Do Today Task ${doTodayCounter + 1}`,
+      Assignee: "Assignee",
+      User: "User",
+      Project: "Project Name",
+      Priority: "",
+      dueDate: "",
+    };
+    dataDoToday.push(newTask);
+    handleDoTodayCellClick(newTask.Task);
+  };
+
   // Function to handle input changes in the Review Modal
   const handleReviewInputChange = (field, value) => {
     if (field === "dueDate") {
-      value = value ? value.format("YYYY-MM-DD") : "";
+      value = value ? value.format("YYYY-MM-DD") : ""; // Format the date value
     }
 
     setReviewInfo({ ...reviewInfo, [field]: value });
@@ -209,22 +304,35 @@ const Task = () => {
     setSupportInfo({ ...supportInfo, [field]: value });
   };
 
+  const handleDoTodayInputChange = (field, value) => {
+    if (field === "dueDate") {
+      value = value ? value.format("YYYY-MM-DD") : ""; // Format the date value
+    }
+
+    setDoTodayInfo({ ...doTodayInfo, [field]: value });
+  };
+
   // Function to handle the Update button click in the Review Modal
   const handleReviewUpdate = () => {
+    // Kiểm tra xem task đã được chọn chưa
     if (!selectedReviewTask) {
       return;
     }
 
+    // Tìm index của task trong mảng dataReview
     const taskIndex = dataReview.findIndex(
       (task) => task.Review === selectedReviewCell
     );
 
+    // Kiểm tra xem task có tồn tại trong mảng không
     if (taskIndex !== -1) {
+      // Cập nhật thông tin trong task
       dataReview[taskIndex] = {
         ...dataReview[taskIndex],
         ...reviewInfo,
       };
 
+      // Đóng Modal
       handleReviewModalClose();
     }
   };
@@ -254,6 +362,30 @@ const Task = () => {
     }
   };
 
+  const handleDoTodayUpdate = () => {
+    // Kiểm tra xem task đã được chọn chưa
+    if (!selectedDoTodayTask) {
+      return;
+    }
+
+    // Tìm index của task trong mảng dataDoToday
+    const taskIndex = dataDoToday.findIndex(
+      (task) => task.Task === selectedDoTodayCell
+    );
+
+    // Kiểm tra xem task có tồn tại trong mảng không
+    if (taskIndex !== -1) {
+      // Cập nhật thông tin trong task
+      dataDoToday[taskIndex] = {
+        ...dataDoToday[taskIndex],
+        ...doTodayInfo,
+      };
+
+      // Đóng Modal
+      handleDoTodayModalClose();
+    }
+  };
+
   return (
     <>
       <Layout>
@@ -272,26 +404,12 @@ const Task = () => {
                     }`}
                     onClick={() => handleReviewCellClick(task.Review)}
                   >
-                    <div>Reviewer: {task.Review}</div>
-                    <div>Assignee: {task.Assignee}</div>
-                    <div>User: {task.User}</div>
-                    <div>Project Name: {task.Project}</div>
-                    <div>
-                      Priority:{" "}
-                      <Tag
-                        color={
-                          task.Priority === "High"
-                            ? "red"
-                            : task.Priority === "Medium"
-                            ? "orange"
-                            : "green"
-                        }
-                      >
-                        {task.Priority}
-                      </Tag>
-                    </div>
-                    <div>Due Date: {task.dueDate}</div>
-                    <Rate value={task.Rating} />
+                    <div>{task.Review}</div>
+                    <div>{task.Assignee}</div>
+                    <div>{task.User}</div>
+                    <div>{task.Project}</div>
+                    <div>{task.Priority}</div>
+                    <div>{task.dueDate}</div>
                   </div>
                 ))}
                 <Button
@@ -312,18 +430,42 @@ const Task = () => {
                     }`}
                     onClick={() => handleSupportCellClick(task.Support)}
                   >
-                    <div>Support: {task.Support}</div>
-                    <div>Assignee: {task.Assignee}</div>
-                    <div>User: {task.User}</div>
-                    <div>Project Name: {task.Project}</div>
-                    <div>Priority: {task.Priority}</div>
-                    <div>Due Date: {task.dueDate}</div>
+                    <div>{task.Support}</div>
+                    <div>{task.Assignee}</div>
+                    <div>{task.User}</div>
+                    <div>{task.Project}</div>
+                    <div>{task.Priority}</div>
+                    <div>{task.dueDate}</div>
                   </div>
                 ))}
                 <Button
                   className="add-task-button"
                   type="primary"
                   onClick={() => handleAddTask("Support")}
+                >
+                  Add Task
+                </Button>
+              </Col>
+              <Col span={4}>
+                <Divider orientation="left">Do Today</Divider>
+                {dataDoToday.map((task) => (
+                  <div
+                    key={task.Task}
+                    className="task-cell"
+                    onClick={() => handleDoTodayCellClick(task.Task)}
+                  >
+                    <div>{task.Task}</div>
+                    <div>{task.Assignee}</div>
+                    <div>{task.User}</div>
+                    <div>{task.Project}</div>
+                    <div>{task.Priority}</div>
+                    <div>{task.dueDate}</div>
+                  </div>
+                ))}
+                <Button
+                  className="add-task-button"
+                  type="primary"
+                  onClick={handleAddDoTodayTask}
                 >
                   Add Task
                 </Button>
@@ -400,13 +542,6 @@ const Task = () => {
                   onChange={(date) => handleReviewInputChange("dueDate", date)}
                 />
               </div>
-              <div>
-                <label>Rating:</label>
-                <Rate
-                  value={reviewInfo.Rating}
-                  onChange={(value) => handleReviewInputChange("Rating", value)}
-                />
-              </div>
             </Modal>
             {/* Support Modal */}
             <Modal
@@ -479,6 +614,84 @@ const Task = () => {
                     supportInfo.dueDate ? moment(supportInfo.dueDate) : null
                   }
                   onChange={(date) => handleSupportInputChange("dueDate", date)}
+                />
+              </div>
+            </Modal>
+            <Modal
+              title="Do Today Task Information"
+              visible={doTodayModalVisible}
+              onCancel={handleDoTodayModalClose}
+              footer={[
+                <Button
+                  key="update"
+                  type="primary"
+                  onClick={handleDoTodayUpdate}
+                >
+                  Update
+                </Button>,
+              ]}
+            >
+              <div>
+                <label>Task:</label>
+                <Input
+                  value={doTodayInfo.Task}
+                  onChange={(e) =>
+                    handleDoTodayInputChange("Task", e.target.value)
+                  }
+                />
+              </div>
+              <div>
+                <label>Assignee:</label>
+                <Input
+                  value={doTodayInfo.Assignee}
+                  onChange={(e) =>
+                    handleDoTodayInputChange("Assignee", e.target.value)
+                  }
+                />
+              </div>
+              <div>
+                <label>User:</label>
+                <Input
+                  value={doTodayInfo.User}
+                  onChange={(e) =>
+                    handleDoTodayInputChange("User", e.target.value)
+                  }
+                />
+              </div>
+              <div>
+                <label>Project:</label>
+                <Input
+                  value={doTodayInfo.Project}
+                  onChange={(e) =>
+                    handleDoTodayInputChange("Project", e.target.value)
+                  }
+                />
+              </div>
+              <div>
+                <label>Priority: </label>
+                <Select
+                  value={doTodayInfo.Priority}
+                  onChange={(value) =>
+                    handleDoTodayInputChange("Priority", value)
+                  }
+                  style={{ width: "25%" }}
+                  dropdownStyle={{ minWidth: "120px" }}
+                >
+                  <Option value="High">High</Option>
+                  <Option value="Medium">Medium</Option>
+                  <Option value="Low">Low</Option>
+                </Select>
+              </div>
+              <div>
+                <label>Due Date: </label>
+                <DatePicker
+                  value={
+                    doTodayInfo.dueDate
+                      ? moment(doTodayInfo.dueDate, "YYYY-MM-DD")
+                      : null
+                  }
+                  onChange={(date) => handleDoTodayInputChange("dueDate", date)}
+                  format="YYYY-MM-DD"
                 />
               </div>
             </Modal>
