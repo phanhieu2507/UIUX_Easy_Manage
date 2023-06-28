@@ -173,7 +173,7 @@ const Task = () => {
             <Row gutter={[16, 24]}>
               <Col span={4}>
                 <Divider orientation="left">Review</Divider>
-                {getTasksForReviewColumn("Review").map((task) => (
+                {dataReview.map((task) => (
                   <div
                     key={task.Review}
                     className="task-cell"
@@ -197,7 +197,7 @@ const Task = () => {
               </Col>
               <Col span={4}>
                 <Divider orientation="left">Support</Divider>
-                {getTasksForSupportColumn("Support").map((task) => (
+                {dataSupport.map((task) => (
                   <div
                     key={task.Support}
                     className="task-cell"
