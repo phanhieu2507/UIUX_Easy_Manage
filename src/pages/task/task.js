@@ -22,9 +22,11 @@ import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import { Content } from "antd/es/layout/layout";
 
+const { Option } = Select;
+
 var dataReview = [
   {
-    Review: "Support 1",
+    Review: "Review 1",
     Assignee: "Assignee 1",
     User: "User 1",
     Project: "Project 1",
@@ -32,7 +34,7 @@ var dataReview = [
     dueDate: "2023-07-15",
   },
   {
-    Review: "Support 2",
+    Review: "Review 2",
     Assignee: "Assignee 2",
     User: "User 2",
     Project: "Project 2",
@@ -40,7 +42,7 @@ var dataReview = [
     dueDate: "2023-07-30",
   },
   {
-    Review: "Support 3",
+    Review: "Review 3",
     Assignee: "Assignee 3",
     User: "User 3",
     Project: "Project 3",
@@ -48,7 +50,7 @@ var dataReview = [
     dueDate: "2023-08-10",
   },
   {
-    Review: "Support 4",
+    Review: "Review 4",
     Assignee: "Assignee 4",
     User: "User 4",
     Project: "Project 4",
@@ -56,15 +58,15 @@ var dataReview = [
     dueDate: "2023-08-11",
   },
   {
-    Review: "Support 5",
+    Review: "Review 5",
     Assignee: "Assignee 5",
     User: "User 5",
-    Project: "Support",
+    Project: "Project",
     Priority: "High",
     dueDate: "2023-07-20",
   },
   {
-    Review: "Support 6",
+    Review: "Review 6",
     Assignee: "Assignee 6",
     User: "User 6",
     Project: "Support",
@@ -125,34 +127,68 @@ var dataSupport = [
 ];
 
 const Task = () => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selectedCell, setSelectedCell] = useState(null);
+  const [reviewModalVisible, setReviewModalVisible] = useState(false);
+  const [supportModalVisible, setSupportModalVisible] = useState(false);
+  const [selectedReviewCell, setSelectedReviewCell] = useState(null);
+  const [selectedSupportCell, setSelectedSupportCell] = useState(null);
   const [taskCounter, setTaskCounter] = useState(16);
+  const [reviewInfo, setReviewInfo] = useState({
+    Review: "",
+    Assignee: "",
+    User: "",
+    Project: "",
+    Priority: "",
+    dueDate: "",
+  });
 
-  const handleCellClick = (cell) => {
-    setSelectedCell(cell);
-    setModalVisible(true);
+  const handleReviewCellClick = (cell) => {
+    setSelectedReviewCell(cell);
+    setReviewModalVisible(true);
   };
 
-  const handleModalClose = () => {
-    setSelectedCell(null); // Reset selected cell when closing modal
-    setModalVisible(false);
+  const handleSupportCellClick = (cell) => {
+    setSelectedSupportCell(cell);
+    setSupportModalVisible(true);
+  };
+
+  const handleReviewModalClose = () => {
+    setSelectedReviewCell(null); // Reset selected cell when closing modal
+    setReviewModalVisible(false);
+  };
+
+  const handleSupportModalClose = () => {
+    setSelectedSupportCell(null); // Reset selected cell when closing modal
+    setSupportModalVisible(false);
   };
 
   const handleAddTask = (column) => {
     setTaskCounter(taskCounter + 1);
     const newTask = {
-      Review: `New Review`,
-      Support: `New Support`,
+      [column]: `New ${column}`,
       Assignee: "",
       User: "",
       Project: column,
       Priority: "",
-      "Due Date": "",
+      dueDate: "",
     };
-    dataSupport.push(newTask);
-    dataReview.push(newTask);
-    handleCellClick(newTask.Support);
+    if (column === "Review") {
+      dataReview.push(newTask);
+      handleReviewCellClick(newTask.Review);
+    } else if (column === "Support") {
+      dataSupport.push(newTask);
+      handleSupportCellClick(newTask.Support);
+    }
+  };
+
+  // Function to handle input changes in the Review Modal
+  const handleReviewInputChange = (field, value) => {
+    setReviewInfo({ ...reviewInfo, [field]: value });
+  };
+
+  // Function to handle the Update button click in the Review Modal
+  const handleReviewUpdate = () => {
+    // Perform the update logic here
+    console.log("Review Information Updated", reviewInfo);
   };
 
   return (
@@ -169,7 +205,7 @@ const Task = () => {
                   <div
                     key={task.Review}
                     className="task-cell"
-                    onClick={() => handleCellClick(task.Review)}
+                    onClick={() => handleReviewCellClick(task.Review)}
                   >
                     <div>{task.Review}</div>
                     <div>{task.Assignee}</div>
@@ -193,7 +229,7 @@ const Task = () => {
                   <div
                     key={task.Support}
                     className="task-cell"
-                    onClick={() => handleCellClick(task.Support)}
+                    onClick={() => handleSupportCellClick(task.Support)}
                   >
                     <div>{task.Support}</div>
                     <div>{task.Assignee}</div>
@@ -211,33 +247,90 @@ const Task = () => {
                   Add Task
                 </Button>
               </Col>
-              <Col span={4}>
-                <Divider orientation="left">Do Today</Divider>
-                {[5, 6, 7, 8].map((cell) => (
-                  <div
-                    key={cell}
-                    className="task-cell"
-                    onClick={() => handleCellClick(cell)}
-                  >
-                    col-{cell}
-                  </div>
-                ))}
-                <Button
-                  className="add-task-button"
-                  type="primary"
-                  onClick={() => handleAddTask("Do Today")}
-                >
-                  Add Task
-                </Button>
-              </Col>
+              {/* ... */}
             </Row>
+            {/* Review Modal */}
             <Modal
-              title="Thông tin"
-              visible={modalVisible}
-              onCancel={handleModalClose}
+              title="Review Task Information"
+              visible={reviewModalVisible}
+              onCancel={handleReviewModalClose}
+              footer={[
+                <Button
+                  key="update"
+                  type="primary"
+                  onClick={handleReviewUpdate}
+                >
+                  Update
+                </Button>,
+              ]}
+            >
+              <div>
+                <label>Review:</label>
+                <Input
+                  value={reviewInfo.Review}
+                  onChange={(e) =>
+                    handleReviewInputChange("Review", e.target.value)
+                  }
+                />
+              </div>
+              <div>
+                <label>Assignee:</label>
+                <Input
+                  value={reviewInfo.Assignee}
+                  onChange={(e) =>
+                    handleReviewInputChange("Assignee", e.target.value)
+                  }
+                />
+              </div>
+              <div>
+                <label>User:</label>
+                <Input
+                  value={reviewInfo.User}
+                  onChange={(e) =>
+                    handleReviewInputChange("User", e.target.value)
+                  }
+                />
+              </div>
+              <div>
+                <label>Project:</label>
+                <Input
+                  value={reviewInfo.Project}
+                  onChange={(e) =>
+                    handleReviewInputChange("Project", e.target.value)
+                  }
+                />
+              </div>
+              <div>
+                <label>Priority: </label>
+                <Select
+                  value={reviewInfo.Priority}
+                  onChange={(value) =>
+                    handleReviewInputChange("Priority", value)
+                  }
+                  style={{ width: "25%" }}
+                  dropdownStyle={{ minWidth: "120px" }}
+                >
+                  <Option value="High">High</Option>
+                  <Option value="Medium">Medium</Option>
+                  <Option value="Low">Low</Option>
+                </Select>
+              </div>
+              <div>
+                <label>Due Date: </label>
+                <DatePicker
+                  value={reviewInfo.dueDate}
+                  onChange={(date) => handleReviewInputChange("dueDate", date)}
+                />
+              </div>
+            </Modal>
+            {/* Support Modal */}
+            <Modal
+              title="Support Task Information"
+              visible={supportModalVisible}
+              onCancel={handleSupportModalClose}
               footer={null}
             >
-              <p>Thông tin cho ô {selectedCell}</p>
+              <p>Information for Support Task: {selectedSupportCell}</p>
               {/* Add your table content or other information here */}
             </Modal>
           </Content>
