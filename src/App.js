@@ -13,6 +13,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/tasks" element={<Task />} />
         <Route path="/tasks/calendar" element={<TaskCalendar />} />
+        <Route path="/tasks/board" element={<TaskCalendar />} />
       </Routes>
     </div>
   );
