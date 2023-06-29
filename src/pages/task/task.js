@@ -35,8 +35,9 @@ var dataReview = [
     User: "Hoàng Việt Đức",
     Project: "UIUX",
     Priority: "High",
+    dueDate: "2023-07-01",
     Comment: "Công việc hoàn thành đúng tiến độ và chất lượng tốt!",
-    Rating: 4.5,
+    Rating: 5,
   },
   {
     Review: "Đỗ Quốc Huy",
@@ -45,6 +46,7 @@ var dataReview = [
     User: "Hoàng Việt Đức",
     Project: "Hust Lab",
     Priority: "Medium",
+    dueDate: "2023-07-15",
     Comment: "Công việc có những điểm cần cải thiện, nhưng tổng thể là tốt!",
     Rating: 4.8,
   },
@@ -56,7 +58,7 @@ var dataSupport = [
     User: "Hoàng Việt Đức",
     Project: "Sun*Asterisk",
     Priority: "High",
-    dueDate: "2023-07-15",
+    dueDate: "2023-06-30",
     Problem: "Khó học thuộc Kanji",
     solveThisProblem: "Viết ra giấy từ đấy 20 lần",
   },
@@ -66,7 +68,7 @@ var dataSupport = [
     User: "Hoàng Việt Đức",
     Project: "Hust LAB",
     Priority: "Medium",
-    dueDate: "2023-07-30",
+    dueDate: "2023-06-30",
     Problem: "Khó khăn trong làm việc nhóm",
     solveThisProblem:
       "Sử dụng các công cụ và phần mềm quản lý dự án để theo dõi tiến độ công việc, phân công nhiệm vụ và quản lý tài liệu chung",
@@ -81,7 +83,7 @@ var dataDoToday = [
     User: "Hoàng Việt Đức",
     Project: "UI/UX",
     Priority: "High",
-    dueDate: "2023-07-15",
+    dueDate: "2023-06-30",
   },
   {
     id: 2,
@@ -102,15 +104,80 @@ var dataDoToday = [
     dueDate: "2023-07-10",
   },
 ];
+
+var dataDoThisWeek = [
+  {
+    id: 1,
+    Task: "Tạo giao diện người dùng",
+    Assignee: "Vũ Thị Hương Giang",
+    User: "Hoàng Việt Đức",
+    Project: "UI/UX",
+    Priority: "High",
+    dueDate: "2023-06-30",
+  },
+  {
+    id: 2,
+    Task: "Phân tích yêu cầu người dùng",
+    Assignee: "Trịnh Tuấn Đạt",
+    User: "Hoàng Việt Đức",
+    Project: "HUST LAB",
+    Priority: "Medium",
+    dueDate: "2023-06-30",
+  },
+  {
+    id: 3,
+    Task: "Làm 1 đề JLPT",
+    Assignee: "Ngô Lan Anh",
+    User: "Hoàng Việt Đức",
+    Project: "Sun*Asterisk",
+    Priority: "Low",
+    dueDate: "2023-07-10",
+  },
+];
+
+var dataDoThisMonth = [
+  {
+    id: 1,
+    Task: "Tạo giao diện người dùng",
+    Assignee: "Vũ Thị Hương Giang",
+    User: "Hoàng Việt Đức",
+    Project: "UI/UX",
+    Priority: "High",
+    dueDate: "2023-06-30",
+  },
+  {
+    id: 2,
+    Task: "Phân tích yêu cầu người dùng",
+    Assignee: "Trịnh Tuấn Đạt",
+    User: "Hoàng Việt Đức",
+    Project: "HUST LAB",
+    Priority: "Medium",
+    dueDate: "2023-06-30",
+  },
+  {
+    id: 3,
+    Task: "Làm 1 đề JLPT",
+    Assignee: "Ngô Lan Anh",
+    User: "Hoàng Việt Đức",
+    Project: "Sun*Asterisk",
+    Priority: "Low",
+    dueDate: "2023-07-10",
+  },
+];
+
 const Task = () => {
   const [reviewModalVisible, setReviewModalVisible] = useState(false);
   const [selectedReviewCell, setSelectedReviewCell] = useState(null);
   const [selectedReviewTask, setSelectedReviewTask] = useState(null);
   const [supportModalVisible, setSupportModalVisible] = useState(false);
   const [selectedSupportCell, setSelectedSupportCell] = useState(null);
-  const [doTodayModalVisible, setDoTodayModalVisible] = useState(false);
   const [selectedSupportTask, setSelectedSupportTask] = useState(null);
+  const [doTodayModalVisible, setDoTodayModalVisible] = useState(false);
   const [selectedDoTodayCell, setSelectedDoTodayCell] = useState(null);
+  const [doThisWeekModalVisible, setDoThisWeekModalVisible] = useState(false);
+  const [selectedDoThisWeekCell, setSelectedDoThisWeekCell] = useState(null);
+  const [doThisMonthModalVisible, setDoThisMonthModalVisible] = useState(false);
+  const [selectedDoThisMonthCell, setSelectedDoThisMonthCell] = useState(null);
   const [taskCounter, setTaskCounter] = useState(16);
   const [doTodayCounter, setDoTodayCounter] = useState(dataDoToday.length);
   const [supportCounter, setSupportCounter] = useState(dataSupport.length);
@@ -137,6 +204,26 @@ const Task = () => {
     solveThisProblem: "",
   });
   const [doTodayInfo, setDoTodayInfo] = useState({
+    Task: "",
+    Assignee: "",
+    User: "",
+    Project: "",
+    Priority: "",
+    dueDate: "",
+    Problem: "",
+    Support: "",
+  });
+  const [doThisWeekInfo, setDoThisWeekInfo] = useState({
+    Task: "",
+    Assignee: "",
+    User: "",
+    Project: "",
+    Priority: "",
+    dueDate: "",
+    Problem: "",
+    Support: "",
+  });
+  const [doThisMonthInfo, setDoThisMonthInfo] = useState({
     Task: "",
     Assignee: "",
     User: "",
@@ -229,6 +316,52 @@ const Task = () => {
     setDoTodayModalVisible(true);
   };
 
+  const handleDoThisWeekCellClick = (cell) => {
+    setSelectedDoTodayCell(cell);
+
+    // Tìm task tương ứng dựa trên giá trị cell
+    const task = dataDoToday.find((task) => task.Task === cell);
+
+    // Lưu trữ task được chọn
+    setSelectedDoTodayTask(task);
+
+    // Khởi tạo thông tin trong doTodayInfo từ task được chọn
+    setDoTodayInfo({
+      Task: task.Task,
+      Assignee: task.Assignee,
+      User: task.User,
+      Project: task.Project,
+      Priority: task.Priority,
+      dueDate: task.dueDate,
+      Problem: task.Problem,
+    });
+
+    setDoTodayModalVisible(true);
+  };
+
+  const handleDoThisMonthCellClick = (cell) => {
+    setSelectedDoTodayCell(cell);
+
+    // Tìm task tương ứng dựa trên giá trị cell
+    const task = dataDoToday.find((task) => task.Task === cell);
+
+    // Lưu trữ task được chọn
+    setSelectedDoTodayTask(task);
+
+    // Khởi tạo thông tin trong doTodayInfo từ task được chọn
+    setDoTodayInfo({
+      Task: task.Task,
+      Assignee: task.Assignee,
+      User: task.User,
+      Project: task.Project,
+      Priority: task.Priority,
+      dueDate: task.dueDate,
+      Problem: task.Problem,
+    });
+
+    setDoTodayModalVisible(true);
+  };
+
   const handleReviewModalClose = () => {
     setSelectedReviewCell(null); // Reset selected cell when closing modal
     setReviewModalVisible(false);
@@ -240,6 +373,16 @@ const Task = () => {
   };
 
   const handleDoTodayModalClose = () => {
+    setSelectedDoTodayCell(null); // Reset selected cell when closing modal
+    setDoTodayModalVisible(false);
+  };
+
+  const handleDoThisWeekModalClose = () => {
+    setSelectedDoTodayCell(null); // Reset selected cell when closing modal
+    setDoTodayModalVisible(false);
+  };
+
+  const handleDoThisMonthModalClose = () => {
     setSelectedDoTodayCell(null); // Reset selected cell when closing modal
     setDoTodayModalVisible(false);
   };
@@ -566,25 +709,6 @@ const Task = () => {
                       >
                         <CloseOutlined />
                       </div>
-                      {contextHolder}
-                      <Space
-                        className="task-checkbox"
-                        onClick={(e) =>
-                          e.stopPropagation(setDoTodayModalVisible === false)
-                        }
-                      >
-                        <Checkbox
-                          className="task-checkbox-in"
-                          onClick={(e) =>
-                            // e.stopPropagation() &&
-                            {
-                              if (e.target.checked) {
-                                openNotificationWithIcon("success");
-                              }
-                            }
-                          }
-                        ></Checkbox>
-                      </Space>
                     </div>
                   </div>
                 ))}
@@ -663,13 +787,183 @@ const Task = () => {
                     </div>
                   </div>
                 ))}
-                <Button
-                  className="add-task-button"
-                  type="primary"
-                  onClick={handleAddDoTodayTask}
-                >
-                  Add Task
-                </Button>
+                <div className="task-addTask">
+                  <Button
+                    className="add-task-button"
+                    type="primary"
+                    onClick={handleAddDoTodayTask}
+                  >
+                    Add Task
+                  </Button>
+                </div>
+              </Col>
+              <Col span={4}>
+                <Divider orientation="left">Do This Week</Divider>
+                {dataDoThisWeek.map((task) => (
+                  <div
+                    key={task.Task}
+                    className="task-cell"
+                    onClick={() => handleDoThisWeekCellClick(task.Task)}
+                  >
+                    <div className="task-cell-left">
+                      <div>
+                        <label className="task-cell-label">Task:</label>
+                        {task.Task}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Assignee:</label>
+                        {task.Assignee}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">User:</label>
+                        {task.User}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Project:</label>
+                        {task.Project}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Priority: </label>
+
+                        <Tag
+                          color={
+                            task.Priority === "High"
+                              ? "red"
+                              : task.Priority === "Medium"
+                              ? "orange"
+                              : "green"
+                          }
+                        >
+                          {task.Priority}
+                        </Tag>
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Due Date:</label>
+                        {task.dueDate}
+                      </div>
+                    </div>
+                    <div className="task-cell-right">
+                      <div
+                        className="task-close"
+                        onClick={(e) => handleTaskClose(e, task.id, "doToday")}
+                      >
+                        <CloseOutlined />
+                      </div>
+                      {contextHolder}
+                      <Space
+                        className="task-checkbox"
+                        onClick={(e) =>
+                          e.stopPropagation(setDoTodayModalVisible === false)
+                        }
+                      >
+                        <Checkbox
+                          className="task-checkbox-in"
+                          onClick={(e) =>
+                            // e.stopPropagation() &&
+                            {
+                              if (e.target.checked) {
+                                openNotificationWithIcon("success");
+                              }
+                            }
+                          }
+                        ></Checkbox>
+                      </Space>
+                    </div>
+                  </div>
+                ))}
+                <div className="task-addTask">
+                  <Button
+                    className="add-task-button"
+                    type="primary"
+                    onClick={handleAddDoTodayTask}
+                  >
+                    Add Task
+                  </Button>
+                </div>
+              </Col>
+              <Col span={4}>
+                <Divider orientation="left">Do This Month</Divider>
+                {dataDoThisMonth.map((task) => (
+                  <div
+                    key={task.Task}
+                    className="task-cell"
+                    onClick={() => handleDoThisMonthCellClick(task.Task)}
+                  >
+                    <div className="task-cell-left">
+                      <div>
+                        <label className="task-cell-label">Task:</label>
+                        {task.Task}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Assignee:</label>
+                        {task.Assignee}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">User:</label>
+                        {task.User}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Project:</label>
+                        {task.Project}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Priority: </label>
+
+                        <Tag
+                          color={
+                            task.Priority === "High"
+                              ? "red"
+                              : task.Priority === "Medium"
+                              ? "orange"
+                              : "green"
+                          }
+                        >
+                          {task.Priority}
+                        </Tag>
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Due Date:</label>
+                        {task.dueDate}
+                      </div>
+                    </div>
+                    <div className="task-cell-right">
+                      <div
+                        className="task-close"
+                        onClick={(e) => handleTaskClose(e, task.id, "doToday")}
+                      >
+                        <CloseOutlined />
+                      </div>
+                      {contextHolder}
+                      <Space
+                        className="task-checkbox"
+                        onClick={(e) =>
+                          e.stopPropagation(setDoTodayModalVisible === false)
+                        }
+                      >
+                        <Checkbox
+                          className="task-checkbox-in"
+                          onClick={(e) =>
+                            // e.stopPropagation() &&
+                            {
+                              if (e.target.checked) {
+                                openNotificationWithIcon("success");
+                              }
+                            }
+                          }
+                        ></Checkbox>
+                      </Space>
+                    </div>
+                  </div>
+                ))}
+                <div className="task-addTask">
+                  <Button
+                    className="add-task-button"
+                    type="primary"
+                    onClick={handleAddDoTodayTask}
+                  >
+                    Add Task
+                  </Button>
+                </div>
               </Col>
             </Row>
             {/* Review Modal */}
