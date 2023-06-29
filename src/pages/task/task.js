@@ -62,7 +62,7 @@ var dataSupport = [
   {
     Support: "Hoàng Việt Đức",
     Assignee: "Tạ Hải Tùng",
-    User: "Nguyễn Thị Huyền Trang",
+    User: "Nguyễn Huyền Trang",
     Project: "Hust LAB",
     Priority: "Medium",
     dueDate: "2023-07-30",
@@ -89,7 +89,7 @@ var dataDoToday = [
   },
   {
     id: 2,
-    Task: "Phân tích yêu cầu",
+    Task: "Phân tích yêu cầu người dùng",
     Assignee: "Sarah",
     User: "Mark",
     Project: "HUST LAB",
@@ -98,7 +98,7 @@ var dataDoToday = [
   },
   {
     id: 3,
-    Task: "Kiểm tra và sửa lỗi",
+    Task: "Kiểm tra và sửa lỗi người dùng",
     Assignee: "Emily",
     User: "John",
     Project: "Sun*Asterisk",
@@ -154,8 +154,7 @@ const Task = () => {
   const openNotificationWithIcon = (type) => {
     api[type]({
       message: "Notification Title",
-      description:
-        "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
+      description: "Bạn đã hoàn thành Task",
     });
   };
 
@@ -487,7 +486,20 @@ const Task = () => {
                       <div>Assignee: {task.Assignee}</div>
                       <div>User: {task.User}</div>
                       <div>Project: {task.Project}</div>
-                      <div>Priority: {task.Priority}</div>
+                      <div>
+                        Priority:{" "}
+                        <Tag
+                          color={
+                            task.Priority === "High"
+                              ? "red"
+                              : task.Priority === "Medium"
+                              ? "orange"
+                              : "green"
+                          }
+                        >
+                          {task.Priority}
+                        </Tag>
+                      </div>
                       <div>Due Date: {task.dueDate}</div>
                       <div>Problem: {task.Problem}</div>
                       <div>Comment: {task.Comment}</div>
@@ -535,7 +547,20 @@ const Task = () => {
                       <div>Assignee: {task.Assignee}</div>
                       <div>User: {task.User}</div>
                       <div>Project: {task.Project}</div>
-                      <div>Priority: {task.Priority}</div>
+                      <div>
+                        Priority:{" "}
+                        <Tag
+                          color={
+                            task.Priority === "High"
+                              ? "red"
+                              : task.Priority === "Medium"
+                              ? "orange"
+                              : "green"
+                          }
+                        >
+                          {task.Priority}
+                        </Tag>
+                      </div>
                       <div>Due Date: {task.dueDate}</div>
                     </div>
                     <div className="task-cell-right">
@@ -586,6 +611,7 @@ const Task = () => {
                   key="update"
                   type="primary"
                   onClick={handleReviewUpdate}
+                  className="update-button"
                 >
                   Update
                 </Button>,
@@ -665,6 +691,7 @@ const Task = () => {
                   key="update"
                   type="primary"
                   onClick={handleSupportUpdate}
+                  className="update-button"
                 >
                   Update
                 </Button>,
@@ -756,6 +783,7 @@ const Task = () => {
                   key="update"
                   type="primary"
                   onClick={handleDoTodayUpdate}
+                  className="update-button"
                 >
                   Update
                 </Button>,
