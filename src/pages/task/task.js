@@ -142,6 +142,8 @@ var dataDoThisMonth = [
     Assignee: "Vũ Thị Hương Giang",
     User: "Hoàng Việt Đức",
     Project: "UI/UX",
+    Description:
+      "Thực hiện quá trình thiết kế giao diện, bao gồm việc xác định cấu trúc, bố cục, màu sắc, hình ảnh và các yếu tố tương tác.",
     Priority: "High",
     dueDate: "2023-06-30",
   },
@@ -151,6 +153,8 @@ var dataDoThisMonth = [
     Assignee: "Trịnh Tuấn Đạt",
     User: "Hoàng Việt Đức",
     Project: "HUST LAB",
+    Description:
+      "Thực hiện các hoạt động như phỏng vấn người dùng, khảo sát, thu thập thông tin và phân tích dữ liệu liên quan đến nhu cầu, mong muốn và mục tiêu của người dùng.",
     Priority: "Medium",
     dueDate: "2023-06-30",
   },
@@ -160,6 +164,8 @@ var dataDoThisMonth = [
     Assignee: "Ngô Lan Anh",
     User: "Hoàng Việt Đức",
     Project: "Sun*Asterisk",
+    Description:
+      "Rèn luyện kỹ năng nghe, đọc và viết để hoàn thành đề thi và đạt kết quả tốt",
     Priority: "Low",
     dueDate: "2023-07-10",
   },
@@ -208,6 +214,7 @@ const Task = () => {
     Assignee: "",
     User: "",
     Project: "",
+    Description: "",
     Priority: "",
     dueDate: "",
     Problem: "",
@@ -218,6 +225,7 @@ const Task = () => {
     Assignee: "",
     User: "",
     Project: "",
+    Description: "",
     Priority: "",
     dueDate: "",
     Problem: "",
@@ -228,6 +236,7 @@ const Task = () => {
     Assignee: "",
     User: "",
     Project: "",
+    Description: "",
     Priority: "",
     dueDate: "",
     Problem: "",
@@ -308,6 +317,7 @@ const Task = () => {
       Assignee: task.Assignee,
       User: task.User,
       Project: task.Project,
+      Description: task.Description,
       Priority: task.Priority,
       dueDate: task.dueDate,
       Problem: task.Problem,
@@ -325,12 +335,13 @@ const Task = () => {
     // Lưu trữ task được chọn
     setSelectedDoTodayTask(task);
 
-    // Khởi tạo thông tin trong doTodayInfo từ task được chọn
+    // Khởi tạo thông tin trong doThisWeekInfo từ task được chọn
     setDoTodayInfo({
       Task: task.Task,
       Assignee: task.Assignee,
       User: task.User,
       Project: task.Project,
+      Description: task.Description,
       Priority: task.Priority,
       dueDate: task.dueDate,
       Problem: task.Problem,
@@ -354,6 +365,7 @@ const Task = () => {
       Assignee: task.Assignee,
       User: task.User,
       Project: task.Project,
+      Description: task.Description,
       Priority: task.Priority,
       dueDate: task.dueDate,
       Problem: task.Problem,
@@ -506,6 +518,7 @@ const Task = () => {
         Assignee: doTodayInfo.Assignee,
         User: doTodayInfo.User,
         Project: doTodayInfo.Project,
+        Description: doTodayInfo.Description,
         Priority: doTodayInfo.Priority,
         dueDate: doTodayInfo.dueDate,
         Problem: doTodayProblem, // Sử dụng giá trị của doTodayProblem đã nhập
