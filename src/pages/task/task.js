@@ -29,25 +29,34 @@ const { Option } = Select;
 
 var dataReview = [
   {
-    Review: "Kiểm tra mã giao diện người dùng",
+    Review: "Văn Đăng Huy",
+    Task: "Tạo giao diện người dùng",
     Assignee: "John",
     User: "Alex",
-    Project: "Project A",
+    Project: "Sales",
     Priority: "High",
+    Comment: "Công việc hoàn thành đúng tiến độ và chất lượng tốt!",
+    Rating: 4.5,
   },
   {
-    Review: "Kiểm tra mã phân tích yêu cầu",
+    Review: "Đỗ Quốc Huy",
+    Task: "Phân tích yêu cầu người dùng",
     Assignee: "Sarah",
     User: "Mark",
-    Project: "Project B",
+    Project: "Marketing",
     Priority: "Medium",
+    Comment: "Công việc có những điểm cần cải thiện, nhưng tổng thể là tốt!",
+    Rating: 4.8,
   },
   {
-    Review: "Kiểm tra mã kiểm tra và sửa lỗi",
+    Review: "Chu Bá Hiếu",
+    Task: "Task 3",
     Assignee: "Emily",
     User: "John",
-    Project: "Project C",
+    Project: "R&D",
     Priority: "Low",
+    Comment: "Công việc đạt được kết quả như mong đợi!",
+    Rating: 4.2,
   },
 ];
 var dataSupport = [
@@ -117,14 +126,17 @@ const Task = () => {
   const [selectedDoTodayCell, setSelectedDoTodayCell] = useState(null);
   const [taskCounter, setTaskCounter] = useState(16);
   const [doTodayCounter, setDoTodayCounter] = useState(dataDoToday.length);
+  const [supportCounter, setSupportCounter] = useState(dataSupport.length);
   const [selectedDoTodayTask, setSelectedDoTodayTask] = useState(null);
   const [reviewInfo, setReviewInfo] = useState({
     Review: "",
+    Task: "",
     Assignee: "",
     User: "",
     Project: "",
     Priority: "",
     dueDate: "",
+    Comment: "",
     Rating: null, // Thêm trường Rating vào cấu trúc dữ liệu
   });
   const [supportInfo, setSupportInfo] = useState({
@@ -170,11 +182,14 @@ const Task = () => {
     // Khởi tạo thông tin trong reviewInfo từ task được chọn
     setReviewInfo({
       Review: task.Review,
+      Task: task.Task,
       Assignee: task.Assignee,
       User: task.User,
       Project: task.Project,
       Priority: task.Priority,
       dueDate: task.dueDate,
+      Comment: task.Comment,
+      Rating: task.Rating,
     });
 
     setReviewModalVisible(true);
@@ -395,6 +410,13 @@ const Task = () => {
         dataDoToday.splice(taskIndex, 1);
         setDoTodayCounter(doTodayCounter - 1);
       }
+    } else if (taskType === "support") {
+      const taskIndex = dataSupport.findIndex((task) => task.id === taskId);
+
+      if (taskIndex !== -1) {
+        dataSupport.splice(taskIndex, 1);
+        setSupportCounter(supportCounter - 1);
+      }
     }
   };
 
@@ -404,7 +426,7 @@ const Task = () => {
         <Navbar />
         <Layout>
           <Sidebar />
-          <Content style={{ padding: "50px" }}>
+          <Content style={{ padding: "80px" }}>
             <Row gutter={[16, 24]}>
               <Col span={4}>
                 <Divider orientation="left">Review</Divider>
@@ -420,6 +442,10 @@ const Task = () => {
                       <div>
                         <label className="task-cell-label">Reviewer:</label>
                         {task.Review}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Task:</label>
+                        {task.Task}
                       </div>
                       <div>
                         <label className="task-cell-label">Assignee:</label>
@@ -451,6 +477,10 @@ const Task = () => {
                         <label className="task-cell-label">Due Date:</label>
                         {task.dueDate}
                       </div>
+                      <div>
+                        <label className="task-cell-label">Comment:</label>
+                        {task.Comment}
+                      </div>
                       <Rate
                         onClick={(e) => e.stopPropagation()}
                         value={task.Rating}
@@ -459,7 +489,7 @@ const Task = () => {
                     <div className="task-cell-right">
                       <div
                         className="task-close"
-                        onClick={(e) => handleTaskClose(e, task.id, "doToday")}
+                        onClick={(e) => handleTaskClose(e, task.id, "review")}
                       >
                         <CloseOutlined />
                       </div>
@@ -543,7 +573,7 @@ const Task = () => {
                     <div className="task-cell-right">
                       <div
                         className="task-close"
-                        onClick={(e) => handleTaskClose(e, task.id, "doToday")}
+                        onClick={(e) => handleTaskClose(e, task.id, "support")}
                       >
                         <CloseOutlined />
                       </div>
@@ -672,16 +702,25 @@ const Task = () => {
               <div>
                 <label>Review:</label>
                 <Input
-                  placeholder={reviewInfo.Review}
+                  value={reviewInfo.Review}
                   onChange={(e) =>
                     handleReviewInputChange("Review", e.target.value)
                   }
                 />
               </div>
               <div>
+                <label>Task:</label>
+                <Input
+                  value={reviewInfo.Task}
+                  onChange={(e) =>
+                    handleReviewInputChange("Task", e.target.value)
+                  }
+                />
+              </div>
+              <div>
                 <label>Assignee:</label>
                 <Input
-                  placeholder={reviewInfo.Assignee}
+                  value={reviewInfo.Assignee}
                   onChange={(e) =>
                     handleReviewInputChange("Assignee", e.target.value)
                   }
@@ -690,7 +729,7 @@ const Task = () => {
               <div>
                 <label>User:</label>
                 <Input
-                  placeholder={reviewInfo.User}
+                  value={reviewInfo.User}
                   onChange={(e) =>
                     handleReviewInputChange("User", e.target.value)
                   }
@@ -699,7 +738,7 @@ const Task = () => {
               <div>
                 <label>Project:</label>
                 <Input
-                  placeholder={reviewInfo.Project}
+                  value={reviewInfo.Project}
                   onChange={(e) =>
                     handleReviewInputChange("Project", e.target.value)
                   }
@@ -723,6 +762,15 @@ const Task = () => {
                 <DatePicker
                   value={reviewInfo.dueDate ? moment(reviewInfo.dueDate) : null}
                   onChange={(date) => handleReviewInputChange("dueDate", date)}
+                />
+              </div>
+              <div>
+                <label>Comment:</label>
+                <Input
+                  value={reviewInfo.Comment}
+                  onChange={(e) =>
+                    handleReviewInputChange("Comment", e.target.value)
+                  }
                 />
               </div>
               <div>
