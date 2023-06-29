@@ -31,9 +31,9 @@ var dataReview = [
   {
     Review: "Văn Đăng Huy",
     Task: "Tạo giao diện người dùng",
-    Assignee: "John",
-    User: "Alex",
-    Project: "Sales",
+    Assignee: "Vũ Thị Hương Giang",
+    User: "Hoàng Việt Đức",
+    Project: "UIUX",
     Priority: "High",
     Comment: "Công việc hoàn thành đúng tiến độ và chất lượng tốt!",
     Rating: 4.5,
@@ -41,57 +41,44 @@ var dataReview = [
   {
     Review: "Đỗ Quốc Huy",
     Task: "Phân tích yêu cầu người dùng",
-    Assignee: "Sarah",
-    User: "Mark",
-    Project: "Marketing",
+    Assignee: "Trịnh Tuấn Đạt",
+    User: "Hoàng Việt Đức",
+    Project: "Hust Lab",
     Priority: "Medium",
     Comment: "Công việc có những điểm cần cải thiện, nhưng tổng thể là tốt!",
     Rating: 4.8,
-  },
-  {
-    Review: "Chu Bá Hiếu",
-    Task: "Task 3",
-    Assignee: "Emily",
-    User: "John",
-    Project: "R&D",
-    Priority: "Low",
-    Comment: "Công việc đạt được kết quả như mong đợi!",
-    Rating: 4.2,
   },
 ];
 var dataSupport = [
   {
     Support: "Phan Công Hiếu",
-    Assignee: "Cô Giang",
-    User: "Lê Đình Hải Sơn",
-    Project: "UI/UX",
+    Assignee: "Phạm Bích Phương",
+    User: "Hoàng Việt Đức",
+    Project: "Sun*Asterisk",
     Priority: "High",
     dueDate: "2023-07-15",
+    Problem: "Khó học thuộc Kanji",
+    solveThisProblem: "Viết ra giấy từ đấy 20 lần",
   },
   {
     Support: "Hoàng Việt Đức",
     Assignee: "Tạ Hải Tùng",
-    User: "Nguyễn Huyền Trang",
+    User: "Hoàng Việt Đức",
     Project: "Hust LAB",
     Priority: "Medium",
     dueDate: "2023-07-30",
+    Problem: "Khó khăn trong làm việc nhóm",
+    solveThisProblem:
+      "Sử dụng các công cụ và phần mềm quản lý dự án để theo dõi tiến độ công việc, phân công nhiệm vụ và quản lý tài liệu chung",
   },
-  // {
-  //   Support: "Phạm Vân Anh",
-  //   Assignee: "Phạm Bích Phương",
-  //   User: "Vũ Đình Hoài",
-  //   Project: "Sun*Asterisk",
-  //   Priority: "Low",
-  //   dueDate: "2023-08-10",
-  // },
 ];
 
 var dataDoToday = [
   {
     id: 1,
     Task: "Tạo giao diện người dùng",
-    Assignee: "John",
-    User: "Alex",
+    Assignee: "Vũ Thị Hương Giang",
+    User: "Hoàng Việt Đức",
     Project: "UI/UX",
     Priority: "High",
     dueDate: "2023-07-15",
@@ -99,17 +86,17 @@ var dataDoToday = [
   {
     id: 2,
     Task: "Phân tích yêu cầu người dùng",
-    Assignee: "Sarah",
-    User: "Mark",
+    Assignee: "Trịnh Tuấn Đạt",
+    User: "Hoàng Việt Đức",
     Project: "HUST LAB",
     Priority: "Medium",
     dueDate: "2023-06-30",
   },
   {
     id: 3,
-    Task: "Kiểm tra và sửa lỗi người dùng",
-    Assignee: "Emily",
-    User: "John",
+    Task: "Làm 1 đề JLPT",
+    Assignee: "Ngô Lan Anh",
+    User: "Hoàng Việt Đức",
     Project: "Sun*Asterisk",
     Priority: "Low",
     dueDate: "2023-07-10",
@@ -147,7 +134,7 @@ const Task = () => {
     Priority: "",
     dueDate: "",
     Problem: "",
-    Comment: "",
+    solveThisProblem: "",
   });
   const [doTodayInfo, setDoTodayInfo] = useState({
     Task: "",
@@ -213,7 +200,7 @@ const Task = () => {
       Priority: task.Priority,
       dueDate: task.dueDate,
       Problem: task.Problem,
-      Comment: task.Comment,
+      solveThisProblem: task.solveThisProblem,
     });
 
     setSupportModalVisible(true);
@@ -566,8 +553,10 @@ const Task = () => {
                         {task.Problem}
                       </div>
                       <div>
-                        <label className="task-cell-label">Comment:</label>
-                        {task.Comment}
+                        <label className="task-cell-label">
+                          Solve this Problem:
+                        </label>
+                        {task.solveThisProblem}
                       </div>
                     </div>
                     <div className="task-cell-right">
@@ -867,9 +856,9 @@ const Task = () => {
               <div>
                 <label>Solve this Problem:</label>
                 <Input.TextArea
-                  value={supportInfo.Comment}
+                  value={supportInfo.solveThisProblem}
                   onChange={(e) =>
-                    handleSupportInputChange("Comment", e.target.value)
+                    handleSupportInputChange("solveThisProblem", e.target.value)
                   }
                 />
               </div>
