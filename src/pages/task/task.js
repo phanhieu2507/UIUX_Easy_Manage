@@ -417,12 +417,24 @@ const Task = () => {
                     onClick={() => handleReviewCellClick(task.Review)}
                   >
                     <div className="task-cell-left">
-                      <div>Reviewer: {task.Review}</div>
-                      <div>Assignee: {task.Assignee}</div>
-                      <div>User: {task.User}</div>
-                      <div>Project Name: {task.Project}</div>
                       <div>
-                        Priority:{" "}
+                        <label className="task-cell-label">Reviewer:</label>
+                        {task.Review}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Assignee:</label>
+                        {task.Assignee}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">User:</label>
+                        {task.User}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Project Name:</label>
+                        {task.Project}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Priority: </label>
                         <Tag
                           color={
                             task.Priority === "High"
@@ -435,7 +447,10 @@ const Task = () => {
                           {task.Priority}
                         </Tag>
                       </div>
-                      <div>Due Date: {task.dueDate}</div>
+                      <div>
+                        <label className="task-cell-label">Due Date:</label>
+                        {task.dueDate}
+                      </div>
                       <Rate
                         onClick={(e) => e.stopPropagation()}
                         value={task.Rating}
@@ -482,12 +497,24 @@ const Task = () => {
                     onClick={() => handleSupportCellClick(task.Support)}
                   >
                     <div className="task-cell-left">
-                      <div>Support: {task.Support}</div>
-                      <div>Assignee: {task.Assignee}</div>
-                      <div>User: {task.User}</div>
-                      <div>Project: {task.Project}</div>
                       <div>
-                        Priority:{" "}
+                        <label className="task-cell-label">Support:</label>
+                        {task.Support}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Assignee:</label>
+                        {task.Assignee}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">User:</label>
+                        {task.User}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Project:</label>
+                        {task.Project}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Priority: </label>
                         <Tag
                           color={
                             task.Priority === "High"
@@ -500,9 +527,18 @@ const Task = () => {
                           {task.Priority}
                         </Tag>
                       </div>
-                      <div>Due Date: {task.dueDate}</div>
-                      <div>Problem: {task.Problem}</div>
-                      <div>Comment: {task.Comment}</div>
+                      <div>
+                        <label className="task-cell-label">Due Date:</label>
+                        {task.dueDate}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Problem:</label>
+                        {task.Problem}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Comment:</label>
+                        {task.Comment}
+                      </div>
                     </div>
                     <div className="task-cell-right">
                       <div
@@ -543,12 +579,25 @@ const Task = () => {
                     onClick={() => handleDoTodayCellClick(task.Task)}
                   >
                     <div className="task-cell-left">
-                      <div>Task: {task.Task}</div>
-                      <div>Assignee: {task.Assignee}</div>
-                      <div>User: {task.User}</div>
-                      <div>Project: {task.Project}</div>
                       <div>
-                        Priority:{" "}
+                        <label className="task-cell-label">Task:</label>
+                        {task.Task}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Assignee:</label>
+                        {task.Assignee}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">User:</label>
+                        {task.User}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Project:</label>
+                        {task.Project}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Priority: </label>
+
                         <Tag
                           color={
                             task.Priority === "High"
@@ -561,7 +610,10 @@ const Task = () => {
                           {task.Priority}
                         </Tag>
                       </div>
-                      <div>Due Date: {task.dueDate}</div>
+                      <div>
+                        <label className="task-cell-label">Due Date:</label>
+                        {task.dueDate}
+                      </div>
                     </div>
                     <div className="task-cell-right">
                       <div
@@ -774,6 +826,7 @@ const Task = () => {
                 />
               </div>
             </Modal>
+            {/* Do Today Modal */}
             <Modal
               title="Do Today Task Information"
               visible={doTodayModalVisible}
@@ -865,7 +918,11 @@ const Task = () => {
                   />
                 </div>
               ) : (
-                <Button type="text" onClick={handleAddProblem}>
+                <Button
+                  style={{ borderColor: "rgb(161, 161, 161)" }}
+                  type="text"
+                  onClick={handleAddProblem}
+                >
                   Add Problem
                 </Button>
               )}

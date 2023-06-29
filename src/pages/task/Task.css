@@ -13,6 +13,7 @@
 
 .task-cell:hover {
   background-color: #8ed1f0;
+  color: rgb(161, 161, 161);
 }
 
 .task-cell-left {
@@ -20,6 +21,11 @@
 
 .task-cell.selected {
   background-color: #e6f7ff;
+}
+
+.task-cell-label {
+  font-weight: 500;
+  margin-right: 10px;
 }
 
 .task-close {
@@ -34,6 +40,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-left: 25px;
 }
 
 .task-checkbox {
