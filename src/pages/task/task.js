@@ -456,7 +456,7 @@ const Task = () => {
                         {task.User}
                       </div>
                       <div>
-                        <label className="task-cell-label">Project Name:</label>
+                        <label className="task-cell-label">Project:</label>
                         {task.Project}
                       </div>
                       <div>
