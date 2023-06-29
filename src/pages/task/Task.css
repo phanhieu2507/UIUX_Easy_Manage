@@ -1,26 +1,46 @@
 .task-cell {
   background: #fff;
   padding: 10px 20px;
-  border: 1px solid #000;
+  border: 1px solid #0066ff;
   border-radius: 5px;
   margin: 15px 7px;
   transition: background-color 0.3s;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
 }
 
 .task-cell:hover {
   background-color: #8ed1f0;
+  color: rgb(161, 161, 161);
 }
 
 .task-cell-left {
 }
 
+.task-cell.selected {
+  background-color: #e6f7ff;
+}
+
+.task-cell-label {
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.task-close {
+  cursor: pointer;
+}
+
+.add-task-button {
+  margin-top: 10px;
+}
+
 .task-cell-right {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   justify-content: space-between;
+  margin-left: 25px;
 }
 
 .task-checkbox {
@@ -58,7 +78,7 @@
 
 /* Task.css */
 
-.submit-button {
+.update-button {
   background-color: #1890ff;
   color: #fff;
   border: none;
@@ -68,28 +88,7 @@
   transition: background-color 0.3s;
 }
 
-.submit-button:hover {
-  background-color: #40a9ff;
-}
-
-/* CSS cho button Update */
-.btn-update {
-  background-color: #1890ff;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  position: relative;
-  top: 3px;
-}
-
-.btn-update:hover {
-  background-color: #57b2fc;
-}
-
-.btn-update span {
+.update-button span {
   position: relative;
   top: -3px;
 }
@@ -100,18 +99,4 @@
   flex-direction: column;
   align-items: flex-start;
   margin: 10px 20px;
-}
-
-/* CSS cho container của các cột */
-.task-columns-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.info-1 {
-  margin: 10px 2px;
-}
-
-.info-2 {
-  margin: 0px 5px;
 }
