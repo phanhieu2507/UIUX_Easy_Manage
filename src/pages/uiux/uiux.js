@@ -15,8 +15,8 @@ const localizer = momentLocalizer(moment);
 const { Content } = Layout;
 const { Title } = Typography;
 
-const HustLab = () => {
-  const [selectedMenuKey, setSelectedMenuKey] = useState("board");
+const UIUX = () => {
+  const [selectedMenuKey, setSelectedMenuKey] = useState("uiux");
 
   const handleMenuClick = ({ key }) => {
     setSelectedMenuKey(key);
@@ -90,4 +90,4 @@ const HustLab = () => {
   );
 };
 
-export default HustLab;
+export default UIUX;
