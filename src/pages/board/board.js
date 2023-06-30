@@ -7,17 +7,17 @@ const { Content } = Layout;
 const Board = () => {
   const [reviewTasks] = useState(Array.from({ length: 15 }, (_, index) => ({
     id: index + 1,
-    title: `Review Task ${index + 1}`,
+    title: `Design figma ${index + 1}`,
   })));
 
   const [supportTasks] = useState(Array.from({ length: 15 }, (_, index) => ({
     id: index + 1,
-    title: `Support Task ${index + 1}`,
+    title: `Code home screen ${index + 1}`,
   })));
 
   const [recentlyAssignedTasks] = useState(Array.from({ length: 15 }, (_, index) => ({
     id: index + 1,
-    title: `Recently Assigned Task ${index + 1}`,
+    title: `Check file working or not ${index + 1}`,
   })));
 
   const [doTodayTasks] = useState(Array.from({ length: 15 }, (_, index) => ({
