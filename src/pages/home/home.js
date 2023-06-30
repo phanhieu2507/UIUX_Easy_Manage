@@ -9,6 +9,7 @@ import {
   List,
   Checkbox,
   Select,
+  Tag,
 } from "antd";
 import {
   CalendarOutlined,
@@ -28,15 +29,152 @@ const { Content } = Layout;
 const { Title } = Typography;
 const { Option } = Select;
 
-const tasksData = [
-  // Các task tương tự như trong ví dụ trước
+const myTasksData = [
+  {
+    groupName: "dotoday",
+    tasks: [
+      {
+        id: "1",
+        title: "Học 20 từ mới",
+        priority: "high",
+        completed: false,
+      },
+      {
+        id: "2",
+        title: "Viết mail cho công ty Sun",
+        priority: "high",
+        completed: false,
+      },
+      {
+        id: "3",
+        title: "Sắp sếp ngăn kéo tủ",
+        priority: "medium",
+        completed: false,
+      },
+      {
+        id: "4",
+        title: "Dắt chó đi dạo",
+        priority: "medium",
+        completed: false,
+      },
+      {
+        id: "5",
+        title: "Mua rau muống cho bữa tối",
+        priority: "low",
+        completed: false,
+      },
+    ],
+  },
+  {
+    groupName: "pastdue",
+    tasks: [
+      {
+        id: "6",
+        title: "Nghe hội thảo trên trường",
+        priority: "medium",
+        completed: false,
+      },
+    ],
+  },
+  {
+    groupName: "complete",
+    tasks: [
+      {
+        id: "7",
+        title: "Học 4 ngữ pháp shinkanzen",
+        priority: "medium",
+        completed: true,
+        completionRate: 50,
+      },
+      {
+        id: "8",
+        title: "Học 10 từ mới",
+        priority: "medium",
+        completed: true,
+        completionRate: 80,
+      },
+      {
+        id: "9",
+        title: "Đi chợ mua cá chép",
+        priority: "low",
+        completed: true,
+        completionRate: 100,
+      },
+    ],
+  },
 ];
+
+const projectTaskData = [
+  {
+    groupName: "assigned",
+    tasks: [
+      {
+        id: "1",
+        title: "Login logout bug",
+        priority: "high",
+        completed: false,
+      },
+      {
+        id: "2",
+        title: "Security attacked",
+        priority: "high",
+        completed: false,
+      },
+    ],
+  },
+  {
+    groupName: "review",
+    tasks: [
+      {
+        id: "3",
+        title: "Can’t click to Ok button",
+        status: "Done",
+      },
+      {
+        id: "4",
+        title: "Design home screen",
+        status: "Done",
+      },
+      {
+        id: "5",
+        title: "Detail modal not working",
+        status: "Has Problem",
+      },
+    ],
+  },
+  {
+    groupName: "support",
+    tasks: [
+      {
+        id: "6",
+        title: "Design member screen",
+        status: "Has Problem",
+      },
+      {
+        id: "7",
+        title: "Backend for Member entity",
+        status: "Has Problem",
+      },
+      {
+        id: "8",
+        title: "Backend for User entity",
+        status: "Doing",
+      },
+    ],
+  },
+];
+
 
 const projects = [
   { id: "0", name: "Individual" },
   { id: "1", name: "Hust Lab" },
   { id: "2", name: "UIUX" },
   { id: "3", name: "Sun*Asterisk" },
+];
+const joinedProject = [
+  { id: "0", name: "Hust Lab" },
+  { id: "1", name: "UIUX" },
+  { id: "2", name: "Sun*Asterisk" },
 ];
 
 const Home = () => {
@@ -90,31 +228,52 @@ const Home = () => {
     ],
   };
 
-  const [selectedMenuKey, setSelectedMenuKey] = useState("1");
+  const [selectedTaskMenuKey, setSelectedTaskMenuKey] = useState("1");
+  const [selectedProjectTaskMenuKey, setSelectedProjectTaskMenuKey] = useState("1");
   const [selectedProject, setSelectedProject] = useState("0");
 
-  const handleMenuClick = ({ key }) => {
-    setSelectedMenuKey(key);
+  const handleTaskMenuClick = ({ key }) => {
+    setSelectedTaskMenuKey(key);
+  };
+  const handleProjectTaskMenuClick = ({ key }) => {
+    setSelectedProjectTaskMenuKey(key);
   };
 
   const handleProjectSelect = (value) => {
     setSelectedProject(value);
   };
-
-  const getFilteredTasks = (key) => {
-    if (key === "1") {
-      return tasksData.filter((task) => !task.completed);
-    } else if (key === "2") {
-      return tasksData.filter(
-        (task) => task.dueDate < new Date().toISOString()
-      );
-    } else if (key === "3") {
-      return tasksData.filter((task) => task.completed);
+  const getPriorityColor = (priority) => {
+    if (priority === "high") {
+      return "red";
+    } else if (priority === "medium"&&priority === "hasProblem") {
+      return "yellow";
+    } else if (priority === "low"&& priority === "done") {
+      return "green";
     }
-    return tasksData;
+  };
+  const getFilteredMyTasks = (key) => {
+    if (key === "1") {
+      return myTasksData.find((group) => group.groupName === "dotoday").tasks;
+    } else if (key === "2") {
+      return myTasksData.find((group) => group.groupName === "pastdue").tasks;
+    } else if (key === "3") {
+      return myTasksData.find((group) => group.groupName === "complete").tasks;
+    }
+    return [];
+  };
+  const getFilteredProjectTasks = (key) => {
+    if (key === "1") {
+      return projectTaskData.find((group) => group.groupName === "assigned").tasks;
+    } else if (key === "2") {
+      return projectTaskData.find((group) => group.groupName === "review").tasks;
+    } else if (key === "3") {
+      return projectTaskData.find((group) => group.groupName === "support").tasks;
+    }
+    return [];
   };
 
-  const filteredTasks = getFilteredTasks(selectedMenuKey);
+  const filteredMyTasks = getFilteredMyTasks(selectedTaskMenuKey);
+  const filteredProjectTasks = getFilteredProjectTasks(selectedProjectTaskMenuKey);
 
   return (
     <Layout>
@@ -136,8 +295,8 @@ const Home = () => {
                 <Menu
                   mode="horizontal"
                   defaultSelectedKeys={["1"]}
-                  selectedKeys={[selectedMenuKey]}
-                  onClick={handleMenuClick}
+                  selectedKeys={[selectedTaskMenuKey]}
+                  onClick={handleTaskMenuClick}
                 >
                   <Menu.Item key="1" icon={<CalendarOutlined />}>
                     Do Today
@@ -150,29 +309,30 @@ const Home = () => {
                   </Menu.Item>
                 </Menu>
                 <List
-                  dataSource={filteredTasks}
-                  renderItem={(task) => (
-                    <List.Item>
-                      <Checkbox checked={task.completed}>{task.title}</Checkbox>
-                    </List.Item>
-                  )}
-                  pagination={{
-                    pageSize: 10,
-                  }}
-                />
+  dataSource={filteredMyTasks}
+  renderItem={(task) => (
+    <List.Item>
+      <Checkbox checked={task.completed}>{task.title}</Checkbox>
+      <Tag color={getPriorityColor(task.priority)}>{task.priority}</Tag>
+    </List.Item>
+  )}
+  pagination={{
+    pageSize: 10,
+  }}
+/>
               </Card>
             </Col>
             <Col span={12}>
               <Card
                 title={
                   <div style={{ display: "flex", alignItems: "center" }}>
-                    <span style={{ marginRight: "10px" }}>Project  </span>
+                    <span style={{ marginRight: "10px" }}>Project </span>
                     <Select
                       defaultValue={selectedProject}
                       style={{ width: 200 }}
                       onChange={handleProjectSelect}
                     >
-                      {projects.map((project) => (
+                      {joinedProject.map((project) => (
                         <Option key={project.id} value={project.id}>
                           {project.name}
                         </Option>
@@ -184,7 +344,8 @@ const Home = () => {
                 <Menu
                   mode="horizontal"
                   defaultSelectedKeys={["1"]}
-                  onClick={() => {}}
+                  selectedKeys={[selectedProjectTaskMenuKey]}
+                  onClick={handleProjectTaskMenuClick}
                 >
                   <Menu.Item key="1" icon={<UserOutlined />}>
                     Assigned
@@ -198,7 +359,7 @@ const Home = () => {
                 </Menu>
                 {/* Các task tương ứng */}
                 <List
-                  dataSource={filteredTasks}
+                  dataSource={filteredProjectTasks}
                   renderItem={(task) => (
                     <List.Item>
                       <Checkbox checked={task.completed}>{task.title}</Checkbox>
@@ -225,16 +386,10 @@ const Home = () => {
                     </Option>
                   ))}
                 </Select>
-                <div style={{ marginTop: "20px" }}>
-                  <HighchartsReact
-                    highcharts={Highcharts}
-                    options={lineChartOptions}
-                  />
-                </div>
-                <div style={{ marginTop: "10px", textAlign: "center" }}>
-                  Total:{" "}
-                  {lineChartData.data.reduce((total, value) => total + value, 0)}
-                </div>
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  options={lineChartOptions}
+                />
               </Card>
             </Col>
             <Col span={12}>
@@ -244,21 +399,16 @@ const Home = () => {
                   style={{ width: 200, marginBottom: "16px" }}
                   onChange={handleProjectSelect}
                 >
-                  {projects.map((project) => (
+                  {joinedProject.map((project) => (
                     <Option key={project.id} value={project.id}>
                       {project.name}
                     </Option>
                   ))}
                 </Select>
-                <div style={{ marginTop: "20px" }}>
-                  <HighchartsReact
-                    highcharts={Highcharts}
-                    options={ratingChartOptions}
-                  />
-                </div>
-                <div style={{ marginTop: "10px", textAlign: "center" }}>
-  Average: 8.67
-</div>
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  options={ratingChartOptions}
+                />
               </Card>
             </Col>
           </Row>
