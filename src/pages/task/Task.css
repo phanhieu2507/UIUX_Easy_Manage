@@ -13,7 +13,6 @@
 
 .task-cell:hover {
   background-color: #8ed1f0;
-  color: rgb(161, 161, 161);
 }
 
 .task-cell-left {
@@ -32,10 +31,6 @@
   cursor: pointer;
 }
 
-.add-task-button {
-  margin-top: 10px;
-}
-
 .task-cell-right {
   display: flex;
   flex-direction: column;
@@ -49,8 +44,12 @@
 }
 
 .add-task-button {
+  margin-top: 15px;
   background-color: #2d91ee;
   color: #fff;
+}
+
+.task-addTask {
   display: flex;
   justify-content: center;
 }

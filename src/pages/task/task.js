@@ -29,102 +29,174 @@ const { Option } = Select;
 
 var dataReview = [
   {
-    Review: "Kiểm tra mã giao diện người dùng",
-    Assignee: "John",
-    User: "Alex",
-    Project: "Project A",
+    Review: "Văn Đăng Huy",
+    Task: "Tạo giao diện người dùng",
+    Assignee: "Vũ Thị Hương Giang",
+    User: "Hoàng Việt Đức",
+    Project: "UIUX",
     Priority: "High",
+    dueDate: "2023-07-01",
+    Comment: "Công việc hoàn thành đúng tiến độ và chất lượng tốt!",
+    Rating: 5,
   },
   {
-    Review: "Kiểm tra mã phân tích yêu cầu",
-    Assignee: "Sarah",
-    User: "Mark",
-    Project: "Project B",
+    Review: "Đỗ Quốc Huy",
+    Task: "Phân tích yêu cầu người dùng",
+    Assignee: "Trịnh Tuấn Đạt",
+    User: "Hoàng Việt Đức",
+    Project: "Hust Lab",
     Priority: "Medium",
-  },
-  {
-    Review: "Kiểm tra mã kiểm tra và sửa lỗi",
-    Assignee: "Emily",
-    User: "John",
-    Project: "Project C",
-    Priority: "Low",
+    dueDate: "2023-07-15",
+    Comment: "Công việc có những điểm cần cải thiện, nhưng tổng thể là tốt!",
+    Rating: 4.8,
   },
 ];
 var dataSupport = [
   {
     Support: "Phan Công Hiếu",
-    Assignee: "Cô Giang",
-    User: "Lê Đình Hải Sơn",
-    Project: "UI/UX",
+    Assignee: "Phạm Bích Phương",
+    User: "Hoàng Việt Đức",
+    Project: "Sun*Asterisk",
     Priority: "High",
-    dueDate: "2023-07-15",
+    dueDate: "2023-06-30",
+    Problem: "Khó học thuộc Kanji",
+    solveThisProblem: "Viết ra giấy từ đấy 20 lần",
   },
   {
     Support: "Hoàng Việt Đức",
     Assignee: "Tạ Hải Tùng",
-    User: "Nguyễn Huyền Trang",
+    User: "Hoàng Việt Đức",
     Project: "Hust LAB",
     Priority: "Medium",
-    dueDate: "2023-07-30",
+    dueDate: "2023-06-30",
+    Problem: "Khó khăn trong làm việc nhóm",
+    solveThisProblem:
+      "Sử dụng các công cụ và phần mềm quản lý dự án để theo dõi tiến độ công việc, phân công nhiệm vụ và quản lý tài liệu chung",
   },
-  // {
-  //   Support: "Phạm Vân Anh",
-  //   Assignee: "Phạm Bích Phương",
-  //   User: "Vũ Đình Hoài",
-  //   Project: "Sun*Asterisk",
-  //   Priority: "Low",
-  //   dueDate: "2023-08-10",
-  // },
 ];
 
 var dataDoToday = [
   {
     id: 1,
     Task: "Tạo giao diện người dùng",
-    Assignee: "John",
-    User: "Alex",
+    Assignee: "Vũ Thị Hương Giang",
+    User: "Hoàng Việt Đức",
     Project: "UI/UX",
     Priority: "High",
-    dueDate: "2023-07-15",
+    dueDate: "2023-06-30",
   },
   {
     id: 2,
     Task: "Phân tích yêu cầu người dùng",
-    Assignee: "Sarah",
-    User: "Mark",
+    Assignee: "Trịnh Tuấn Đạt",
+    User: "Hoàng Việt Đức",
     Project: "HUST LAB",
     Priority: "Medium",
     dueDate: "2023-06-30",
   },
   {
     id: 3,
-    Task: "Kiểm tra và sửa lỗi người dùng",
-    Assignee: "Emily",
-    User: "John",
+    Task: "Làm 1 đề JLPT",
+    Assignee: "Ngô Lan Anh",
+    User: "Hoàng Việt Đức",
     Project: "Sun*Asterisk",
     Priority: "Low",
     dueDate: "2023-07-10",
   },
 ];
+
+var dataDoThisWeek = [
+  {
+    id: 1,
+    Task: "Tạo giao diện người dùng",
+    Assignee: "Vũ Thị Hương Giang",
+    User: "Hoàng Việt Đức",
+    Project: "UI/UX",
+    Priority: "High",
+    dueDate: "2023-06-30",
+  },
+  {
+    id: 2,
+    Task: "Phân tích yêu cầu người dùng",
+    Assignee: "Trịnh Tuấn Đạt",
+    User: "Hoàng Việt Đức",
+    Project: "HUST LAB",
+    Priority: "Medium",
+    dueDate: "2023-06-30",
+  },
+  {
+    id: 3,
+    Task: "Làm 1 đề JLPT",
+    Assignee: "Ngô Lan Anh",
+    User: "Hoàng Việt Đức",
+    Project: "Sun*Asterisk",
+    Priority: "Low",
+    dueDate: "2023-07-10",
+  },
+];
+
+var dataDoThisMonth = [
+  {
+    id: 1,
+    Task: "Tạo giao diện người dùng",
+    Assignee: "Vũ Thị Hương Giang",
+    User: "Hoàng Việt Đức",
+    Project: "UI/UX",
+    Description:
+      "Thực hiện quá trình thiết kế giao diện, bao gồm việc xác định cấu trúc, bố cục, màu sắc, hình ảnh và các yếu tố tương tác.",
+    Priority: "High",
+    dueDate: "2023-06-30",
+  },
+  {
+    id: 2,
+    Task: "Phân tích yêu cầu người dùng",
+    Assignee: "Trịnh Tuấn Đạt",
+    User: "Hoàng Việt Đức",
+    Project: "HUST LAB",
+    Description:
+      "Thực hiện các hoạt động như phỏng vấn người dùng, khảo sát, thu thập thông tin và phân tích dữ liệu liên quan đến nhu cầu, mong muốn và mục tiêu của người dùng.",
+    Priority: "Medium",
+    dueDate: "2023-06-30",
+  },
+  {
+    id: 3,
+    Task: "Làm 1 đề JLPT",
+    Assignee: "Ngô Lan Anh",
+    User: "Hoàng Việt Đức",
+    Project: "Sun*Asterisk",
+    Description:
+      "Rèn luyện kỹ năng nghe, đọc và viết để hoàn thành đề thi và đạt kết quả tốt",
+    Priority: "Low",
+    dueDate: "2023-07-10",
+  },
+];
+
 const Task = () => {
   const [reviewModalVisible, setReviewModalVisible] = useState(false);
   const [selectedReviewCell, setSelectedReviewCell] = useState(null);
   const [selectedReviewTask, setSelectedReviewTask] = useState(null);
   const [supportModalVisible, setSupportModalVisible] = useState(false);
   const [selectedSupportCell, setSelectedSupportCell] = useState(null);
-  const [doTodayModalVisible, setDoTodayModalVisible] = useState(false);
   const [selectedSupportTask, setSelectedSupportTask] = useState(null);
+  const [doTodayModalVisible, setDoTodayModalVisible] = useState(false);
   const [selectedDoTodayCell, setSelectedDoTodayCell] = useState(null);
+  const [doThisWeekModalVisible, setDoThisWeekModalVisible] = useState(false);
+  const [selectedDoThisWeekCell, setSelectedDoThisWeekCell] = useState(null);
+  const [doThisMonthModalVisible, setDoThisMonthModalVisible] = useState(false);
+  const [selectedDoThisMonthCell, setSelectedDoThisMonthCell] = useState(null);
   const [taskCounter, setTaskCounter] = useState(16);
   const [doTodayCounter, setDoTodayCounter] = useState(dataDoToday.length);
+  const [supportCounter, setSupportCounter] = useState(dataSupport.length);
   const [selectedDoTodayTask, setSelectedDoTodayTask] = useState(null);
   const [reviewInfo, setReviewInfo] = useState({
     Review: "",
+    Task: "",
     Assignee: "",
     User: "",
     Project: "",
     Priority: "",
     dueDate: "",
+    Comment: "",
     Rating: null, // Thêm trường Rating vào cấu trúc dữ liệu
   });
   const [supportInfo, setSupportInfo] = useState({
@@ -135,13 +207,36 @@ const Task = () => {
     Priority: "",
     dueDate: "",
     Problem: "",
-    Comment: "",
+    solveThisProblem: "",
   });
   const [doTodayInfo, setDoTodayInfo] = useState({
     Task: "",
     Assignee: "",
     User: "",
     Project: "",
+    Description: "",
+    Priority: "",
+    dueDate: "",
+    Problem: "",
+    Support: "",
+  });
+  const [doThisWeekInfo, setDoThisWeekInfo] = useState({
+    Task: "",
+    Assignee: "",
+    User: "",
+    Project: "",
+    Description: "",
+    Priority: "",
+    dueDate: "",
+    Problem: "",
+    Support: "",
+  });
+  const [doThisMonthInfo, setDoThisMonthInfo] = useState({
+    Task: "",
+    Assignee: "",
+    User: "",
+    Project: "",
+    Description: "",
     Priority: "",
     dueDate: "",
     Problem: "",
@@ -170,11 +265,14 @@ const Task = () => {
     // Khởi tạo thông tin trong reviewInfo từ task được chọn
     setReviewInfo({
       Review: task.Review,
+      Task: task.Task,
       Assignee: task.Assignee,
       User: task.User,
       Project: task.Project,
       Priority: task.Priority,
       dueDate: task.dueDate,
+      Comment: task.Comment,
+      Rating: task.Rating,
     });
 
     setReviewModalVisible(true);
@@ -198,7 +296,7 @@ const Task = () => {
       Priority: task.Priority,
       dueDate: task.dueDate,
       Problem: task.Problem,
-      Comment: task.Comment,
+      solveThisProblem: task.solveThisProblem,
     });
 
     setSupportModalVisible(true);
@@ -219,6 +317,55 @@ const Task = () => {
       Assignee: task.Assignee,
       User: task.User,
       Project: task.Project,
+      Description: task.Description,
+      Priority: task.Priority,
+      dueDate: task.dueDate,
+      Problem: task.Problem,
+    });
+
+    setDoTodayModalVisible(true);
+  };
+
+  const handleDoThisWeekCellClick = (cell) => {
+    setSelectedDoTodayCell(cell);
+
+    // Tìm task tương ứng dựa trên giá trị cell
+    const task = dataDoToday.find((task) => task.Task === cell);
+
+    // Lưu trữ task được chọn
+    setSelectedDoTodayTask(task);
+
+    // Khởi tạo thông tin trong doThisWeekInfo từ task được chọn
+    setDoTodayInfo({
+      Task: task.Task,
+      Assignee: task.Assignee,
+      User: task.User,
+      Project: task.Project,
+      Description: task.Description,
+      Priority: task.Priority,
+      dueDate: task.dueDate,
+      Problem: task.Problem,
+    });
+
+    setDoTodayModalVisible(true);
+  };
+
+  const handleDoThisMonthCellClick = (cell) => {
+    setSelectedDoTodayCell(cell);
+
+    // Tìm task tương ứng dựa trên giá trị cell
+    const task = dataDoToday.find((task) => task.Task === cell);
+
+    // Lưu trữ task được chọn
+    setSelectedDoTodayTask(task);
+
+    // Khởi tạo thông tin trong doTodayInfo từ task được chọn
+    setDoTodayInfo({
+      Task: task.Task,
+      Assignee: task.Assignee,
+      User: task.User,
+      Project: task.Project,
+      Description: task.Description,
       Priority: task.Priority,
       dueDate: task.dueDate,
       Problem: task.Problem,
@@ -238,6 +385,16 @@ const Task = () => {
   };
 
   const handleDoTodayModalClose = () => {
+    setSelectedDoTodayCell(null); // Reset selected cell when closing modal
+    setDoTodayModalVisible(false);
+  };
+
+  const handleDoThisWeekModalClose = () => {
+    setSelectedDoTodayCell(null); // Reset selected cell when closing modal
+    setDoTodayModalVisible(false);
+  };
+
+  const handleDoThisMonthModalClose = () => {
     setSelectedDoTodayCell(null); // Reset selected cell when closing modal
     setDoTodayModalVisible(false);
   };
@@ -361,6 +518,7 @@ const Task = () => {
         Assignee: doTodayInfo.Assignee,
         User: doTodayInfo.User,
         Project: doTodayInfo.Project,
+        Description: doTodayInfo.Description,
         Priority: doTodayInfo.Priority,
         dueDate: doTodayInfo.dueDate,
         Problem: doTodayProblem, // Sử dụng giá trị của doTodayProblem đã nhập
@@ -395,6 +553,13 @@ const Task = () => {
         dataDoToday.splice(taskIndex, 1);
         setDoTodayCounter(doTodayCounter - 1);
       }
+    } else if (taskType === "support") {
+      const taskIndex = dataSupport.findIndex((task) => task.id === taskId);
+
+      if (taskIndex !== -1) {
+        dataSupport.splice(taskIndex, 1);
+        setSupportCounter(supportCounter - 1);
+      }
     }
   };
 
@@ -404,7 +569,7 @@ const Task = () => {
         <Navbar />
         <Layout>
           <Sidebar />
-          <Content style={{ padding: "50px" }}>
+          <Content style={{ padding: "80px" }}>
             <Row gutter={[16, 24]}>
               <Col span={4}>
                 <Divider orientation="left">Review</Divider>
@@ -422,6 +587,10 @@ const Task = () => {
                         {task.Review}
                       </div>
                       <div>
+                        <label className="task-cell-label">Task:</label>
+                        {task.Task}
+                      </div>
+                      <div>
                         <label className="task-cell-label">Assignee:</label>
                         {task.Assignee}
                       </div>
@@ -430,7 +599,7 @@ const Task = () => {
                         {task.User}
                       </div>
                       <div>
-                        <label className="task-cell-label">Project Name:</label>
+                        <label className="task-cell-label">Project:</label>
                         {task.Project}
                       </div>
                       <div>
@@ -451,6 +620,10 @@ const Task = () => {
                         <label className="task-cell-label">Due Date:</label>
                         {task.dueDate}
                       </div>
+                      <div>
+                        <label className="task-cell-label">Comment:</label>
+                        {task.Comment}
+                      </div>
                       <Rate
                         onClick={(e) => e.stopPropagation()}
                         value={task.Rating}
@@ -459,7 +632,7 @@ const Task = () => {
                     <div className="task-cell-right">
                       <div
                         className="task-close"
-                        onClick={(e) => handleTaskClose(e, task.id, "doToday")}
+                        onClick={(e) => handleTaskClose(e, task.id, "review")}
                       >
                         <CloseOutlined />
                       </div>
@@ -536,36 +709,19 @@ const Task = () => {
                         {task.Problem}
                       </div>
                       <div>
-                        <label className="task-cell-label">Comment:</label>
-                        {task.Comment}
+                        <label className="task-cell-label">
+                          Solve this Problem:
+                        </label>
+                        {task.solveThisProblem}
                       </div>
                     </div>
                     <div className="task-cell-right">
                       <div
                         className="task-close"
-                        onClick={(e) => handleTaskClose(e, task.id, "doToday")}
+                        onClick={(e) => handleTaskClose(e, task.id, "support")}
                       >
                         <CloseOutlined />
                       </div>
-                      {contextHolder}
-                      <Space
-                        className="task-checkbox"
-                        onClick={(e) =>
-                          e.stopPropagation(setDoTodayModalVisible === false)
-                        }
-                      >
-                        <Checkbox
-                          className="task-checkbox-in"
-                          onClick={(e) =>
-                            // e.stopPropagation() &&
-                            {
-                              if (e.target.checked) {
-                                openNotificationWithIcon("success");
-                              }
-                            }
-                          }
-                        ></Checkbox>
-                      </Space>
                     </div>
                   </div>
                 ))}
@@ -644,13 +800,183 @@ const Task = () => {
                     </div>
                   </div>
                 ))}
-                <Button
-                  className="add-task-button"
-                  type="primary"
-                  onClick={handleAddDoTodayTask}
-                >
-                  Add Task
-                </Button>
+                <div className="task-addTask">
+                  <Button
+                    className="add-task-button"
+                    type="primary"
+                    onClick={handleAddDoTodayTask}
+                  >
+                    Add Task
+                  </Button>
+                </div>
+              </Col>
+              <Col span={4}>
+                <Divider orientation="left">Do This Week</Divider>
+                {dataDoThisWeek.map((task) => (
+                  <div
+                    key={task.Task}
+                    className="task-cell"
+                    onClick={() => handleDoThisWeekCellClick(task.Task)}
+                  >
+                    <div className="task-cell-left">
+                      <div>
+                        <label className="task-cell-label">Task:</label>
+                        {task.Task}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Assignee:</label>
+                        {task.Assignee}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">User:</label>
+                        {task.User}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Project:</label>
+                        {task.Project}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Priority: </label>
+
+                        <Tag
+                          color={
+                            task.Priority === "High"
+                              ? "red"
+                              : task.Priority === "Medium"
+                              ? "orange"
+                              : "green"
+                          }
+                        >
+                          {task.Priority}
+                        </Tag>
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Due Date:</label>
+                        {task.dueDate}
+                      </div>
+                    </div>
+                    <div className="task-cell-right">
+                      <div
+                        className="task-close"
+                        onClick={(e) => handleTaskClose(e, task.id, "doToday")}
+                      >
+                        <CloseOutlined />
+                      </div>
+                      {contextHolder}
+                      <Space
+                        className="task-checkbox"
+                        onClick={(e) =>
+                          e.stopPropagation(setDoTodayModalVisible === false)
+                        }
+                      >
+                        <Checkbox
+                          className="task-checkbox-in"
+                          onClick={(e) =>
+                            // e.stopPropagation() &&
+                            {
+                              if (e.target.checked) {
+                                openNotificationWithIcon("success");
+                              }
+                            }
+                          }
+                        ></Checkbox>
+                      </Space>
+                    </div>
+                  </div>
+                ))}
+                <div className="task-addTask">
+                  <Button
+                    className="add-task-button"
+                    type="primary"
+                    onClick={handleAddDoTodayTask}
+                  >
+                    Add Task
+                  </Button>
+                </div>
+              </Col>
+              <Col span={4}>
+                <Divider orientation="left">Do This Month</Divider>
+                {dataDoThisMonth.map((task) => (
+                  <div
+                    key={task.Task}
+                    className="task-cell"
+                    onClick={() => handleDoThisMonthCellClick(task.Task)}
+                  >
+                    <div className="task-cell-left">
+                      <div>
+                        <label className="task-cell-label">Task:</label>
+                        {task.Task}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Assignee:</label>
+                        {task.Assignee}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">User:</label>
+                        {task.User}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Project:</label>
+                        {task.Project}
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Priority: </label>
+
+                        <Tag
+                          color={
+                            task.Priority === "High"
+                              ? "red"
+                              : task.Priority === "Medium"
+                              ? "orange"
+                              : "green"
+                          }
+                        >
+                          {task.Priority}
+                        </Tag>
+                      </div>
+                      <div>
+                        <label className="task-cell-label">Due Date:</label>
+                        {task.dueDate}
+                      </div>
+                    </div>
+                    <div className="task-cell-right">
+                      <div
+                        className="task-close"
+                        onClick={(e) => handleTaskClose(e, task.id, "doToday")}
+                      >
+                        <CloseOutlined />
+                      </div>
+                      {contextHolder}
+                      <Space
+                        className="task-checkbox"
+                        onClick={(e) =>
+                          e.stopPropagation(setDoTodayModalVisible === false)
+                        }
+                      >
+                        <Checkbox
+                          className="task-checkbox-in"
+                          onClick={(e) =>
+                            // e.stopPropagation() &&
+                            {
+                              if (e.target.checked) {
+                                openNotificationWithIcon("success");
+                              }
+                            }
+                          }
+                        ></Checkbox>
+                      </Space>
+                    </div>
+                  </div>
+                ))}
+                <div className="task-addTask">
+                  <Button
+                    className="add-task-button"
+                    type="primary"
+                    onClick={handleAddDoTodayTask}
+                  >
+                    Add Task
+                  </Button>
+                </div>
               </Col>
             </Row>
             {/* Review Modal */}
@@ -672,16 +998,25 @@ const Task = () => {
               <div>
                 <label>Review:</label>
                 <Input
-                  placeholder={reviewInfo.Review}
+                  value={reviewInfo.Review}
                   onChange={(e) =>
                     handleReviewInputChange("Review", e.target.value)
                   }
                 />
               </div>
               <div>
+                <label>Task:</label>
+                <Input
+                  value={reviewInfo.Task}
+                  onChange={(e) =>
+                    handleReviewInputChange("Task", e.target.value)
+                  }
+                />
+              </div>
+              <div>
                 <label>Assignee:</label>
                 <Input
-                  placeholder={reviewInfo.Assignee}
+                  value={reviewInfo.Assignee}
                   onChange={(e) =>
                     handleReviewInputChange("Assignee", e.target.value)
                   }
@@ -690,7 +1025,7 @@ const Task = () => {
               <div>
                 <label>User:</label>
                 <Input
-                  placeholder={reviewInfo.User}
+                  value={reviewInfo.User}
                   onChange={(e) =>
                     handleReviewInputChange("User", e.target.value)
                   }
@@ -699,7 +1034,7 @@ const Task = () => {
               <div>
                 <label>Project:</label>
                 <Input
-                  placeholder={reviewInfo.Project}
+                  value={reviewInfo.Project}
                   onChange={(e) =>
                     handleReviewInputChange("Project", e.target.value)
                   }
@@ -723,6 +1058,15 @@ const Task = () => {
                 <DatePicker
                   value={reviewInfo.dueDate ? moment(reviewInfo.dueDate) : null}
                   onChange={(date) => handleReviewInputChange("dueDate", date)}
+                />
+              </div>
+              <div>
+                <label>Comment:</label>
+                <Input
+                  value={reviewInfo.Comment}
+                  onChange={(e) =>
+                    handleReviewInputChange("Comment", e.target.value)
+                  }
                 />
               </div>
               <div>
@@ -817,11 +1161,11 @@ const Task = () => {
                 />
               </div>
               <div>
-                <label>Comment:</label>
+                <label>Solve this Problem:</label>
                 <Input.TextArea
-                  value={supportInfo.Comment}
+                  value={supportInfo.solveThisProblem}
                   onChange={(e) =>
-                    handleSupportInputChange("Comment", e.target.value)
+                    handleSupportInputChange("solveThisProblem", e.target.value)
                   }
                 />
               </div>
