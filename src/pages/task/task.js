@@ -583,19 +583,11 @@ const Task = () => {
                   >
                     <div className="task-cell-left">
                       <div>
-                        <label className="task-cell-label">Reviewer:</label>
-                        {task.Review}
-                      </div>
-                      <div>
                         <label className="task-cell-label">Task:</label>
                         {task.Task}
                       </div>
                       <div>
                         <label className="task-cell-label">Assignee:</label>
-                        {task.Assignee}
-                      </div>
-                      <div>
-                        <label className="task-cell-label">User:</label>
                         {task.User}
                       </div>
                       <div>
@@ -676,10 +668,6 @@ const Task = () => {
                       </div>
                       <div>
                         <label className="task-cell-label">Assignee:</label>
-                        {task.Assignee}
-                      </div>
-                      <div>
-                        <label className="task-cell-label">User:</label>
                         {task.User}
                       </div>
                       <div>
@@ -738,14 +726,6 @@ const Task = () => {
                       <div>
                         <label className="task-cell-label">Task:</label>
                         {task.Task}
-                      </div>
-                      <div>
-                        <label className="task-cell-label">Assignee:</label>
-                        {task.Assignee}
-                      </div>
-                      <div>
-                        <label className="task-cell-label">User:</label>
-                        {task.User}
                       </div>
                       <div>
                         <label className="task-cell-label">Project:</label>
@@ -824,14 +804,6 @@ const Task = () => {
                         {task.Task}
                       </div>
                       <div>
-                        <label className="task-cell-label">Assignee:</label>
-                        {task.Assignee}
-                      </div>
-                      <div>
-                        <label className="task-cell-label">User:</label>
-                        {task.User}
-                      </div>
-                      <div>
                         <label className="task-cell-label">Project:</label>
                         {task.Project}
                       </div>
@@ -906,14 +878,6 @@ const Task = () => {
                       <div>
                         <label className="task-cell-label">Task:</label>
                         {task.Task}
-                      </div>
-                      <div>
-                        <label className="task-cell-label">Assignee:</label>
-                        {task.Assignee}
-                      </div>
-                      <div>
-                        <label className="task-cell-label">User:</label>
-                        {task.User}
                       </div>
                       <div>
                         <label className="task-cell-label">Project:</label>

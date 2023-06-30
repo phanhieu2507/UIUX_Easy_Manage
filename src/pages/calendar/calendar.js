@@ -24,14 +24,14 @@ const TaskCalendar = () => {
   const events = [
     {
       start: new Date(2023, 5, 26, 10, 0), // Thời gian bắt đầu
-      end: new Date(2023, 5, 26, 11, 30), // Thời gian kết thúc
-      title: "Meeting", // Tiêu đề sự kiện
+      end: new Date(2023, 5, 30, 11, 30), // Thời gian kết thúc
+      title: "Design figma for home screen", // Tiêu đề sự kiện
       description: "Discuss project updates", // Mô tả sự kiện
     },
     {
       start: new Date(2023, 5, 28, 14, 0),
-      end: new Date(2023, 5, 28, 15, 30),
-      title: "Presentation",
+      end: new Date(2023, 5, 29, 15, 30),
+      title: "Design figma for setting screen",
       description: "Present new product features",
     },
   ];
