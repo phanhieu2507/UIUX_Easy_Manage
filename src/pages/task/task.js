@@ -82,66 +82,6 @@ var dataDoToday = [
     Assignee: "Vũ Thị Hương Giang",
     User: "Hoàng Việt Đức",
     Project: "UI/UX",
-    Priority: "High",
-    dueDate: "2023-06-30",
-  },
-  {
-    id: 2,
-    Task: "Phân tích yêu cầu người dùng",
-    Assignee: "Trịnh Tuấn Đạt",
-    User: "Hoàng Việt Đức",
-    Project: "HUST LAB",
-    Priority: "Medium",
-    dueDate: "2023-06-30",
-  },
-  {
-    id: 3,
-    Task: "Làm 1 đề JLPT",
-    Assignee: "Ngô Lan Anh",
-    User: "Hoàng Việt Đức",
-    Project: "Sun*Asterisk",
-    Priority: "Low",
-    dueDate: "2023-07-10",
-  },
-];
-
-var dataDoThisWeek = [
-  {
-    id: 1,
-    Task: "Tạo giao diện người dùng",
-    Assignee: "Vũ Thị Hương Giang",
-    User: "Hoàng Việt Đức",
-    Project: "UI/UX",
-    Priority: "High",
-    dueDate: "2023-06-30",
-  },
-  {
-    id: 2,
-    Task: "Phân tích yêu cầu người dùng",
-    Assignee: "Trịnh Tuấn Đạt",
-    User: "Hoàng Việt Đức",
-    Project: "HUST LAB",
-    Priority: "Medium",
-    dueDate: "2023-06-30",
-  },
-  {
-    id: 3,
-    Task: "Làm 1 đề JLPT",
-    Assignee: "Ngô Lan Anh",
-    User: "Hoàng Việt Đức",
-    Project: "Sun*Asterisk",
-    Priority: "Low",
-    dueDate: "2023-07-10",
-  },
-];
-
-var dataDoThisMonth = [
-  {
-    id: 1,
-    Task: "Tạo giao diện người dùng",
-    Assignee: "Vũ Thị Hương Giang",
-    User: "Hoàng Việt Đức",
-    Project: "UI/UX",
     Description:
       "Thực hiện quá trình thiết kế giao diện, bao gồm việc xác định cấu trúc, bố cục, màu sắc, hình ảnh và các yếu tố tương tác.",
     Priority: "High",
@@ -168,6 +108,66 @@ var dataDoThisMonth = [
       "Rèn luyện kỹ năng nghe, đọc và viết để hoàn thành đề thi và đạt kết quả tốt",
     Priority: "Low",
     dueDate: "2023-07-10",
+  },
+];
+
+var dataDoThisWeek = [
+  {
+    id: 1,
+    Task: "Phân tích tương tác trang web",
+    Assignee: "Vũ Thị Hương Giang",
+    User: "Hoàng Việt Đức",
+    Project: "UI/UX",
+    Description:
+      "Thực hiện quá trình thiết kế giao diện, bao gồm việc xác định cấu trúc, bố cục, màu sắc, hình ảnh và các yếu tố tương tác.",
+    Priority: "High",
+    dueDate: "2023-06-30",
+  },
+  {
+    id: 2,
+    Task: "Họp nhóm",
+    Assignee: "Trịnh Tuấn Đạt",
+    User: "Hoàng Việt Đức",
+    Project: "HUST LAB",
+    Description: "Thực hiện cuộc họp trong teams cho các thành viên",
+    Priority: "Medium",
+    dueDate: "2023-06-30",
+  },
+];
+
+var dataDoThisMonth = [
+  {
+    id: 3,
+    Task: "Làm 1 đề JLPT",
+    Assignee: "Ngô Lan Anh",
+    User: "Hoàng Việt Đức",
+    Project: "Sun*Asterisk",
+    Description:
+      "Rèn luyện kỹ năng nghe, đọc và viết để hoàn thành đề thi và đạt kết quả tốt",
+    Priority: "Low",
+    dueDate: "2023-07-10",
+  },
+  {
+    id: 2,
+    Task: "Phân tích yêu cầu người dùng",
+    Assignee: "Trịnh Tuấn Đạt",
+    User: "Hoàng Việt Đức",
+    Project: "HUST LAB",
+    Description:
+      "Thực hiện các hoạt động như phỏng vấn người dùng, khảo sát, thu thập thông tin và phân tích dữ liệu liên quan đến nhu cầu, mong muốn và mục tiêu của người dùng.",
+    Priority: "Medium",
+    dueDate: "2023-06-30",
+  },
+  {
+    id: 1,
+    Task: "Tìm đường đi trên Map",
+    Assignee: "Trần Đình Khang",
+    User: "Hoàng Việt Đức",
+    Project: "UI/UX",
+    Description:
+      "Thực hiện quá trình thiết kế giao diện, bao gồm việc xác định cấu trúc, bố cục, màu sắc, hình ảnh và các yếu tố tương tác.",
+    Priority: "High",
+    dueDate: "2023-06-30",
   },
 ];
 
@@ -336,7 +336,7 @@ const Task = () => {
     setSelectedDoTodayTask(task);
 
     // Khởi tạo thông tin trong doThisWeekInfo từ task được chọn
-    setDoTodayInfo({
+    setDoThisWeekInfo({
       Task: task.Task,
       Assignee: task.Assignee,
       User: task.User,
@@ -1163,6 +1163,7 @@ const Task = () => {
               <div>
                 <label>Solve this Problem:</label>
                 <Input.TextArea
+                  className="custom-textarea"
                   value={supportInfo.solveThisProblem}
                   onChange={(e) =>
                     handleSupportInputChange("solveThisProblem", e.target.value)
@@ -1219,6 +1220,16 @@ const Task = () => {
                   value={doTodayInfo.Project}
                   onChange={(e) =>
                     handleDoTodayInputChange("Project", e.target.value)
+                  }
+                />
+              </div>
+              <div>
+                <label>Description:</label>
+                <Input.TextArea
+                  className="custom-textarea"
+                  value={doTodayInfo.Description}
+                  onChange={(e) =>
+                    handleDoTodayInputChange("Description", e.target.value)
                   }
                 />
               </div>

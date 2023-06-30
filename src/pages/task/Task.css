@@ -99,3 +99,8 @@
   align-items: flex-start;
   margin: 10px 20px;
 }
+
+.custom-textarea {
+  width: 500px;
+  height: 1000px;
+}
