@@ -1,3 +1,8 @@
+.task-col {
+  display: flex;
+  justify-content: center;
+}
+
 .task-completed {
   background-color: #1890ff;
 }

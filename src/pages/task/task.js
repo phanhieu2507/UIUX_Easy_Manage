@@ -1054,7 +1054,7 @@ const Task = () => {
                   </Button>
                 </div>
               </Col>
-              <Col span={4}>
+              <Col span={4} className="task-col">
                 <Button
                   className="task-completed"
                   onClick={() => setShowCompleted(!showCompleted)}
