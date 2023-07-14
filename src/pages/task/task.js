@@ -233,21 +233,6 @@ const Task = () => {
   const [reviewModalVisible, setReviewModalVisible] = useState(false);
   const [selectedReviewCell, setSelectedReviewCell] = useState(null);
   const [selectedReviewTask, setSelectedReviewTask] = useState(null);
-  const [supportModalVisible, setSupportModalVisible] = useState(false);
-  const [selectedSupportCell, setSelectedSupportCell] = useState(null);
-  const [selectedSupportTask, setSelectedSupportTask] = useState(null);
-  const [doTodayModalVisible, setDoTodayModalVisible] = useState(false);
-  const [selectedDoTodayCell, setSelectedDoTodayCell] = useState(null);
-  const [doThisWeekModalVisible, setDoThisWeekModalVisible] = useState(false);
-  const [selectedDoThisWeekCell, setSelectedDoThisWeekCell] = useState(null);
-  const [doThisMonthModalVisible, setDoThisMonthModalVisible] = useState(false);
-  const [selectedDoThisMonthCell, setSelectedDoThisMonthCell] = useState(null);
-  const [taskCounter, setTaskCounter] = useState(16);
-  const [doTodayCounter, setDoTodayCounter] = useState(dataDoToday.length);
-  const [supportCounter, setSupportCounter] = useState(dataSupport.length);
-  const [selectedDoTodayTask, setSelectedDoTodayTask] = useState(null);
-  const [completedTasks, setCompletedTasks] = useState([]);
-  const [showCompleted, setShowCompleted] = useState(true);
   const [reviewInfo, setReviewInfo] = useState({
     Review: "",
     Task: "",
@@ -259,6 +244,9 @@ const Task = () => {
     Comment: "",
     Rating: null, // Thêm trường Rating vào cấu trúc dữ liệu
   });
+  const [supportModalVisible, setSupportModalVisible] = useState(false);
+  const [selectedSupportCell, setSelectedSupportCell] = useState(null);
+  const [selectedSupportTask, setSelectedSupportTask] = useState(null);
   const [supportInfo, setSupportInfo] = useState({
     Support: "",
     Assignee: "",
@@ -269,6 +257,10 @@ const Task = () => {
     Problem: "",
     solveThisProblem: "",
   });
+  const [doTodayModalVisible, setDoTodayModalVisible] = useState(false);
+  const [selectedDoTodayCell, setSelectedDoTodayCell] = useState(null);
+  const [doTodayCounter, setDoTodayCounter] = useState(dataDoToday.length);
+  const [selectedDoTodayTask, setSelectedDoTodayTask] = useState(null);
   const [doTodayInfo, setDoTodayInfo] = useState({
     Task: "",
     Assignee: "",
@@ -280,6 +272,8 @@ const Task = () => {
     Problem: "",
     Support: "",
   });
+  const [doThisWeekModalVisible, setDoThisWeekModalVisible] = useState(false);
+  const [selectedDoThisWeekCell, setSelectedDoThisWeekCell] = useState(null);
   const [doThisWeekInfo, setDoThisWeekInfo] = useState({
     Task: "",
     Assignee: "",
@@ -291,6 +285,8 @@ const Task = () => {
     Problem: "",
     Support: "",
   });
+  const [doThisMonthModalVisible, setDoThisMonthModalVisible] = useState(false);
+  const [selectedDoThisMonthCell, setSelectedDoThisMonthCell] = useState(null);
   const [doThisMonthInfo, setDoThisMonthInfo] = useState({
     Task: "",
     Assignee: "",
@@ -302,6 +298,11 @@ const Task = () => {
     Problem: "",
     Support: "",
   });
+  const [taskCounter, setTaskCounter] = useState(16);
+  const [supportCounter, setSupportCounter] = useState(dataSupport.length);
+  const [completedTasks, setCompletedTasks] = useState([]);
+  const [showCompleted, setShowCompleted] = useState(true);
+
   const [addProblemVisible, setAddProblemVisible] = useState(false);
   const [doTodayProblem, setDoTodayProblem] = useState("");
 
