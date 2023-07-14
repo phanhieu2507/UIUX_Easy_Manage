@@ -24,7 +24,7 @@ import "./Task.css"; // Import CSS file
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import { Content } from "antd/es/layout/layout";
-
+import CreateTaskModal from "../../components/CreateTaskModal";
 const { Option } = Select;
 
 var dataReview = [
@@ -188,6 +188,7 @@ const Task = () => {
   const [doTodayCounter, setDoTodayCounter] = useState(dataDoToday.length);
   const [supportCounter, setSupportCounter] = useState(dataSupport.length);
   const [selectedDoTodayTask, setSelectedDoTodayTask] = useState(null);
+  const [isCreateModalVisible, setCreateModalVisible] = useState(false);
   const [reviewInfo, setReviewInfo] = useState({
     Review: "",
     Task: "",
@@ -252,7 +253,13 @@ const Task = () => {
       description: "Bạn đã hoàn thành Task",
     });
   };
-
+  const handleCreateModalClose = () => {
+    setCreateModalVisible(false);
+  };
+  const handleCreateTask = (values) => {
+    console.log("Received values:", values);
+    handleCreateModalClose();
+  };
   const handleReviewCellClick = (cell) => {
     setSelectedReviewCell(cell);
 
@@ -409,7 +416,8 @@ const Task = () => {
       Priority: "",
       dueDate: "",
     };
-    dataDoToday.push(newTask);
+    // dataDoToday.push(newTask);
+    setCreateModalVisible(true);
 
     // Update the selectedSupportCell state variable with the newly added task's Support value
     setSelectedSupportCell(newTask.Support);
@@ -808,6 +816,7 @@ const Task = () => {
                   >
                     Add Task
                   </Button>
+              
                 </div>
               </Col>
               <Col span={4}>
@@ -980,6 +989,11 @@ const Task = () => {
               </Col>
             </Row>
             {/* Review Modal */}
+            <CreateTaskModal
+        visible={isCreateModalVisible}
+        onClose={handleCreateModalClose}
+        onCreateTask={handleCreateTask}
+      />
             <Modal
               title="Review Task Information"
               visible={reviewModalVisible}

@@ -4,14 +4,31 @@ import {
   CheckCircleOutlined,
   AppstoreOutlined,
 } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const { Sider } = Layout;
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [selectedKey, setSelectedKey] = useState('1');
+
+  useEffect(() => {
+    const path = location.pathname;
+
+    if (path === '/home') {
+      setSelectedKey('1');
+    } else if (path === '/tasks') {
+      setSelectedKey('2');
+    } else if (path === '/hustlab') {
+      setSelectedKey('4');
+    } else if (path === '/uiux') {
+      setSelectedKey('5');
+    } else if (path === '/sunasterisk') {
+      setSelectedKey('6');
+    }
+  }, [location]);
 
   const handleMenuClick = (key) => {
     setSelectedKey(key);
@@ -51,13 +68,28 @@ const Sidebar = () => {
         style={{ height: '100%' }}
         className="bg-blue-400 fixed top-16 left-0 w-60"
       >
-        <Menu.Item key="1" icon={<HomeOutlined />} onClick={handleHomeClick}>
+        <Menu.Item
+          key="1"
+          icon={<HomeOutlined />}
+          onClick={handleHomeClick}
+          style={selectedKey === '1' ? { background: '#1890ff', color: '#fff' } : null}
+        >
           Home
         </Menu.Item>
-        <Menu.Item key="2" icon={<CheckCircleOutlined />} onClick={handleTaskClick}>
+        <Menu.Item
+          key="2"
+          icon={<CheckCircleOutlined />}
+          onClick={handleTaskClick}
+          style={selectedKey === '2' ? { background: '#1890ff', color: '#fff' } : null}
+        >
           Tasks
         </Menu.Item>
-        <Menu.SubMenu key="3" icon={<AppstoreOutlined />} title="Projects">
+        <Menu.SubMenu
+          key="3"
+          icon={<AppstoreOutlined />}
+          title="Projects"
+          popupClassName="bg-blue-400"
+        >
           <Menu.Item key="4" onClick={handleHustLabClick}>
             Hust Lab
           </Menu.Item>

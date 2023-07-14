@@ -24,12 +24,13 @@ import "./Task.css"; // Import CSS file
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import { Content } from "antd/es/layout/layout";
+import CreateTaskModal from "../../components/CreateTaskModal";
 
 const { Option } = Select;
 
 var dataReview = [
   {
-    Review: "Văn Đăng Huy",
+    Review: "Phan Công Hiếu",
     Task: "Tạo giao diện người dùng",
     Assignee: "Vũ Thị Hương Giang",
     User: "Hoàng Việt Đức",
@@ -40,7 +41,7 @@ var dataReview = [
     Rating: 5,
   },
   {
-    Review: "Đỗ Quốc Huy",
+    Review: "Phan Công Hiếu",
     Task: "Phân tích yêu cầu người dùng",
     Assignee: "Trịnh Tuấn Đạt",
     User: "Hoàng Việt Đức",
@@ -63,7 +64,7 @@ var dataSupport = [
     solveThisProblem: "Viết ra giấy từ đấy 20 lần",
   },
   {
-    Support: "Hoàng Việt Đức",
+    Support: "Phan Công Hiếu",
     Assignee: "Tạ Hải Tùng",
     User: "Hoàng Việt Đức",
     Project: "Hust LAB",
@@ -272,6 +273,7 @@ const Task = () => {
     Problem: "",
     Support: "",
   });
+  const [isCreateModalVisible, setCreateModalVisible] = useState(false);
   const [doThisWeekModalVisible, setDoThisWeekModalVisible] = useState(false);
   const [selectedDoThisWeekCell, setSelectedDoThisWeekCell] = useState(null);
   const [doThisWeekInfo, setDoThisWeekInfo] = useState({
@@ -385,7 +387,13 @@ const Task = () => {
 
     setDoTodayModalVisible(true);
   };
-
+  const handleCreateModalClose = () => {
+    setCreateModalVisible(false);
+  };
+  const handleCreateTask = (values) => {
+    console.log("Received values:", values);
+    handleCreateModalClose();
+  };
   const handleDoThisWeekCellClick = (cell) => {
     setSelectedDoTodayCell(cell);
 
@@ -469,7 +477,8 @@ const Task = () => {
       Priority: "",
       dueDate: "",
     };
-    dataDoToday.push(newTask);
+    setCreateModalVisible(true);
+    // dataDoToday.push(newTask);
 
     // Update the selectedSupportCell state variable with the newly added task's Support value
     setSelectedSupportCell(newTask.Support);
@@ -703,6 +712,7 @@ const Task = () => {
                           e.stopPropagation(setDoTodayModalVisible === false)
                         }
                       >
+                        Done
                         <Checkbox
                           className="task-checkbox-in"
                           onClick={(e) =>
@@ -855,6 +865,7 @@ const Task = () => {
                             e.stopPropagation(setDoTodayModalVisible === false)
                           }
                         >
+                          Done
                           <Checkbox
                             className="task-checkbox-in"
                             checked={completedTasks.includes(task.id)}
@@ -946,6 +957,7 @@ const Task = () => {
                           e.stopPropagation(setDoTodayModalVisible === false)
                         }
                       >
+                        Done
                         <Checkbox
                           className="task-checkbox-in"
                           onClick={(e) =>
@@ -1030,6 +1042,7 @@ const Task = () => {
                           e.stopPropagation(setDoTodayModalVisible === false)
                         }
                       >
+                        Done
                         <Checkbox
                           className="task-checkbox-in"
                           onClick={(e) =>
@@ -1257,8 +1270,14 @@ const Task = () => {
                   }
                 />
               </div>
+            
             </Modal>
             {/* Do Today Modal */}
+            <CreateTaskModal
+        visible={isCreateModalVisible}
+        onClose={handleCreateModalClose}
+        onCreateTask={handleCreateTask}
+      />
             <Modal
               title="Do Today Task Information"
               visible={doTodayModalVisible}

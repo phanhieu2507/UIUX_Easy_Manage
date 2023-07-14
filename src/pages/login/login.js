@@ -28,27 +28,19 @@ const Login = () => {
           <Text className="mb-4 block text-gray-500">
             Please enter your login details to sign in
           </Text>
-          <Form onFinish={onFinish}>
-            <Form.Item
-              name="email"
-              rules={[{ required: true, message: "Please enter your email" }]}
-            >
-              <Input prefix={<UserOutlined />} placeholder="Email" />
-            </Form.Item>
-            <Form.Item
-              name="password"
-              rules={[
-                { required: true, message: "Please enter your password" },
-              ]}
-            >
-              <Input.Password
-                prefix={<LockOutlined />}
-                placeholder="Password"
-              />
-              <Text type="danger" className="block mt-2">
-                Forgot Password?
-              </Text>
-            </Form.Item>
+          <Form onFinish={onFinish} initialValues={{ email: "admin@example", password: "123456" }}>
+  <Form.Item
+    name="email"
+    rules={[{ required: true, message: "Please enter your email" }]}
+  >
+    <Input prefix={<UserOutlined />} placeholder="Email" />
+  </Form.Item>
+  <Form.Item
+    name="password"
+    rules={[{ required: true, message: "Please enter your password" }]}
+  >
+    <Input.Password prefix={<LockOutlined />} placeholder="Password" />
+  </Form.Item>
             <Form.Item>
               <Button
                 type="primary"
