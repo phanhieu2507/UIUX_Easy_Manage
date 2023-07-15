@@ -994,7 +994,8 @@ const Task = () => {
         onClose={handleCreateModalClose}
         onCreateTask={handleCreateTask}
       />
-            <Modal
+            <Modal 
+okButtonProps={{ style: { backgroundColor: 'blue' } }}
               title="Review Task Information"
               visible={reviewModalVisible}
               onCancel={handleReviewModalClose}
@@ -1092,7 +1093,8 @@ const Task = () => {
               </div>
             </Modal>
             {/* Support Modal */}
-            <Modal
+            <Modal 
+okButtonProps={{ style: { backgroundColor: 'blue' } }}
               title="Support Task Information"
               visible={supportModalVisible}
               onCancel={handleSupportModalClose}
@@ -1185,7 +1187,8 @@ const Task = () => {
               </div>
             </Modal>
             {/* Do Today Modal */}
-            <Modal
+            <Modal 
+okButtonProps={{ style: { backgroundColor: 'blue' } }}
               title="Do Today Task Information"
               visible={doTodayModalVisible}
               onCancel={handleDoTodayModalClose}

@@ -45,7 +45,8 @@ const CreateTaskModal = ({ visible, onClose, onCreateTask }) => {
     onClose();
   };
   return (
-    <Modal
+    <Modal 
+okButtonProps={{ style: { backgroundColor: 'blue' } }}
     title="Create Task"
     visible={visible}
     onCancel={handleCancel}

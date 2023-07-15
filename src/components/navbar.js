@@ -111,7 +111,8 @@ const Navbar = () => {
         onClose={handleCreateModalClose}
         onCreateTask={handleCreateTask}
       />
-      <Modal
+      <Modal 
+okButtonProps={{ style: { backgroundColor: 'blue' } }}
         title="Create Project"
         visible={isCreateProjectModalVisible}
         onCancel={handleCreateProjectModalClose}

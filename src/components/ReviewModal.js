@@ -20,7 +20,8 @@ console.error('Validation failed:', error);
 };
 
 return (
-<Modal
+<Modal 
+okButtonProps={{ style: { backgroundColor: 'blue' } }}
    title="Review Task"
    visible={visible}
    onCancel={onCancel}

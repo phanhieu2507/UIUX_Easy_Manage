@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Layout, Card, Modal, Input, Space, Rate, Tag, Divider } from "antd";
 import { PlusOutlined, StarFilled } from "@ant-design/icons";
 import ReviewModal from "../../components/ReviewModal";
+import SupportModal from "../../components/SupportModal";
 const { Content } = Layout;
 
 const Board = () => {
@@ -176,6 +177,7 @@ const Board = () => {
 
   const [sections, setSections] = useState([]);
   const [isReviewModalVisible, setIsReviewModalVisible] = useState(false);
+  const [isSupportModalVisible, setIsSupportModalVisible] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -228,6 +230,16 @@ const Board = () => {
   // Hàm đóng modal
   const handleCancelReviewModal = () => {
     setIsReviewModalVisible(false);
+  };
+  const handleSaveSupportModal = (values) => {
+    // Thực hiện xử lý lưu review ở đây
+    console.log(values);
+    setIsSupportModalVisible(false);
+  };
+
+  // Hàm đóng modal
+  const handleCancelSupportModal = () => {
+    setIsSupportModalVisible(false);
   };
   return (
     <Layout>
@@ -285,10 +297,10 @@ const Board = () => {
             </h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {supportTasks.map((task) => (
-                <Card key={task.id} className="mb-4">
+                <Card key={task.id} className="mb-4" onClick={() => setIsSupportModalVisible(true)}>
                   <h3>{task.title}</h3>
-                  <p>Support: {task.Review}</p>
-                  <p>Task: {task.Task}</p>
+                  <p>Support: {task.Support}</p>
+    
                   <p>Assignee: {task.Assignee}</p>
                   <p>User: {task.User}</p>
                   <p>Project: {task.Project}</p>
@@ -304,6 +316,12 @@ const Board = () => {
                   <p>Due Date: {task.dueDate}</p>
                   <p>Problem: {task.problem}</p>
                   <p>Solve this Problem: {task.solveThisProblem}</p>
+                  <SupportModal
+                    visible={isSupportModalVisible}
+                    onCancel={handleCancelSupportModal}
+                    onOk={handleSaveSupportModal}
+                    task={task}
+                  />
                 </Card>
               ))}
             </div>
@@ -442,7 +460,8 @@ const Board = () => {
             </h2>
           </div>
         </div>
-        <Modal
+        <Modal 
+okButtonProps={{ style: { backgroundColor: 'blue' } }}
           title="Add Section"
           visible={isModalVisible}
           onOk={handleOk}
