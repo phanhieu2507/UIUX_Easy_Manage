@@ -3,6 +3,7 @@ import { Layout, Card, Modal, Input, Space, Rate, Tag, Divider } from "antd";
 import { PlusOutlined, StarFilled } from "@ant-design/icons";
 import ReviewModal from "../../components/ReviewModal";
 import SupportModal from "../../components/SupportModal";
+import NormalModal from "../../components/NormalTaskModal";
 const { Content } = Layout;
 
 const BoardUIUX = () => {
@@ -176,30 +177,27 @@ const BoardUIUX = () => {
   ];
 
   const [sections, setSections] = useState([]);
-
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [sectionName, setSectionName] = useState("");
   const [isReviewModalVisible, setIsReviewModalVisible] = useState(false);
   const [isSupportModalVisible, setIsSupportModalVisible] = useState(false);
-  const [selectedTask, setSelectedTask] = useState(null);
-  const showReviewModal = (task) => {
-    setSelectedTask(task);
-    setIsReviewModalVisible(true);
-  };
-  const handleSaveReviewModal = (values) => {
-    // Thực hiện xử lý lưu review ở đây
-    console.log(values);
-    setIsReviewModalVisible(false);
-  };
+  const [isNormalModalVisible, setIsNormalModalVisible] = useState(false);
 
-  // Hàm đóng modal
-  const handleCancelReviewModal = () => {
-    setIsReviewModalVisible(false);
-  };
+  const [selectedReviewTask, setSelectedReviewTask] = useState(null);
+  const [selectedSupportTask, setSelectedSupportTask] = useState(null);
+  const [selectedNormalTask, setSelectedNormalTask] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [sectionName, setSectionName] = useState("");
+  const [modalTask, setModalTask] = useState(null);
   const showModal = () => {
     setIsModalVisible(true);
   };
-
+  const showReviewModal = (task) => {
+    setSelectedReviewTask(task);
+    setIsReviewModalVisible(true);
+  };
+  const showNormalModal = (task) => {
+    setModalTask(task);
+    setIsNormalModalVisible(true);
+  };
   const handleOk = () => {
     if (sectionName) {
       const newSection = {
@@ -230,6 +228,16 @@ const BoardUIUX = () => {
         return "gray";
     }
   };
+  const handleSaveReviewModal = (values) => {
+    // Thực hiện xử lý lưu review ở đây
+    console.log(values);
+    setIsReviewModalVisible(false);
+  };
+
+  // Hàm đóng modal
+  const handleCancelReviewModal = () => {
+    setIsReviewModalVisible(false);
+  };
   const handleSaveSupportModal = (values) => {
     // Thực hiện xử lý lưu review ở đây
     console.log(values);
@@ -240,6 +248,19 @@ const BoardUIUX = () => {
   const handleCancelSupportModal = () => {
     setIsSupportModalVisible(false);
   };
+  const handleSaveNormalModal = (values) => {
+    // Thực hiện xử lý lưu review ở đây
+    console.log(values);
+    setIsNormalModalVisible(false);
+    setSelectedNormalTask(null);
+  };
+
+  // Hàm đóng modal
+  const handleCancelNormalModal = () => {
+    setIsNormalModalVisible(false);
+    setSelectedNormalTask(null);
+  };
+
   return (
     <Layout>
       <Content className="p-5">
@@ -251,32 +272,32 @@ const BoardUIUX = () => {
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {reviewTasks.map((task) => (
                 <Card
-                  key={task.id}
+                  key={task?.id}
                   className="mb-4"
                   onClick={() => showReviewModal(task)}
                 >
-                  <h3>{task.title}</h3>
-                  <p>Review: {task.Review}</p>
-                  <p>Task: {task.Task}</p>
-                  <p>Assignee: {task.Assignee}</p>
-                  <p>User: {task.User}</p>
-                  <p>Project: {task.Project}</p>
+                  <h3>{task?.title}</h3>
+                  <p>Review: {task?.Review}</p>
+                  <p>Task: {task?.Task}</p>
+                  <p>Assignee: {task?.Assignee}</p>
+                  <p>User: {task?.User}</p>
+                  <p>Project: {task?.Project}</p>
                   <p>
                     Priority:{" "}
                     <Tag
-                      color={getPriorityColor(task.Priority.toLowerCase())}
+                      color={getPriorityColor(task?.Priority.toLowerCase())}
                       className="capitalize"
                     >
-                      {task.Priority}
+                      {task?.Priority}
                     </Tag>
                   </p>
-                  <p>Due Date: {task.dueDate}</p>
-                  <p>Comment: {task.Comment}</p>
+                  <p>Due Date: {task?.dueDate}</p>
+                  <p>Comment: {task?.Comment}</p>
                   <p>
                     Rating:{" "}
                     <Rate
                       disabled
-                      value={task.Rating}
+                      value={task?.Rating}
                       character={<StarFilled />}
                     />
                   </p>
@@ -284,7 +305,7 @@ const BoardUIUX = () => {
                     visible={isReviewModalVisible}
                     onCancel={handleCancelReviewModal}
                     onOk={handleSaveReviewModal}
-                    task={task}
+                    task={selectedReviewTask}
                   />
                 </Card>
               ))}
@@ -296,30 +317,37 @@ const BoardUIUX = () => {
             </h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {supportTasks.map((task) => (
-                <Card key={task.id} className="mb-4" onClick={() => setIsSupportModalVisible(true)}>
-                  <h3>{task.title}</h3>
-                  <p>Support: {task.Review}</p>
-                  <p>Task: {task.Task}</p>
-                  <p>Assignee: {task.Assignee}</p>
-                  <p>User: {task.User}</p>
-                  <p>Project: {task.Project}</p>
+                <Card
+                  key={task?.id}
+                  className="mb-4"
+                  onClick={() => {
+                    setSelectedSupportTask(task);
+                    setIsSupportModalVisible(true);
+                  }}
+                >
+                  <h3>{task?.title}</h3>
+                  <p>Support: {task?.Support}</p>
+
+                  <p>Assignee: {task?.Assignee}</p>
+                  <p>User: {task?.User}</p>
+                  <p>Project: {task?.Project}</p>
                   <p>
                     Priority:{" "}
                     <Tag
-                      color={getPriorityColor(task.Priority.toLowerCase())}
+                      color={getPriorityColor(task?.Priority.toLowerCase())}
                       className="capitalize"
                     >
-                      {task.Priority}
+                      {task?.Priority}
                     </Tag>
                   </p>
-                  <p>Due Date: {task.dueDate}</p>
-                  <p>Problem: {task.problem}</p>
-                  <p>Solve this Problem: {task.solveThisProblem}</p>
+                  <p>Due Date: {task?.dueDate}</p>
+                  <p>Problem: {task?.problem}</p>
+                  <p>Solve this Problem: {task?.solveThisProblem}</p>
                   <SupportModal
                     visible={isSupportModalVisible}
                     onCancel={handleCancelSupportModal}
                     onOk={handleSaveSupportModal}
-                    task={task}
+                    task={selectedSupportTask}
                   />
                 </Card>
               ))}
@@ -331,25 +359,33 @@ const BoardUIUX = () => {
             </h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {recentlyAssignedTasks.map((task) => (
-                <Card key={task.id} className="mb-4">
-                  <h3>{task.title}</h3>
-                  <p>Task: {task.Task}</p>
-                  <p>Assignee: {task.Assignee}</p>
-                  <p>User: {task.User}</p>
-                  <p>Project: {task.Project}</p>
+                <Card
+                  key={task?.id}
+                  className="mb-4"
+                onClick={() => showNormalModal(task)}
+
+                >
+                  <h3>{task?.title}</h3>
+                  <p>Task: {task?.Task}</p>
+                  <p>Assignee: {task?.Assignee}</p>
+                  <p>User: {task?.User}</p>
+                  <p>Project: {task?.Project}</p>
                   <p>
                     Priority:{" "}
                     <Tag
-                      color={getPriorityColor(task.Priority.toLowerCase())}
+                      color={getPriorityColor(task?.Priority.toLowerCase())}
                       className="capitalize"
                     >
-                      {task.Priority}
+                      {task?.Priority}
                     </Tag>
                   </p>
-                  <p>Due Date: {task.dueDate}</p>
+                  <p>Due Date: {task?.dueDate}</p>
+                 
                 </Card>
               ))}
+              
             </div>
+          
           </div>
           <div className="col-span-1">
             <h2 className="text-lg font-bold mb-4">
@@ -357,22 +393,28 @@ const BoardUIUX = () => {
             </h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {doTodayTasks.map((task) => (
-                <Card key={task.id} className="mb-4">
-                  <h3>{task.title}</h3>
-                  <p>Task: {task.Task}</p>
-                  <p>Assignee: {task.Assignee}</p>
-                  <p>User: {task.User}</p>
-                  <p>Project: {task.Project}</p>
+                <Card
+                  key={task?.id}
+                  className="mb-4"
+                onClick={() => showNormalModal(task)}
+
+                >
+                  <h3>{task?.title}</h3>
+                  <p>Task: {task?.Task}</p>
+                  <p>Assignee: {task?.Assignee}</p>
+                  <p>User: {task?.User}</p>
+                  <p>Project: {task?.Project}</p>
                   <p>
                     Priority:{" "}
                     <Tag
-                      color={getPriorityColor(task.Priority.toLowerCase())}
+                      color={getPriorityColor(task?.Priority.toLowerCase())}
                       className="capitalize"
                     >
-                      {task.Priority}
+                      {task?.Priority}
                     </Tag>
                   </p>
-                  <p>Due Date: {task.dueDate}</p>
+                  <p>Due Date: {task?.dueDate}</p>
+                 
                 </Card>
               ))}
             </div>
@@ -383,22 +425,28 @@ const BoardUIUX = () => {
             </h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {doThisWeekTasks.map((task) => (
-                <Card key={task.id} className="mb-4">
-                  <h3>{task.title}</h3>
-                  <p>Task: {task.Task}</p>
-                  <p>Assignee: {task.Assignee}</p>
-                  <p>User: {task.User}</p>
-                  <p>Project: {task.Project}</p>
+                <Card
+                  key={task?.id}
+                  className="mb-4"
+                onClick={() => showNormalModal(task)}
+
+                >
+                  <h3>{task?.title}</h3>
+                  <p>Task: {task?.Task}</p>
+                  <p>Assignee: {task?.Assignee}</p>
+                  <p>User: {task?.User}</p>
+                  <p>Project: {task?.Project}</p>
                   <p>
                     Priority:{" "}
                     <Tag
-                      color={getPriorityColor(task.Priority.toLowerCase())}
+                      color={getPriorityColor(task?.Priority.toLowerCase())}
                       className="capitalize"
                     >
-                      {task.Priority}
+                      {task?.Priority}
                     </Tag>
                   </p>
-                  <p>Due Date: {task.dueDate}</p>
+                  <p>Due Date: {task?.dueDate}</p>
+                 
                 </Card>
               ))}
             </div>
@@ -409,27 +457,40 @@ const BoardUIUX = () => {
             </h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {doThisMonthTasks.map((task) => (
-                <Card key={task.id} className="mb-4">
-                  <h3>{task.title}</h3>
-                  <p>Task: {task.Task}</p>
-                  <p>Assignee: {task.Assignee}</p>
-                  <p>User: {task.User}</p>
-                  <p>Project: {task.Project}</p>
+                <Card
+                  key={task?.id}
+                  className="mb-4"
+                onClick={() => showNormalModal(task)}
+
+                >
+                  <h3>{task?.title}</h3>
+                  <p>Task: {task?.Task}</p>
+                  <p>Assignee: {task?.Assignee}</p>
+                  <p>User: {task?.User}</p>
+                  <p>Project: {task?.Project}</p>
                   <p>
                     Priority:{" "}
                     <Tag
-                      color={getPriorityColor(task.Priority.toLowerCase())}
+                      color={getPriorityColor(task?.Priority.toLowerCase())}
                       className="capitalize"
                     >
-                      {task.Priority}
+                      {task?.Priority}
                     </Tag>
                   </p>
-                  <p>Due Date: {task.dueDate}</p>
+                  <p>Due Date: {task?.dueDate}</p>
+                 
                 </Card>
               ))}
             </div>
           </div>
-
+          {modalTask && isNormalModalVisible && (
+            <NormalModal
+              visible={isNormalModalVisible}
+              onCancel={() => setIsNormalModalVisible(false)}
+              onOk={handleSaveNormalModal}
+              task={modalTask}
+            />
+          )}
           {sections.map((section) => (
             <div className="col-span-1">
               <h2 className="text-lg font-bold mb-4">
@@ -459,8 +520,8 @@ const BoardUIUX = () => {
             </h2>
           </div>
         </div>
-        <Modal 
-okButtonProps={{ style: { backgroundColor: 'blue' } }}
+        <Modal
+          okButtonProps={{ style: { backgroundColor: "blue" } }}
           title="Add Section"
           visible={isModalVisible}
           onOk={handleOk}
@@ -479,5 +540,6 @@ okButtonProps={{ style: { backgroundColor: 'blue' } }}
     </Layout>
   );
 };
+
 
 export default BoardUIUX;

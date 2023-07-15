@@ -312,8 +312,8 @@ const Home = () => {
   dataSource={filteredMyTasks}
   renderItem={(task) => (
     <List.Item>
-      <Checkbox checked={task.completed}>{task.title}</Checkbox>
-      <Tag color={getPriorityColor(task.priority)}>{task.priority}</Tag>
+      <Checkbox checked={task?.completed}>{task?.title}</Checkbox>
+      <Tag color={getPriorityColor(task?.priority)}>{task?.priority}</Tag>
     </List.Item>
   )}
   pagination={{
@@ -362,7 +362,7 @@ const Home = () => {
                   dataSource={filteredProjectTasks}
                   renderItem={(task) => (
                     <List.Item>
-                      <Checkbox checked={task.completed}>{task.title}</Checkbox>
+                      <Checkbox checked={task?.completed}>{task?.title}</Checkbox>
                     </List.Item>
                   )}
                   pagination={{

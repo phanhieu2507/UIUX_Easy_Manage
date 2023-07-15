@@ -28,33 +28,33 @@ okButtonProps={{ style: { backgroundColor: 'blue' } }}
    onOk={handleOk}
  >
 <Form form={form} layout="vertical">
-<Form.Item label="Review" name="Review" initialValue={task.Review}>
+<Form.Item label="Review" name="Review" initialValue={task?.Review}>
 <Input disabled />
 </Form.Item>
-<Form.Item label="Task" name="Task" initialValue={task.Task}>
+<Form.Item label="Task" name="Task" initialValue={task?.Task}>
 <Input disabled />
 </Form.Item>
-<Form.Item label="Assignee" name="Assignee" initialValue={task.Assignee}>
+<Form.Item label="Assignee" name="Assignee" initialValue={task?.Assignee}>
 <Input disabled />
 </Form.Item>
-<Form.Item label="User" name="User" initialValue={task.User}>
+<Form.Item label="User" name="User" initialValue={task?.User}>
 <Input disabled />
 </Form.Item>
-<Form.Item label="Project" name="Project" initialValue={task.Project}>
+<Form.Item label="Project" name="Project" initialValue={task?.Project}>
 <Input disabled />
 </Form.Item>
 <Form.Item label="Priority">
-<Tag color={getPriorityColor(task.Priority.toLowerCase())}>
-{task.Priority}
+<Tag color={getPriorityColor(task?.Priority.toLowerCase())}>
+{task?.Priority}
 </Tag>
 </Form.Item>
-<Form.Item label="Due Date" name="dueDate" initialValue={task.dueDate}>
+<Form.Item label="Due Date" name="dueDate" initialValue={task?.dueDate}>
 <Input disabled />
 </Form.Item>
-<Form.Item label="Comment" name="Comment" initialValue={task.Comment}>
+<Form.Item label="Comment" name="Comment" initialValue={task?.Comment}>
 <TextArea rows={4} />
 </Form.Item>
-<Form.Item label="Rating" name="Rating" initialValue={task.Rating}>
+<Form.Item label="Rating" name="Rating" initialValue={task?.Rating}>
 <Rate />
 </Form.Item>
 </Form>

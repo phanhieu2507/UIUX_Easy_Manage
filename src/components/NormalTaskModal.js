@@ -3,8 +3,7 @@ import { Modal, Form, Input, Rate, Tag } from "antd";
 
 const { TextArea } = Input;
 
-const SupportModal = ({ visible, onCancel, onOk, task }) => {
-   
+const NormalModal = ({ visible, onCancel, onOk, task }) => {
   const [form] = Form.useForm();
 
   const handleOk = () => {
@@ -22,13 +21,13 @@ const SupportModal = ({ visible, onCancel, onOk, task }) => {
   return (
     <Modal
       okButtonProps={{ style: { backgroundColor: "blue" } }}
-      title="Support Task"
+      title="Task"
       visible={visible}
       onCancel={onCancel}
       onOk={handleOk}
     >
       <Form form={form} layout="vertical">
-        <Form.Item label="Support" name="Support" initialValue={task?.Support}>
+        <Form.Item label="Task" name="Task" initialValue={task?.Task}>
           <Input disabled />
         </Form.Item>
         <Form.Item
@@ -41,7 +40,11 @@ const SupportModal = ({ visible, onCancel, onOk, task }) => {
         <Form.Item label="User" name="User" initialValue={task?.User}>
           <Input disabled />
         </Form.Item>
-        <Form.Item label="Project" name="Project" initialValue={task?.Project}>
+        <Form.Item
+          label="Project"
+          name="Project"
+          initialValue={task?.Project}
+        >
           <Input disabled />
         </Form.Item>
         <Form.Item label="Priority">
@@ -49,18 +52,12 @@ const SupportModal = ({ visible, onCancel, onOk, task }) => {
             {task?.Priority}
           </Tag>
         </Form.Item>
-        <Form.Item label="Due Date" name="dueDate" initialValue={task?.dueDate}>
-          <Input disabled />
-        </Form.Item>
-        <Form.Item label="Problem" name="Problem" initialValue={task?.Problem}>
-          <TextArea rows={2} />
-        </Form.Item>
         <Form.Item
-          label="Solve this Problem"
-          name="Solve this problem"
-          initialValue={task?.solveThisProblem}
+          label="Due Date"
+          name="dueDate"
+          initialValue={task?.dueDate}
         >
-          <TextArea rows={2} />
+          <Input disabled />
         </Form.Item>
       </Form>
     </Modal>
@@ -80,4 +77,4 @@ const getPriorityColor = (priority) => {
   }
 };
 
-export default SupportModal;
+export default NormalModal;
