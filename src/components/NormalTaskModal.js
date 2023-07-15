@@ -1,10 +1,13 @@
 import React from "react";
 import { Modal, Form, Input, Rate, Tag } from "antd";
+import { Select } from "antd";
 
+const { Option } = Select;
 const { TextArea } = Input;
 
 const NormalModal = ({ visible, onCancel, onOk, task }) => {
   const [form] = Form.useForm();
+  const statusOptions = ["Done", "In Progress", "Has Problem", "Closed"];
 
   const handleOk = () => {
     form
@@ -26,6 +29,16 @@ const NormalModal = ({ visible, onCancel, onOk, task }) => {
       onCancel={onCancel}
       onOk={handleOk}
     >
+       <Form.Item label="Status" name="Status">
+  <Select defaultValue="In Progress">
+    {statusOptions.map((option) => (
+      <Option key={option} value={option}>
+        {option}
+      </Option>
+    ))}
+  </Select>
+</Form.Item>
+
       <Form form={form} layout="vertical">
         <Form.Item label="Task" name="Task" initialValue={task?.Task}>
           <Input disabled />
