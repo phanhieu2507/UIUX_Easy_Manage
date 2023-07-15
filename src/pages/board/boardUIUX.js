@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Layout, Card, Modal, Input, Space, Rate, Tag, Divider } from 'antd';
 import { PlusOutlined,StarFilled } from '@ant-design/icons';
-
+import ReviewModal from '../../components/ReviewModal';
 const { Content } = Layout;
 
 const BoardUIUX = () => {
@@ -178,7 +178,22 @@ const BoardUIUX = () => {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [sectionName, setSectionName] = useState('');
+  const [isReviewModalVisible, setIsReviewModalVisible] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const showReviewModal = (task) => {
+    setSelectedTask(task);
+    setIsReviewModalVisible(true);
+  };
+  const handleSaveReviewModal = (values) => {
+    // Thực hiện xử lý lưu review ở đây
+    console.log(values);
+    setIsReviewModalVisible(false);
+  };
 
+  // Hàm đóng modal
+  const handleCancelReviewModal = () => {
+    setIsReviewModalVisible(false);
+  };
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -221,7 +236,7 @@ const BoardUIUX = () => {
             <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Review</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
             {reviewTasks.map((task) => (
-  <Card key={task.id} className="mb-4">
+  <Card key={task.id} className="mb-4" onClick={() => showReviewModal(task)}>
     <h3>{task.title}</h3>
     <p>Review: {task.Review}</p>
     <p>Task: {task.Task}</p>
@@ -242,6 +257,12 @@ const BoardUIUX = () => {
     <p>
       Rating: <Rate disabled value={task.Rating} character={<StarFilled />} />
     </p>
+    <ReviewModal
+                    visible={isReviewModalVisible}
+                    onCancel={handleCancelReviewModal}
+                    onOk={handleSaveReviewModal}
+                    task={task}
+                  />
   </Card>
 ))}
             </div>

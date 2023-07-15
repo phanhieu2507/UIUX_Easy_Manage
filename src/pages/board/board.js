@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { Layout, Card, Modal, Input, Space, Rate, Tag, Divider } from 'antd';
-import { PlusOutlined,StarFilled } from '@ant-design/icons';
-
+import { useState } from "react";
+import { Layout, Card, Modal, Input, Space, Rate, Tag, Divider } from "antd";
+import { PlusOutlined, StarFilled } from "@ant-design/icons";
+import ReviewModal from "../../components/ReviewModal";
 const { Content } = Layout;
 
 const Board = () => {
@@ -142,7 +142,7 @@ const Board = () => {
       Priority: "Low",
       dueDate: "2023-07-10",
     },
-  ]; 
+  ];
 
   var doThisMonthTasks = [
     {
@@ -175,12 +175,18 @@ const Board = () => {
   ];
 
   const [sections, setSections] = useState([]);
+  const [isReviewModalVisible, setIsReviewModalVisible] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [sectionName, setSectionName] = useState('');
+  const [sectionName, setSectionName] = useState("");
 
   const showModal = () => {
     setIsModalVisible(true);
+  };
+  const showReviewModal = (task) => {
+    setSelectedTask(task);
+    setIsReviewModalVisible(true);
   };
 
   const handleOk = () => {
@@ -191,7 +197,7 @@ const Board = () => {
       };
 
       setSections([...sections, newSection]);
-      setSectionName('');
+      setSectionName("");
     }
 
     setIsModalVisible(false);
@@ -199,7 +205,7 @@ const Board = () => {
 
   const handleCancel = () => {
     setIsModalVisible(false);
-    setSectionName('');
+    setSectionName("");
   };
   const getPriorityColor = (priority) => {
     switch (priority) {
@@ -212,177 +218,220 @@ const Board = () => {
       default:
         return "gray";
     }
-  }
+  };
+  const handleSaveReviewModal = (values) => {
+    // Thực hiện xử lý lưu review ở đây
+    console.log(values);
+    setIsReviewModalVisible(false);
+  };
+
+  // Hàm đóng modal
+  const handleCancelReviewModal = () => {
+    setIsReviewModalVisible(false);
+  };
   return (
     <Layout>
       <Content className="p-5">
         <div className="grid grid-cols-7 gap-4">
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Review</Divider></h2>
+            <h2 className="text-lg font-bold mb-4">
+              <Divider orientation="left">Review</Divider>
+            </h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
-            {reviewTasks.map((task) => (
-  <Card key={task.id} className="mb-4">
-    <h3>{task.title}</h3>
-    <p>Review: {task.Review}</p>
-    <p>Task: {task.Task}</p>
-    <p>Assignee: {task.Assignee}</p>
-    <p>User: {task.User}</p>
-    <p>Project: {task.Project}</p>
-    <p>
-      Priority:{" "}
-      <Tag
-        color={getPriorityColor(task.Priority.toLowerCase())}
-        className="capitalize"
-      >
-        {task.Priority}
-      </Tag>
-    </p>
-    <p>Due Date: {task.dueDate}</p>
-    <p>Comment: {task.Comment}</p>
-    <p>
-      Rating: <Rate disabled value={task.Rating} character={<StarFilled />} />
-    </p>
-  </Card>
-))}
-            </div>
-          </div>
-          <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Support</Divider></h2>
-            <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
-              {supportTasks.map((task) => (
-                <Card key={task.id} className="mb-4"> 
-                <h3>{task.title}</h3>
-                <p>Support: {task.Review}</p>
-                <p>Task: {task.Task}</p>
-                <p>Assignee: {task.Assignee}</p>
-                <p>User: {task.User}</p>
-                <p>Project: {task.Project}</p>
-                <p>
-                  Priority:{" "}
-                  <Tag
-                    color={getPriorityColor(task.Priority.toLowerCase())}
-                    className="capitalize"
-                  >
-                    {task.Priority}
-                  </Tag>
-                </p>
-                <p>Due Date: {task.dueDate}</p>
-                <p>Problem: {task.problem}</p>
-                <p>Solve this Problem: {task.solveThisProblem}</p>
+              {reviewTasks.map((task) => (
+                <Card
+                  key={task.id}
+                  className="mb-4"
+                  onClick={() => showReviewModal(task)}
+                >
+                  <h3>{task.title}</h3>
+                  <p>Review: {task.Review}</p>
+                  <p>Task: {task.Task}</p>
+                  <p>Assignee: {task.Assignee}</p>
+                  <p>User: {task.User}</p>
+                  <p>Project: {task.Project}</p>
+                  <p>
+                    Priority:{" "}
+                    <Tag
+                      color={getPriorityColor(task.Priority.toLowerCase())}
+                      className="capitalize"
+                    >
+                      {task.Priority}
+                    </Tag>
+                  </p>
+                  <p>Due Date: {task.dueDate}</p>
+                  <p>Comment: {task.Comment}</p>
+                  <p>
+                    Rating:{" "}
+                    <Rate
+                      disabled
+                      value={task.Rating}
+                      character={<StarFilled />}
+                    />
+                  </p>
+                  <ReviewModal
+                    visible={isReviewModalVisible}
+                    onCancel={handleCancelReviewModal}
+                    onOk={handleSaveReviewModal}
+                    task={task}
+                  />
                 </Card>
               ))}
             </div>
           </div>
-          <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Recently Assigned</Divider></h2>
-            <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
-              {recentlyAssignedTasks.map((task) => (
-                <Card key={task.id} className="mb-4"><h3>{task.title}</h3>
-                <p>Task: {task.Task}</p>
-                <p>Assignee: {task.Assignee}</p>
-                <p>User: {task.User}</p>
-                <p>Project: {task.Project}</p>
-                <p>
-                  Priority:{" "}
-                  <Tag
-                    color={getPriorityColor(task.Priority.toLowerCase())}
-                    className="capitalize"
-                  >
-                    {task.Priority}
-                  </Tag>
-                </p>
-                <p>Due Date: {task.dueDate}</p>
-                </Card>
-              ))}
-            </div>
-          </div>
-          <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Do Today</Divider></h2>
-            <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
-              {doTodayTasks.map((task) => (
-                <Card key={task.id} className="mb-4"><h3>{task.title}</h3>
-                <p>Task: {task.Task}</p>
-                <p>Assignee: {task.Assignee}</p>
-                <p>User: {task.User}</p>
-                <p>Project: {task.Project}</p>
-                <p>
-                  Priority:{" "}
-                  <Tag
-                    color={getPriorityColor(task.Priority.toLowerCase())}
-                    className="capitalize"
-                  >
-                    {task.Priority}
-                  </Tag>
-                </p>
-                <p>Due Date: {task.dueDate}</p></Card>
-              ))}
-            </div>
-          </div>
-          <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Do This Week</Divider></h2>
-            <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
-              {doThisWeekTasks.map((task) => (
-                <Card key={task.id} className="mb-4"><h3>{task.title}</h3>
-                <p>Task: {task.Task}</p>
-                <p>Assignee: {task.Assignee}</p>
-                <p>User: {task.User}</p>
-                <p>Project: {task.Project}</p>
-                <p>
-                  Priority:{" "}
-                  <Tag
-                    color={getPriorityColor(task.Priority.toLowerCase())}
-                    className="capitalize"
-                  >
-                    {task.Priority}
-                  </Tag>
-                </p>
-                <p>Due Date: {task.dueDate}</p></Card>
-              ))}
-            </div>
-          </div>
-          <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Do This Month</Divider></h2>
-            <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
-              {doThisMonthTasks.map((task) => (
-                <Card key={task.id} className="mb-4"><h3>{task.title}</h3>
-                <p>Task: {task.Task}</p>
-                <p>Assignee: {task.Assignee}</p>
-                <p>User: {task.User}</p>
-                <p>Project: {task.Project}</p>
-                <p>
-                  Priority:{" "}
-                  <Tag
-                    color={getPriorityColor(task.Priority.toLowerCase())}
-                    className="capitalize"
-                  >
-                    {task.Priority}
-                  </Tag>
-                </p>
-                <p>Due Date: {task.dueDate}</p></Card>
-              ))}
-              
-            </div>
-          </div>
-          
-              {sections.map((section) => (
-                    <div className="col-span-1">
-                    <h2 className="text-lg font-bold mb-4">
-                <div key={section.id} className="flex justify-center items-center">
-                  {section.name}
-                </div>
-                </h2>
-            <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
-             
-                <Card className="mb-4">{}</Card>
-             
-              
-            </div></div>
-              ))}
-            
-          
           <div className="col-span-1">
             <h2 className="text-lg font-bold mb-4">
-            <div className="flex justify-center items-center">
+              <Divider orientation="left">Support</Divider>
+            </h2>
+            <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
+              {supportTasks.map((task) => (
+                <Card key={task.id} className="mb-4">
+                  <h3>{task.title}</h3>
+                  <p>Support: {task.Review}</p>
+                  <p>Task: {task.Task}</p>
+                  <p>Assignee: {task.Assignee}</p>
+                  <p>User: {task.User}</p>
+                  <p>Project: {task.Project}</p>
+                  <p>
+                    Priority:{" "}
+                    <Tag
+                      color={getPriorityColor(task.Priority.toLowerCase())}
+                      className="capitalize"
+                    >
+                      {task.Priority}
+                    </Tag>
+                  </p>
+                  <p>Due Date: {task.dueDate}</p>
+                  <p>Problem: {task.problem}</p>
+                  <p>Solve this Problem: {task.solveThisProblem}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+          <div className="col-span-1">
+            <h2 className="text-lg font-bold mb-4">
+              <Divider orientation="left">Recently Assigned</Divider>
+            </h2>
+            <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
+              {recentlyAssignedTasks.map((task) => (
+                <Card key={task.id} className="mb-4">
+                  <h3>{task.title}</h3>
+                  <p>Task: {task.Task}</p>
+                  <p>Assignee: {task.Assignee}</p>
+                  <p>User: {task.User}</p>
+                  <p>Project: {task.Project}</p>
+                  <p>
+                    Priority:{" "}
+                    <Tag
+                      color={getPriorityColor(task.Priority.toLowerCase())}
+                      className="capitalize"
+                    >
+                      {task.Priority}
+                    </Tag>
+                  </p>
+                  <p>Due Date: {task.dueDate}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+          <div className="col-span-1">
+            <h2 className="text-lg font-bold mb-4">
+              <Divider orientation="left">Do Today</Divider>
+            </h2>
+            <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
+              {doTodayTasks.map((task) => (
+                <Card key={task.id} className="mb-4">
+                  <h3>{task.title}</h3>
+                  <p>Task: {task.Task}</p>
+                  <p>Assignee: {task.Assignee}</p>
+                  <p>User: {task.User}</p>
+                  <p>Project: {task.Project}</p>
+                  <p>
+                    Priority:{" "}
+                    <Tag
+                      color={getPriorityColor(task.Priority.toLowerCase())}
+                      className="capitalize"
+                    >
+                      {task.Priority}
+                    </Tag>
+                  </p>
+                  <p>Due Date: {task.dueDate}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+          <div className="col-span-1">
+            <h2 className="text-lg font-bold mb-4">
+              <Divider orientation="left">Do This Week</Divider>
+            </h2>
+            <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
+              {doThisWeekTasks.map((task) => (
+                <Card key={task.id} className="mb-4">
+                  <h3>{task.title}</h3>
+                  <p>Task: {task.Task}</p>
+                  <p>Assignee: {task.Assignee}</p>
+                  <p>User: {task.User}</p>
+                  <p>Project: {task.Project}</p>
+                  <p>
+                    Priority:{" "}
+                    <Tag
+                      color={getPriorityColor(task.Priority.toLowerCase())}
+                      className="capitalize"
+                    >
+                      {task.Priority}
+                    </Tag>
+                  </p>
+                  <p>Due Date: {task.dueDate}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+          <div className="col-span-1">
+            <h2 className="text-lg font-bold mb-4">
+              <Divider orientation="left">Do This Month</Divider>
+            </h2>
+            <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
+              {doThisMonthTasks.map((task) => (
+                <Card key={task.id} className="mb-4">
+                  <h3>{task.title}</h3>
+                  <p>Task: {task.Task}</p>
+                  <p>Assignee: {task.Assignee}</p>
+                  <p>User: {task.User}</p>
+                  <p>Project: {task.Project}</p>
+                  <p>
+                    Priority:{" "}
+                    <Tag
+                      color={getPriorityColor(task.Priority.toLowerCase())}
+                      className="capitalize"
+                    >
+                      {task.Priority}
+                    </Tag>
+                  </p>
+                  <p>Due Date: {task.dueDate}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {sections.map((section) => (
+            <div className="col-span-1">
+              <h2 className="text-lg font-bold mb-4">
+                <div
+                  key={section.id}
+                  className="flex justify-center items-center"
+                >
+                  {section.name}
+                </div>
+              </h2>
+              <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
+                <Card className="mb-4">{}</Card>
+              </div>
+            </div>
+          ))}
+
+          <div className="col-span-1">
+            <h2 className="text-lg font-bold mb-4">
+              <div className="flex justify-center items-center">
                 <span
                   className="text-blue-500 cursor-pointer"
                   onClick={showModal}
