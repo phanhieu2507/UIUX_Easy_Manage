@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Layout,
   Input,
@@ -13,9 +14,16 @@ import {
   Radio,
   Dropdown,
   Tag,
-  Menu
+  Menu,
 } from "antd";
-import { ClockCircleOutlined, PlusCircleOutlined, ProjectOutlined,UsergroupAddOutlined,MessageOutlined } from "@ant-design/icons";
+import {
+  ClockCircleOutlined,
+  PlusCircleOutlined,
+  ProjectOutlined,
+  UsergroupAddOutlined,
+  MessageOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons";
 import CreateTaskModal from "./CreateTaskModal";
 
 const { Header } = Layout;
@@ -23,10 +31,11 @@ const { Search } = Input;
 const { Option } = Select;
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const [isCreateModalVisible, setCreateModalVisible] = useState(false);
-  const [isCreateProjectModalVisible, setCreateProjectModalVisible] = useState(
-    false
-  );
+  const [isCreateProjectModalVisible, setCreateProjectModalVisible] =
+    useState(false);
   const [inviteEmails, setInviteEmails] = useState([]);
   const [inviteInputValue, setInviteInputValue] = useState("");
 
@@ -72,6 +81,11 @@ const Navbar = () => {
     handleCreateModalClose();
   };
 
+  const handleLogout = () => {
+    // Perform logout action here
+    navigate("/");
+  };
+
   const menu = (
     <Menu>
       <Menu.Item
@@ -94,6 +108,19 @@ const Navbar = () => {
       <Menu.Item icon={<MessageOutlined />} key="4">
         Message
       </Menu.Item>
+      <Menu.Item icon={<LogoutOutlined />} key="5" onClick={handleLogout}>
+        Logout
+      </Menu.Item>
+    </Menu>
+  );
+  const menuAVT = (
+    <Menu>
+      <Menu.Item icon={<UsergroupAddOutlined />} key="1" >
+        My Profile
+      </Menu.Item>
+      <Menu.Item icon={<LogoutOutlined />} key="2" onClick={handleLogout}>
+        Logout
+      </Menu.Item>
     </Menu>
   );
 
@@ -106,7 +133,6 @@ const Navbar = () => {
             Easy<span className="text-blue-700">Manage</span>
           </span>
         </div>
-
         <Dropdown overlay={menu} placement="bottomRight">
           <Button
             type="primary"
@@ -122,11 +148,13 @@ const Navbar = () => {
             size="large"
           />
         </div>
-        <Avatar
-          size={32}
-          src="https://demoda.vn/wp-content/uploads/2022/04/hinh-cute-cho-dien-thoai-iphone.jpg"
-          className="ml-4"
-        />
+        <Dropdown overlay={menuAVT} placement="bottomRight">
+          <Avatar
+            size={32}
+            src="https://demoda.vn/wp-content/uploads/2022/04/hinh-cute-cho-dien-thoai-iphone.jpg"
+            className="ml-4 cursor-pointer"
+          />
+        </Dropdown>
       </div>
       <CreateTaskModal
         visible={isCreateModalVisible}
