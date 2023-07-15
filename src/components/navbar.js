@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Layout,
-  Menu,
   Input,
   Avatar,
   Button,
@@ -14,8 +13,9 @@ import {
   Radio,
   Dropdown,
   Tag,
+  Menu
 } from "antd";
-import { MenuOutlined, FileAddOutlined, ProjectOutlined, UsergroupAddOutlined, MessageOutlined,  PlusCircleOutlined, } from '@ant-design/icons';
+import { ClockCircleOutlined, PlusCircleOutlined, ProjectOutlined,UsergroupAddOutlined,MessageOutlined } from "@ant-design/icons";
 import CreateTaskModal from "./CreateTaskModal";
 
 const { Header } = Layout;
@@ -74,23 +74,44 @@ const Navbar = () => {
 
   const menu = (
     <Menu>
-      <Menu.Item icon={<FileAddOutlined />} key="1"  onClick={handleCreateModalOpen} >Create Task</Menu.Item>
-      <Menu.Item icon={<ProjectOutlined />} key="2" onClick={handleCreateProjectModalOpen}>Create Project</Menu.Item>
-      <Menu.Item icon={<UsergroupAddOutlined />} key="3">Invite</Menu.Item>
-      <Menu.Item icon={<MessageOutlined />} key="4">Message</Menu.Item>
+      <Menu.Item
+        icon={<ClockCircleOutlined />}
+        key="1"
+        onClick={handleCreateModalOpen}
+      >
+        Create Task
+      </Menu.Item>
+      <Menu.Item
+        icon={<ProjectOutlined />}
+        key="2"
+        onClick={handleCreateProjectModalOpen}
+      >
+        Create Project
+      </Menu.Item>
+      <Menu.Item icon={<UsergroupAddOutlined />} key="3">
+        Invite
+      </Menu.Item>
+      <Menu.Item icon={<MessageOutlined />} key="4">
+        Message
+      </Menu.Item>
     </Menu>
   );
 
   return (
-    <Header className="bg-blue-400 fixed top-0 left-0 right-0 z-10 ">
+    <Header className="bg-blue-400 fixed top-0 left-0 right-0 z-10">
       <div className="flex items-center justify-between mx-auto h-full">
-        <Button
-          type="text"
-          icon={<MenuOutlined style={{ fontSize: "2rem" }} />}
-        />
+        <div className="flex items-center justify-center">
+          <ClockCircleOutlined style={{ fontSize: "2rem" }} />
+          <span className="text-2xl font-bold italic text-white pl-2">
+            Easy<span className="text-blue-700">Manage</span>
+          </span>
+        </div>
 
         <Dropdown overlay={menu} placement="bottomRight">
-          <Button type="primary" className="ml-24 mr-4 rounded-lg border border-black bg-white text-black">
+          <Button
+            type="primary"
+            className="ml-24 mr-4 rounded-lg border border-black bg-white text-black"
+          >
             Create
           </Button>
         </Dropdown>
@@ -111,8 +132,8 @@ const Navbar = () => {
         onClose={handleCreateModalClose}
         onCreateTask={handleCreateTask}
       />
-      <Modal 
-okButtonProps={{ style: { backgroundColor: 'blue' } }}
+      <Modal
+        okButtonProps={{ style: { backgroundColor: "blue" } }}
         title="Create Project"
         visible={isCreateProjectModalVisible}
         onCancel={handleCreateProjectModalClose}
@@ -141,19 +162,20 @@ okButtonProps={{ style: { backgroundColor: 'blue' } }}
           </Form.Item>
           <Form.Item
             name="description"
-            
-            rules={[
-              { message: "Please enter the description!" },
-            ]}
+            rules={[{ message: "Please enter the description!" }]}
           >
-            <Input.TextArea placeholder="Description" rows={4} style={{ width: '100%' }} />
+            <Input.TextArea
+              placeholder="Description"
+              rows={4}
+              style={{ width: "100%" }}
+            />
           </Form.Item>
           <Form.Item>
             <Input.Group compact>
               <Form.Item
                 name="inviteEmail"
                 rules={[
-                  {  message: "Please enter an email!" },
+                  { message: "Please enter an email!" },
                   { type: "email", message: "Please enter a valid email!" },
                 ]}
               >
@@ -165,7 +187,7 @@ okButtonProps={{ style: { backgroundColor: 'blue' } }}
               </Form.Item>
               <Button
                 type="primary"
-                icon={<PlusCircleOutlined className="bg-blue-500"/>}
+                icon={<PlusCircleOutlined className="bg-blue-500" />}
                 onClick={handleInviteAdd}
                 className="bg-blue-500"
               />
