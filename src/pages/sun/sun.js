@@ -23,20 +23,141 @@ const Sun = () => {
   };
 
   // Danh sách các sự kiện
-  const events = [
+  var events = [
     {
-        start: new Date(2023, 5, 26, 10, 0), // Thời gian bắt đầu
-        end: new Date(2023, 5, 26, 11, 30), // Thời gian kết thúc
-        title: "Meeting", // Tiêu đề sự kiện
-        description: "Discuss project updates", // Mô tả sự kiện
-      },
-      {
-        start: new Date(2023, 5, 28, 14, 0),
-        end: new Date(2023, 5, 28, 15, 30),
-        title: "Presentation",
-        description: "Present new product features",
-      },
-  ];
+    start: new Date(2023, 5, 26, 10, 0), // Thời gian bắt đầu
+    end: new Date(2023, 5, 26, 11, 30), // Thời gian kết thúc
+    title: "Cuộc họp", // Tiêu đề sự kiện
+    description: "Thảo luận cập nhật dự án", // Mô tả sự kiện
+    },
+    {
+    start: new Date(2023, 5, 28, 14, 0),
+    end: new Date(2023, 5, 28, 15, 30),
+    title: "Thuyết trình",
+    description: "Trình bày tính năng mới của sản phẩm",
+    },
+    // Thêm 20 sự kiện liên quan đến công ty
+    {
+    start: new Date(2023, 6, 1, 9, 0),
+    end: new Date(2023, 6, 1, 10, 0),
+    title: "Buổi đào tạo",
+    description: "Đào tạo nhân viên về quy trình làm việc",
+    },
+    {
+    start: new Date(2023, 6, 3, 13, 30),
+    end: new Date(2023, 6, 3, 15, 0),
+    title: "Họp nhóm",
+    description: "Bàn về kế hoạch thực hiện dự án",
+    },
+    {
+    start: new Date(2023, 6, 5, 11, 0),
+    end: new Date(2023, 6, 5, 12, 30),
+    title: "Họp khách hàng",
+    description: "Tiếp xúc khách hàng và lắng nghe ý kiến",
+    },
+    {
+    start: new Date(2023, 6, 7, 14, 0),
+    end: new Date(2023, 6, 7, 16, 0),
+    title: "Buổi workshop",
+    description: "Workshop về công nghệ mới",
+    },
+    {
+    start: new Date(2023, 6, 10, 9, 0),
+    end: new Date(2023, 6, 10, 10, 30),
+    title: "Họp ban lãnh đạo",
+    description: "Họp định kỳ của ban lãnh đạo công ty",
+    },
+    {
+    start: new Date(2023, 6, 12, 15, 0),
+    end: new Date(2023, 6, 12, 16, 30),
+    title: "Hội thảo",
+    description: "Hội thảo về xu hướng công nghệ mới",
+    },
+    {
+    start: new Date(2023, 6, 15, 10, 0),
+    end: new Date(2023, 6, 15, 11, 30),
+    title: "Buổi đào tạo",
+    description: "Đào tạo nhân viên về quy trình làm việc",
+    },
+    {
+    start: new Date(2023, 6, 18, 13, 30),
+    end: new Date(2023, 6, 18, 15, 0),
+    title: "Họp nhóm",
+    description: "Bàn về kế hoạch thực hiện dự án",
+    },
+    {
+    start: new Date(2023, 6, 20, 11, 0),
+    end: new Date(2023, 6, 20, 12, 30),
+    title: "Họp khách hàng",
+    description: "Tiếp xúc khách hàng và lắng nghe ý kiến",
+    },
+    {
+    start: new Date(2023, 6, 23, 14, 0),
+    end: new Date(2023, 6, 23, 16, 0),
+    title: "Buổi workshop",
+    description: "Workshop về công nghệ mới",
+    },
+    {
+    start: new Date(2023, 6, 25, 9, 0),
+    end: new Date(2023, 6, 25, 10, 30),
+    title: "Họp ban lãnh đạo",
+    description: "Họp định kỳ của ban lãnh đạo công ty",
+    },
+    {
+    start: new Date(2023, 6, 28, 15, 0),
+    end: new Date(2023, 6, 28, 16, 30),
+    title: "Hội thảo",
+    description: "Hội thảo về xu hướng công nghệ mới",
+    },
+    {
+    start: new Date(2023, 7, 1, 9, 0),
+    end: new Date(2023, 7, 1, 10, 30),
+    title: "Buổi đào tạo",
+    description: "Đào tạo nhân viên về quy trình làm việc",
+    },
+    {
+    start: new Date(2023, 7, 4, 13, 30),
+    end: new Date(2023, 7, 4, 15, 0),
+    title: "Họp nhóm",
+    description: "Bàn về kế hoạch thực hiện dự án",
+    },
+    {
+    start: new Date(2023, 7, 7, 11, 0),
+    end: new Date(2023, 7, 7, 12, 30),
+    title: "Họp khách hàng",
+    description: "Tiếp xúc khách hàng và lắng nghe ý kiến",
+    },
+    {
+    start: new Date(2023, 7, 10, 14, 0),
+    end: new Date(2023, 7, 10, 16, 0),
+    title: "Buổi workshop",
+    description: "Workshop về công nghệ mới",
+    },
+    {
+    start: new Date(2023, 7, 13, 9, 0),
+    end: new Date(2023, 7, 13, 10, 30),
+    title: "Họp ban lãnh đạo",
+    description: "Họp định kỳ của ban lãnh đạo công ty",
+    },
+    {
+    start: new Date(2023, 7, 16, 15, 0),
+    end: new Date(2023, 7, 16, 16, 30),
+    title: "Hội thảo",
+    description: "Hội thảo về xu hướng công nghệ mới",
+    },
+    {
+    start: new Date(2023, 7, 19, 10, 0),
+    end: new Date(2023, 7, 19, 11, 30),
+    title: "Buổi đào tạo",
+    description: "Đào tạo nhân viên về quy trình làm việc",
+    },
+    {
+    start: new Date(2023, 7, 22, 13, 30),
+    end: new Date(2023, 7, 22, 15, 0),
+    title: "Họp nhóm",
+    description: "Bàn về kế hoạch thực hiện dự án",
+    },
+    ];
 
   return (
     <Layout>
