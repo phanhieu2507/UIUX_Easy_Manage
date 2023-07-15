@@ -118,7 +118,8 @@ const Navbar = () => {
         <div className="flex items-center justify-center flex-grow">
           <Search
             placeholder="Search..."
-            className="w-full max-w-2xl bg-white"
+            className="w-full max-w-2xl"
+            size="large"
           />
         </div>
         <Avatar
