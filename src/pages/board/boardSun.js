@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Layout, Card, Modal, Input, Space, Rate, Tag } from 'antd';
+import { Layout, Card, Modal, Input, Space, Rate, Tag, Divider } from 'antd';
 import { PlusOutlined,StarFilled } from '@ant-design/icons';
 
 const { Content } = Layout;
@@ -8,24 +8,24 @@ const BoardSun = () => {
   var reviewTasks = [
     {
       Review: "Phan Công Hiếu",
-      Task: "Tạo giao diện người dùng",
+      Task: "Tạo mô phỏng cho ứng dụng",
       Assignee: "Vũ Thị Hương Giang",
       User: "Hoàng Việt Đức",
       Project: "Sun*Asterisk",
       Priority: "High",
       dueDate: "2023-07-01",
-      Comment: "Công việc hoàn thành đúng tiến độ và chất lượng tốt!",
+      Comment: "Mô phỏng hoạt động được",
       Rating: 5,
     },
     {
       Review: "Phan Công Hiếu",
-      Task: "Phân tích yêu cầu người dùng",
+      Task: "Phân tích mô phỏng",
       Assignee: "Trịnh Tuấn Đạt",
       User: "Hoàng Việt Đức",
       Project: "Sun*Asterisk",
       Priority: "Medium",
       dueDate: "2023-07-15",
-      Comment: "Công việc có những điểm cần cải thiện, nhưng tổng thể là tốt!",
+      Comment: "Báo cáo thiếu mục 2",
       Rating: 4.8,
     },
   ];
@@ -38,8 +38,8 @@ const BoardSun = () => {
       Project: "Sun*Asterisk",
       Priority: "High",
       dueDate: "2023-06-30",
-      Problem: "Khó học thuộc Kanji",
-      solveThisProblem: "Viết ra giấy từ đấy 20 lần",
+      Problem: "Phần component cha không liên kết",
+      solveThisProblem: "Đọc trong docs",
     },
     {
       Support: "Phan Công Hiếu",
@@ -57,16 +57,16 @@ const BoardSun = () => {
   var recentlyAssignedTasks = [
     {
       id: 1,
-      Task: "Tạo giao diện người dùng",
-      Assignee: "Vũ Thị Hương Giang",
-      User: "Hoàng Việt Đức",
-      Project: "UI/UX",
+      Task: "Tạo giao diện cho App",
+      Assignee: "Phạm Vân Anh",
+      User: "Phan Công Hiếu",
+      Project: "Sun*Asterisk",
       Priority: "High",
       dueDate: "2023-06-30",
     },
     {
       id: 2,
-      Task: "Phân tích yêu cầu người dùng",
+      Task: "Xử lí lỗi ở màn Home",
       Assignee: "Trịnh Tuấn Đạt",
       User: "Hoàng Việt Đức",
       Project: "Sun*Asterisk",
@@ -75,7 +75,7 @@ const BoardSun = () => {
     },
     {
       id: 3,
-      Task: "Làm 1 đề JLPT",
+      Task: "Xử lí lỗi ở màn Home details",
       Assignee: "Ngô Lan Anh",
       User: "Hoàng Việt Đức",
       Project: "Sun*Asterisk",
@@ -90,7 +90,7 @@ const BoardSun = () => {
       Task: "Tạo giao diện người dùng",
       Assignee: "Vũ Thị Hương Giang",
       User: "Hoàng Việt Đức",
-      Project: "UI/UX",
+      Project: "Sun*Asterisk",
       Priority: "High",
       dueDate: "2023-06-30",
     },
@@ -120,7 +120,7 @@ const BoardSun = () => {
       Task: "Tạo giao diện người dùng",
       Assignee: "Vũ Thị Hương Giang",
       User: "Hoàng Việt Đức",
-      Project: "UI/UX",
+      Project: "Sun*Asterisk",
       Priority: "High",
       dueDate: "2023-06-30",
     },
@@ -150,7 +150,7 @@ const BoardSun = () => {
       Task: "Tạo giao diện người dùng",
       Assignee: "Vũ Thị Hương Giang",
       User: "Hoàng Việt Đức",
-      Project: "UI/UX",
+      Project: "Sun*Asterisk",
       Priority: "High",
       dueDate: "2023-06-30",
     },
@@ -218,7 +218,7 @@ const BoardSun = () => {
       <Content className="p-5">
         <div className="grid grid-cols-7 gap-4">
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4">Review</h2>
+            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Review</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
             {reviewTasks.map((task) => (
   <Card key={task.id} className="mb-4">
@@ -247,7 +247,7 @@ const BoardSun = () => {
             </div>
           </div>
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4">Support</h2>
+            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Support</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {supportTasks.map((task) => (
                 <Card key={task.id} className="mb-4"> 
@@ -274,7 +274,7 @@ const BoardSun = () => {
             </div>
           </div>
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4">Recently Assigned</h2>
+            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Recently Assigned</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {recentlyAssignedTasks.map((task) => (
                 <Card key={task.id} className="mb-4"><h3>{task.title}</h3>
@@ -297,7 +297,7 @@ const BoardSun = () => {
             </div>
           </div>
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4">Do Today</h2>
+            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Do Today</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {doTodayTasks.map((task) => (
                 <Card key={task.id} className="mb-4"><h3>{task.title}</h3>
@@ -319,7 +319,7 @@ const BoardSun = () => {
             </div>
           </div>
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4">Do This Week</h2>
+            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Do This Week</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {doThisWeekTasks.map((task) => (
                 <Card key={task.id} className="mb-4"><h3>{task.title}</h3>
@@ -341,7 +341,7 @@ const BoardSun = () => {
             </div>
           </div>
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4">Do This Month</h2>
+            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Do This Month</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {doThisMonthTasks.map((task) => (
                 <Card key={task.id} className="mb-4"><h3>{task.title}</h3>

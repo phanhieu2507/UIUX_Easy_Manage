@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Layout, Card, Modal, Input, Space, Rate, Tag } from 'antd';
+import { Layout, Card, Modal, Input, Space, Rate, Tag, Divider } from 'antd';
 import { PlusOutlined,StarFilled } from '@ant-design/icons';
 
 const { Content } = Layout;
@@ -218,7 +218,7 @@ const Board = () => {
       <Content className="p-5">
         <div className="grid grid-cols-7 gap-4">
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4">Review</h2>
+            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Review</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
             {reviewTasks.map((task) => (
   <Card key={task.id} className="mb-4">
@@ -247,7 +247,7 @@ const Board = () => {
             </div>
           </div>
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4">Support</h2>
+            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Support</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {supportTasks.map((task) => (
                 <Card key={task.id} className="mb-4"> 
@@ -274,7 +274,7 @@ const Board = () => {
             </div>
           </div>
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4">Recently Assigned</h2>
+            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Recently Assigned</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {recentlyAssignedTasks.map((task) => (
                 <Card key={task.id} className="mb-4"><h3>{task.title}</h3>
@@ -297,7 +297,7 @@ const Board = () => {
             </div>
           </div>
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4">Do Today</h2>
+            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Do Today</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {doTodayTasks.map((task) => (
                 <Card key={task.id} className="mb-4"><h3>{task.title}</h3>
@@ -319,7 +319,7 @@ const Board = () => {
             </div>
           </div>
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4">Do This Week</h2>
+            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Do This Week</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {doThisWeekTasks.map((task) => (
                 <Card key={task.id} className="mb-4"><h3>{task.title}</h3>
@@ -341,7 +341,7 @@ const Board = () => {
             </div>
           </div>
           <div className="col-span-1">
-            <h2 className="text-lg font-bold mb-4">Do This Month</h2>
+            <h2 className="text-lg font-bold mb-4"><Divider orientation="left">Do This Month</Divider></h2>
             <div className="h-screen overflow-y-auto hover:overflow-y-scroll">
               {doThisMonthTasks.map((task) => (
                 <Card key={task.id} className="mb-4"><h3>{task.title}</h3>
