@@ -98,7 +98,7 @@ const Navbar = () => {
   );
 
   return (
-    <Header className="bg-blue-400 fixed top-0 left-0 right-0 z-10">
+    <Header className="bg-blue-400 fixed top-0 left-0 right-0 z-10 shadow-md">
       <div className="flex items-center justify-between mx-auto h-full">
         <div className="flex items-center justify-center">
           <ClockCircleOutlined style={{ fontSize: "2rem" }} />

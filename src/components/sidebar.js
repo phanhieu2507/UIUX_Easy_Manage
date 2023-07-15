@@ -80,7 +80,7 @@ const Sidebar = () => {
           key="1"
           icon={<HomeOutlined />}
           onClick={handleHomeClick}
-         
+          style={{ color: 'black', fontSize: '16px' }} // Chỉnh màu và kích thước chữ
         >
           Home
         </Menu.Item>
@@ -88,6 +88,7 @@ const Sidebar = () => {
           key="2"
           icon={<CheckCircleOutlined />}
           onClick={handleTaskClick}
+          style={{ color: 'black', fontSize: '16px' }} // Chỉnh màu và kích thước chữ
         >
           Tasks
         </Menu.Item>
@@ -96,6 +97,7 @@ const Sidebar = () => {
           icon={<AppstoreOutlined />}
           title="Projects"
           popupClassName="bg-blue-400"
+          style={{ color: 'black', fontSize: '16px' }} // Chỉnh màu và kích thước chữ
         >
           <Menu.Item key="4" onClick={handleHustLabClick}>
             Hust Lab
