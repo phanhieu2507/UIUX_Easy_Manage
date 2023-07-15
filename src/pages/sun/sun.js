@@ -9,7 +9,7 @@ import Sidebar from "../../components/sidebar";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import Board from "../board/board";
+import BoardSun from "../board/boardSun";
 const localizer = momentLocalizer(moment);
 
 const { Content } = Layout;
@@ -47,7 +47,7 @@ const Sun = () => {
           <div className="mb-4">
             <div className="flex justify-between items-center pt-8 ">
               <Title level={4} style={{ margin: 0 }}>
-               Hust Lab
+               Sun*Asterisk
               </Title>
             </div>
             <Menu
@@ -80,7 +80,7 @@ const Sun = () => {
                   onSelectSlot={(slotInfo) => console.log(slotInfo)}
                 />
               ) : (
-                <Board />
+                <BoardSun />
               )}
             </div>
           </div>

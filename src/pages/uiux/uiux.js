@@ -9,7 +9,7 @@ import Sidebar from "../../components/sidebar";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import Board from "../board/board";
+import BoardUIUX from "../board/boardUIUX";
 const localizer = momentLocalizer(moment);
 
 const { Content } = Layout;
@@ -59,7 +59,7 @@ const UIUX = () => {
           <div className="mb-4">
             <div className="flex justify-between items-center pt-8 ">
               <Title level={4} style={{ margin: 0 }}>
-               Hust Lab
+               UIUX
               </Title>
             </div>
             <Menu
@@ -92,7 +92,7 @@ const UIUX = () => {
                   onSelectSlot={(slotInfo) => console.log(slotInfo)}
                 />
               ) : (
-                <Board />
+                <BoardUIUX />
               )}
             </div>
           </div>

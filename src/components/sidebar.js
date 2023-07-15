@@ -8,11 +8,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const { Sider } = Layout;
+const { SubMenu } = Menu;
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [selectedKey, setSelectedKey] = useState('1');
+  const [openKeys, setOpenKeys] = useState(['3']); // Mở submenu mặc định
 
   useEffect(() => {
     const path = location.pathname;
@@ -32,6 +34,10 @@ const Sidebar = () => {
 
   const handleMenuClick = (key) => {
     setSelectedKey(key);
+  };
+
+  const handleOpenChange = (keys) => {
+    setOpenKeys(keys);
   };
 
   const handleHomeClick = () => {
@@ -65,14 +71,16 @@ const Sidebar = () => {
       <Menu
         mode="inline"
         selectedKeys={[selectedKey]}
+        defaultOpenKeys={openKeys}
         style={{ height: '100%' }}
         className="bg-blue-400 fixed top-16 left-0 w-60"
+        onOpenChange={handleOpenChange}
       >
         <Menu.Item
           key="1"
           icon={<HomeOutlined />}
           onClick={handleHomeClick}
-          style={selectedKey === '1' ? { background: '#1890ff', color: '#fff' } : null}
+         
         >
           Home
         </Menu.Item>
@@ -80,11 +88,10 @@ const Sidebar = () => {
           key="2"
           icon={<CheckCircleOutlined />}
           onClick={handleTaskClick}
-          style={selectedKey === '2' ? { background: '#1890ff', color: '#fff' } : null}
         >
           Tasks
         </Menu.Item>
-        <Menu.SubMenu
+        <SubMenu
           key="3"
           icon={<AppstoreOutlined />}
           title="Projects"
@@ -99,7 +106,7 @@ const Sidebar = () => {
           <Menu.Item key="6" onClick={handleSunAsteriskClick}>
             Sun*Asterisk
           </Menu.Item>
-        </Menu.SubMenu>
+        </SubMenu>
       </Menu>
     </Sider>
   );

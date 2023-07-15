@@ -4,28 +4,28 @@ import { PlusOutlined,StarFilled } from '@ant-design/icons';
 
 const { Content } = Layout;
 
-const Board = () => {
+const BoardSun = () => {
   var reviewTasks = [
     {
       Review: "Phan Công Hiếu",
-      Task: "Kiểm thử thí nghiệm",
-      Assignee: "Đặng Quang Tuấn",
+      Task: "Tạo giao diện người dùng",
+      Assignee: "Vũ Thị Hương Giang",
       User: "Hoàng Việt Đức",
-      Project: "Hust Lab",
+      Project: "UIUX",
       Priority: "High",
       dueDate: "2023-07-01",
-      Comment: "Hoàn thành kiểm thử",
+      Comment: "Công việc hoàn thành đúng tiến độ và chất lượng tốt!",
       Rating: 5,
     },
     {
       Review: "Phan Công Hiếu",
-      Task: "Tạo tài liệu cho thí nghiệm",
+      Task: "Phân tích yêu cầu người dùng",
       Assignee: "Trịnh Tuấn Đạt",
       User: "Hoàng Việt Đức",
       Project: "Hust Lab",
       Priority: "Medium",
       dueDate: "2023-07-15",
-      Comment: "Công việc có những điểm cần cải thiện, nhưng tổng thể là tố!",
+      Comment: "Công việc có những điểm cần cải thiện, nhưng tổng thể là tốt!",
       Rating: 4.8,
     },
   ];
@@ -35,11 +35,11 @@ const Board = () => {
       Support: "Phan Công Hiếu",
       Assignee: "Phạm Bích Phương",
       User: "Hoàng Việt Đức",
-      Project: "Hust Lab",
+      Project: "Sun*Asterisk",
       Priority: "High",
       dueDate: "2023-06-30",
-      Problem: "Khớp nối bị lệch",
-      solveThisProblem: "Dùng búa nắn",
+      Problem: "Khó học thuộc Kanji",
+      solveThisProblem: "Viết ra giấy từ đấy 20 lần",
     },
     {
       Support: "Phan Công Hiếu",
@@ -413,4 +413,4 @@ const Board = () => {
   );
 };
 
-export default Board;
+export default BoardSun;
