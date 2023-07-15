@@ -23,31 +23,153 @@ const HustLab = () => {
   };
 
   // Danh sách các sự kiện
-  const events = [
-    {
-      start: new Date(2023, 5, 26, 10, 0), // Thời gian bắt đầu
-      end: new Date(2023, 5, 30, 11, 30), // Thời gian kết thúc
-      title: "Design figma for home screen", // Tiêu đề sự kiện
-      description: "Discuss project updates", // Mô tả sự kiện
-    },
-    {
-      start: new Date(2023, 5, 28, 14, 0),
-      end: new Date(2023, 5, 29, 15, 30),
-      title: "Design figma for setting screen",
-      description: "Present new product features",
-    },
-    {
-      start: new Date(2023, 5, 24, 10, 0), // Thời gian bắt đầu
-      end: new Date(2023, 5, 27, 11, 30), // Thời gian kết thúc
-      title: "Design figma for home screen", // Tiêu đề sự kiện
-      description: "Discuss project updates", // Mô tả sự kiện
-    },
-    {
-      start: new Date(2023, 5, 23, 14, 0),
-      end: new Date(2023, 5, 26, 15, 30),
-      title: "Design figma for setting screen",
-      description: "Present new product features",
-    },
+  
+const events = [
+  {
+  start: new Date(2023, 5, 26, 10, 0),
+  end: new Date(2023, 5, 30, 11, 30),
+  title: "Design figma for home screen",
+  description: "Discuss project updates",
+  },
+  {
+  start: new Date(2023, 5, 28, 14, 0),
+  end: new Date(2023, 5, 29, 15, 30),
+  title: "Design figma for setting screen",
+  description: "Present new product features",
+  },
+  {
+  start: new Date(2023, 5, 24, 10, 0),
+  end: new Date(2023, 5, 27, 11, 30),
+  title: "Design figma for home screen",
+  description: "Discuss project updates",
+  },
+  {
+  start: new Date(2023, 5, 23, 14, 0),
+  end: new Date(2023, 5, 26, 15, 30),
+  title: "Design figma for setting screen",
+  description: "Present new product features",
+  },
+  // 20 additional events related to Hust Lab
+  {
+  start: new Date(2023, 6, 1, 9, 0),
+  end: new Date(2023, 6, 1, 10, 0),
+  title: "Sprint Planning Meeting",
+  description: "Plan tasks for the upcoming sprint",
+  },
+  {
+  start: new Date(2023, 6, 3, 14, 30),
+  end: new Date(2023, 6, 3, 16, 0),
+  title: "Code Review Session",
+  description: "Review code and provide feedback",
+  },
+  {
+  start: new Date(2023, 6, 5, 11, 0),
+  end: new Date(2023, 6, 5, 12, 30),
+  title: "Client Meeting",
+  description: "Discuss project requirements with the client",
+  },
+  {
+  start: new Date(2023, 6, 7, 10, 0),
+  end: new Date(2023, 6, 7, 11, 30),
+  title: "UI Design Workshop",
+  description: "Collaborate on designing the user interface",
+  },
+  {
+  start: new Date(2023, 6, 10, 13, 0),
+  end: new Date(2023, 6, 10, 14, 30),
+  title: "Testing Session",
+  description: "Conduct functional and usability testing",
+  },
+  {
+  start: new Date(2023, 6, 12, 15, 0),
+  end: new Date(2023, 6, 12, 16, 30),
+  title: "Project Status Meeting",
+  description: "Provide updates on the project progress",
+  },
+  {
+  start: new Date(2023, 6, 15, 9, 30),
+  end: new Date(2023, 6, 15, 11, 0),
+  title: "Demo Presentation",
+  description: "Present project demo to stakeholders",
+  },
+  {
+  start: new Date(2023, 6, 18, 14, 0),
+  end: new Date(2023, 6, 18, 15, 30),
+  title: "Bug Fixing Session",
+  description: "Address and fix reported bugs",
+  },
+  {
+  start: new Date(2023, 6, 20, 10, 0),
+  end: new Date(2023, 6, 20, 11, 30),
+  title: "Documentation Review",
+  description: "Review and update project documentation",
+  },
+  {
+  start: new Date(2023, 6, 23, 13, 30),
+  end: new Date(2023, 6, 23, 15, 0),
+  title: "Deployment Meeting",
+  description: "Plan and coordinate the deployment process",
+  },
+  {
+  start: new Date(2023, 6, 26, 9, 0),
+  end: new Date(2023, 6, 26, 10, 30),
+  title: "User Training Session",
+  description: "Provide training to end users on using the system",
+  },
+  {
+  start: new Date(2023, 6, 29, 14, 0),
+  end: new Date(2023, 6, 29, 15, 30),
+  title: "Project Review Meeting",
+  description: "Evaluate project outcomes and lessons learned",
+  },
+  {
+  start: new Date(2023, 7, 1, 10, 0),
+  end: new Date(2023, 7, 1, 11, 30),
+  title: "Task Planning Session",
+  description: "Plan tasks for the next project phase",
+  },
+  {
+  start: new Date(2023, 7, 4, 15, 0),
+  end: new Date(2023, 7, 4, 16, 30),
+  title: "Code Refactoring Session",
+  description: "Refactor code for better maintainability",
+  },
+  {
+  start: new Date(2023, 7, 7, 9, 30),
+  end: new Date(2023, 7, 7, 11, 0),
+  title: "Client Demo",
+  description: "Present project progress to the client",
+  },
+  {
+  start: new Date(2023, 7, 10, 14, 0),
+  end: new Date(2023, 7, 10, 15, 30),
+  title: "Usability Testing Session",
+  description: "Conduct usability testing with target users",
+  },
+  {
+  start: new Date(2023, 7, 13, 11, 0),
+  end: new Date(2023, 7, 13, 12, 30),
+  title: "Project Review Meeting",
+  description: "Evaluate project outcomes and lessons learned",
+  },
+  {
+  start: new Date(2023, 7, 16, 13, 0),
+  end: new Date(2023, 7, 16, 14, 30),
+  title: "Code Review Session",
+  description: "Review code and provide feedback",
+  },
+  {
+  start: new Date(2023, 7, 19, 10, 0),
+  end: new Date(2023, 7, 19, 11, 30),
+  title: "Project Status Meeting",
+  description: "Provide updates on the project progress",
+  },
+  {
+  start: new Date(2023, 7, 22, 14, 30),
+  end: new Date(2023, 7, 22, 16, 0),
+  title: "Documentation Review",
+  description: "Review and update project documentation",
+  },
   ];
 
   return (

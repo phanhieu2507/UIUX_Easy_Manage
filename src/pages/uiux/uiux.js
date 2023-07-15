@@ -25,30 +25,139 @@ const UIUX = () => {
   // Danh sách các sự kiện
   const events = [
     {
-        start: new Date(2023, 5, 26, 10, 0), // Thời gian bắt đầu
-        end: new Date(2023, 5, 30, 11, 30), // Thời gian kết thúc
-        title: "Design figma for home screen", // Tiêu đề sự kiện
-        description: "Discuss project updates", // Mô tả sự kiện
-      },
-      {
-        start: new Date(2023, 5, 28, 14, 0),
-        end: new Date(2023, 5, 29, 15, 30),
-        title: "Design figma for setting screen",
-        description: "Present new product features",
-      },
-      {
-        start: new Date(2023, 5, 24, 10, 0), // Thời gian bắt đầu
-        end: new Date(2023, 5, 27, 11, 30), // Thời gian kết thúc
-        title: "Code home screen", // Tiêu đề sự kiện
-        description: "Discuss project updates", // Mô tả sự kiện
-      },
-      {
-        start: new Date(2023, 5, 23, 14, 0),
-        end: new Date(2023, 5, 26, 15, 30),
-        title: "Code setting screen",
-        description: "Present new product features",
-      },
-  ];
+    start: new Date(2023, 5, 26, 10, 0),
+    end: new Date(2023, 5, 30, 11, 30),
+    title: "Thiết kế giao diện cho màn hình chính",
+    description: "Thảo luận về cập nhật dự án",
+    },
+    {
+    start: new Date(2023, 5, 28, 14, 0),
+    end: new Date(2023, 5, 29, 15, 30),
+    title: "Thiết kế giao diện cho màn hình cài đặt",
+    description: "Trình bày các tính năng mới của sản phẩm",
+    },
+    {
+    start: new Date(2023, 5, 24, 10, 0),
+    end: new Date(2023, 5, 27, 11, 30),
+    title: "Lập trình cho màn hình chính",
+    description: "Thảo luận về cập nhật dự án",
+    },
+    {
+    start: new Date(2023, 5, 23, 14, 0),
+    end: new Date(2023, 5, 26, 15, 30),
+    title: "Lập trình cho màn hình cài đặt",
+    description: "Trình bày các tính năng mới của sản phẩm",
+    },
+    // Các sự kiện liên quan đến UIUX
+    {
+    start: new Date(2023, 5, 25, 9, 0),
+    end: new Date(2023, 5, 26, 16, 0),
+    title: "Nghiên cứu và phân tích người dùng",
+    description: "Thu thập phản hồi từ người dùng và phân tích dữ liệu",
+    },
+    {
+    start: new Date(2023, 5, 28, 10, 0),
+    end: new Date(2023, 5, 30, 14, 30),
+    title: "Tạo khung dây chuyền (wireframe)",
+    description: "Vẽ và tạo khung dây chuyền (wireframe) cho giao diện người dùng",
+    },
+    {
+    start: new Date(2023, 5, 24, 13, 0),
+    end: new Date(2023, 5, 25, 16, 30),
+    title: "Xây dựng nguyên mẫu (prototype)",
+    description: "Xây dựng nguyên mẫu tương tác để kiểm thử",
+    },
+    {
+    start: new Date(2023, 5, 23, 9, 0),
+    end: new Date(2023, 5, 24, 12, 30),
+    title: "Đánh giá thiết kế giao diện",
+    description: "Đánh giá và đưa ra phản hồi về thiết kế giao diện",
+    },
+    {
+    start: new Date(2023, 5, 27, 15, 0),
+    end: new Date(2023, 5, 29, 17, 30),
+    title: "Kiểm thử tính sử dụng",
+    description: "Tiến hành kiểm thử tính sử dụng trên nguyên mẫu giao diện",
+    },
+    {
+    start: new Date(2023, 5, 24, 9, 0),
+    end: new Date(2023, 5, 25, 13, 30),
+    title: "Xây dựng hướng dẫn kiểu (style guide)",
+    description: "Tạo hướng dẫn kiểu để đảm bảo giao diện thống nhất",
+    },
+    {
+    start: new Date(2023, 5, 23, 11, 0),
+    end: new Date(2023, 5, 24, 14, 30),
+    title: "Thư viện thành phần giao diện",
+    description: "Xây dựng thư viện các thành phần giao diện có thể tái sử dụng",
+    },
+    {
+    start: new Date(2023, 5, 26, 9, 0),
+    end: new Date(2023, 5, 27, 12, 30),
+    title: "Phiên phản hồi giao diện",
+    description: "Thu thập phản hồi về thiết kế giao diện từ các bên liên quan",
+    },
+    {
+    start: new Date(2023, 5, 25, 14, 0),
+    end: new Date(2023, 5, 26, 17, 30),
+    title: "Triển khai giao diện",
+    description: "Dịch thiết kế giao diện thành mã nguồn",
+    },
+    {
+    start: new Date(2023, 5, 28, 9, 0),
+    end: new Date(2023, 5, 30, 12, 30),
+    title: "Kiểm thử và sửa lỗi giao diện",
+    description: "Kiểm thử chức năng của giao diện và khắc phục lỗi",
+    },
+    {
+    start: new Date(2023, 5, 23, 13, 0),
+    end: new Date(2023, 5, 25, 16, 30),
+    title: "Tối ưu hóa giao diện",
+    description: "Tối ưu hóa hiệu suất giao diện để cải thiện trải nghiệm người dùng",
+    },
+    {
+    start: new Date(2023, 5, 27, 10, 0),
+    end: new Date(2023, 5, 29, 14, 30),
+    title: "Đánh giá và cải thiện giao diện",
+    description: "Xem xét và cải thiện triển khai giao diện",
+    },
+    {
+    start: new Date(2023, 5, 24, 15, 0),
+    end: new Date(2023, 5, 25, 17, 30),
+    title: "Tài liệu hóa thiết kế giao diện",
+    description: "Tài liệu hóa quyết định thiết kế giao diện và hướng dẫn",
+    },
+    {
+    start: new Date(2023, 5, 26, 13, 0),
+    end: new Date(2023, 5, 27, 16, 30),
+    title: "Trình bày thiết kế giao diện",
+    description: "Trình bày thiết kế giao diện cho các bên liên quan",
+    },
+    {
+    start: new Date(2023, 5, 23, 10, 0),
+    end: new Date(2023, 5, 24, 13, 30),
+    title: "Kiểm thử tính sử dụng giao diện",
+    description: "Tiến hành kiểm thử tính sử dụng trên triển khai giao diện",
+    },
+    {
+    start: new Date(2023, 5, 28, 15, 0),
+    end: new Date(2023, 5, 29, 17, 30),
+    title: "Hoàn thiện thiết kế giao diện",
+    description: "Hoàn thiện thiết kế giao diện để công bố",
+    },
+    {
+    start: new Date(2023, 5, 25, 9, 0),
+    end: new Date(2023, 5, 26, 12, 30),
+    title: "Triển khai giao diện",
+    description: "Triển khai giao diện trong môi trường sản phẩm",
+    },
+    {
+    start: new Date(2023, 5, 30, 14, 0),
+    end: new Date(2023, 6, 1, 17, 30),
+    title: "Bảo trì giao diện",
+    description: "Thực hiện bảo trì và cập nhật định kỳ cho giao diện",
+    },
+    ];
 
   return (
     <Layout>
